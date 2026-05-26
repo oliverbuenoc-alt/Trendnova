@@ -2,7 +2,7 @@
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>NEXORA</title>
+<title>TitanByte</title>
 <script src='https://cdn.tailwindcss.com'></script>
 <style>
 body{background:#eef2f7;scroll-behavior:smooth}
@@ -29,12 +29,24 @@ body{background:#eef2f7;scroll-behavior:smooth}
 let carrito=[]
 const data={
 pc:[['PC Gaming RTX5070 Ryzen7',1499,'RTX5070 · Ryzen7 · 32GB · SSD2TB · Win11 Pro'],['PC Creator RTX5080',1899,'RTX5080 · Ryzen9 · 64GB · SSD4TB · Win11 Pro'],['PC Oficina Intel i5',699,'Intel i5 · 16GB · SSD1TB · Win11 Pro']],
-componentes:[['Corsair DDR5 RGB 32GB',129,'6000MHz RGB'],['Kingston Fury 64GB',219,'DDR5 Gaming'],['Samsung 990 Pro 2TB',169,'NVMe Gen4'],['Crucial P3 Plus 1TB',79,'SSD NVMe'],['WD Black SN850X 4TB',299,'Gaming SSD'],['Windows 11 Pro',24,'Licencia']],
+componentes:[['Corsair DDR5 RGB 96GB',449,'6600MHz RGB Premium'],['Kingston Fury 64GB',219,'DDR5 Gaming'],['Samsung 990 Pro 2TB',169,'NVMe Gen4'],['Crucial P3 Plus 1TB',79,'SSD NVMe'],['WD Black SN850X 4TB',299,'Gaming SSD'],['Windows 11 Pro',24,'Licencia']],
 gaming:[['Teclado RGB',59,'Mecánico'],['Ratón Gaming',35,'Pro RGB'],['Silla Gaming',129,'Ergonómica'],['Auriculares RGB',49,'7.1']],
 cafe:[['Cafetera Espresso',89,'Premium'],['Molinillo Café',39,'Eléctrico']],
 mascotas:[['Royal Canin Maxi',54,'Pienso'],['Purina Pro Plan',49,'Adult Dog'],['Cama Ortopédica',39,'Perros']],
 internet:[['Starlink Kit Oficial',349,'Internet satélite'],['Router ASUS ROG Gaming',259,'Wi‑Fi 7'],['TP-Link Archer AXE75',189,'Tri-band'],['Router Mesh TP-Link Deco',149,'Cobertura hogar'],['Amplificador WiFi Pro',39,'Señal extendida']],gadgets:[['Mini Impresora',29,'Bluetooth'],['Robot Aspirador',149,'Smart'],['Freidora Aire XL',79,'6L'],['Alexa Smart Hub',49,'Control voz'],['Proyector Cine 4K',119,'Home Cinema'],['Mini NAS Backup',89,'Almacenamiento']]}
-function card(n,p,s){return `<div class='product bg-white rounded-3xl shadow overflow-hidden'><img src='https://picsum.photos/400/300?random=${encodeURIComponent(n)}'><div class='p-5'><span class='bg-orange-600 text-white px-2 py-1 rounded-full'>TOP</span><h3 class='font-bold text-xl mt-2'>${n}</h3><p class='text-gray-500 text-sm'>${s}</p><p>⭐⭐⭐⭐⭐ (2.5k)</p><p class='text-3xl font-bold'>${p}€</p><button onclick="comprar('${n}',${p})" class='w-full bg-orange-600 text-white p-3 rounded-xl mt-3'>Añadir</button></div></div>`}
+const imageMap={
+'PC Gaming RTX5070 Ryzen7':'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800',
+'PC Creator RTX5080':'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800',
+'Corsair DDR5 RGB 32GB':'https://images.unsplash.com/photo-1562976540-1502c2145186?w=800',
+'Kingston Fury 64GB':'https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?w=800',
+'Samsung 990 Pro 2TB':'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=800',
+'Router ASUS ROG Gaming':'https://images.unsplash.com/photo-1647427060118-4911c9821b82?w=800',
+'Starlink Kit Oficial':'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800',
+'Royal Canin Maxi':'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800',
+'Teclado RGB':'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=800',
+'Robot Aspirador':'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=800'
+}
+function card(n,p,s){return `<div class='product bg-white rounded-3xl shadow overflow-hidden'><img src='${imageMap[n]||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800"}' class='h-56 w-full object-cover'><div class='p-5'><span class='bg-orange-600 text-white px-2 py-1 rounded-full'>TOP</span><h3 class='font-bold text-xl mt-2'>${n}</h3><p class='text-gray-500 text-sm'>${s}</p><p>⭐⭐⭐⭐⭐ (2.5k)</p><p class='text-3xl font-bold'>${p}€</p><button onclick="comprar('${n}',${p})" class='w-full bg-orange-600 text-white p-3 rounded-xl mt-3'>Añadir</button></div></div>`}
 const map={pc:'pcprod',componentes:'compprod',gaming:'gameprod',internet:'netprod',cafe:'cafeprod',mascotas:'petprod',gadgets:'gadprod'}
 Object.entries(data).forEach(([k,v])=>v.forEach(x=>document.getElementById(map[k]).innerHTML+=card(x[0],x[1],x[2])))
 function comprar(n,p){carrito.push({n,p});contador.innerText=carrito.length}
