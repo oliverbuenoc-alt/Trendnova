@@ -12,6 +12,38 @@ body{background:#0d1117;color:#c9d1d9;scroll-behavior:smooth}
 .custom-scrollbar::-webkit-scrollbar-thumb {background: #ff6b00; border-radius: 10px;}
 </style>
 </head>
+   <!-- Carga y configuración de PayPal -->
+<script>
+    // 1. Cargar el SDK de PayPal dinámicamente
+    const script = document.createElement('script');
+    script.src = "https://www.paypal.com/sdk/js?client-id=AS4-rEMf9gjs9_cRz9_CeqThsgQVYhs7OV3unuxVMWdsDEMkYlcdZAUY_oSu1mvDpt4CfnGB7dWOuDXV&currency=EUR";
+    script.onload = function() {
+        // 2. Inicializar los botones
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                let total = obtenerTotalCarrito();
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: { value: total.toFixed(2), currency_code: 'EUR' }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('¡Pago procesado! Gracias, ' + details.payer.name.given_name);
+                    carrito = [];
+                    actualizarCarritoVisual();
+                    cerrarCarrito();
+                });
+            }
+        }).render('#paypal-button-container');
+    };
+    document.body.appendChild(script);
+</script>
+
+</body>
+</html>
+ 
 <body>
 
 <div class='bg-gradient-to-r from-orange-600 to-orange-500 text-white text-center py-2 text-xs md:text-sm font-semibold tracking-wide shadow-md'>
