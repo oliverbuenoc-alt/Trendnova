@@ -247,6 +247,7 @@ TitanByte © 2026
 </footer>
 
 </main>
+
 <!-- CARRITO -->
 <div id="modalCarrito"
 class="fixed inset-0 bg-black/70 hidden justify-end z-50">
@@ -256,14 +257,22 @@ class="bg-[#161b22] w-full max-w-md h-full p-6 flex flex-col">
 
 <div class="flex justify-between items-center border-b border-gray-800 pb-4">
 
-<h3 class="text-2xl font-black">🛒 Tu Pedido</h3>
+<h3 class="text-2xl font-black">
+🛒 Tu Pedido
+</h3>
 
-<button onclick="cerrarCarrito()" class="text-3xl">×</button>
+<button
+onclick="cerrarCarrito()"
+class="text-3xl hover:text-red-500">
+×
+</button>
 
 </div>
 
-<div id="listaCarrito"
-class="flex-1 overflow-y-auto mt-4 space-y-3"></div>
+<div
+id="listaCarrito"
+class="flex-1 overflow-y-auto mt-4 space-y-3">
+</div>
 
 <div class="border-t border-gray-800 pt-4">
 
@@ -271,7 +280,12 @@ class="flex-1 overflow-y-auto mt-4 space-y-3"></div>
 
 <span>Total:</span>
 
-<span id="totalPrecio" class="text-orange-500">0€</span>
+<span id="totalPrecio"
+class="text-orange-500">
+
+0€
+
+</span>
 
 </div>
 
@@ -300,7 +314,7 @@ cpu:[
 ],
 
 gpu:[
-['RTX 5070 Ti',999,'4K'],
+['RTX 5070 Ti',999,'4K Gaming'],
 ['RTX 5080',1799,'Ultra'],
 ['RTX 5090',2499,'Máximo rendimiento']
 ],
@@ -376,16 +390,19 @@ return `
 src="${imageMap[nombre] || fallback}"
 class="w-full h-56 object-cover"
 loading="lazy"
-onerror="this.src='${fallback}'"
->
+onerror="this.src='${fallback}'">
 
 <div class="p-5">
 
-<h3 class="font-black">${nombre}</h3>
+<h3 class="font-black">
+${nombre}
+</h3>
 
-<p class="text-gray-400 text-sm">${desc}</p>
+<p class="text-gray-400 text-sm">
+${desc}
+</p>
 
-<div class="flex justify-between items-center mt-5">
+<div class="flex justify-between mt-5">
 
 <span class="text-orange-500 text-2xl font-black">
 ${precio}€
@@ -394,22 +411,26 @@ ${precio}€
 <button
 onclick="agregarCarrito('${nombre}',${precio})"
 class="bg-orange-600 px-4 py-2 rounded-xl">
+
 Añadir
+
 </button>
 
 </div>
+
 </div>
-</div>`
+</div>
+`
 }
 
 function renderizarProductos(){
 
-pcprod.innerHTML=data.pc.map(p=>crearProducto(...p)).join('')
-cpuprod.innerHTML=data.cpu.map(p=>crearProducto(...p)).join('')
-gpuprod.innerHTML=data.gpu.map(p=>crearProducto(...p)).join('')
-ssdprod.innerHTML=data.ssd.map(p=>crearProducto(...p)).join('')
-rgbprod.innerHTML=data.rgb.map(p=>crearProducto(...p)).join('')
-psuprod.innerHTML=data.fuentes.map(p=>crearProducto(...p)).join('')
+document.getElementById('pcprod').innerHTML=data.pc.map(p=>crearProducto(...p)).join('')
+document.getElementById('cpuprod').innerHTML=data.cpu.map(p=>crearProducto(...p)).join('')
+document.getElementById('gpuprod').innerHTML=data.gpu.map(p=>crearProducto(...p)).join('')
+document.getElementById('ssdprod').innerHTML=data.ssd.map(p=>crearProducto(...p)).join('')
+document.getElementById('rgbprod').innerHTML=data.rgb.map(p=>crearProducto(...p)).join('')
+document.getElementById('psuprod').innerHTML=data.fuentes.map(p=>crearProducto(...p)).join('')
 
 }
 
@@ -417,58 +438,157 @@ let carrito=[]
 
 function agregarCarrito(n,p){
 
-carrito.push({nombre:n,precio:p})
+carrito.push({
+nombre:n,
+precio:p
+})
 
 actualizarCarrito()
+
 abrirCarrito()
 
 }
 
 function abrirCarrito(){
 
-modalCarrito.classList.remove('hidden')
-modalCarrito.classList.add('flex')
+const modal=
+document.getElementById("modalCarrito")
 
-panelCarrito.classList.add('shake')
+const panel=
+document.getElementById("panelCarrito")
+
+modal.classList.remove("hidden")
+modal.classList.add("flex")
+
+panel.classList.add("shake")
 
 setTimeout(()=>{
-panelCarrito.classList.remove('shake')
+
+panel.classList.remove("shake")
+
 },350)
 
 }
 
 function cerrarCarrito(){
 
-modalCarrito.classList.add('hidden')
-modalCarrito.classList.remove('flex')
+modalCarrito.classList.add("hidden")
+modalCarrito.classList.remove("flex")
+
+}
+
+function eliminarProducto(index){
+
+carrito.splice(index,1)
+
+actualizarCarrito()
 
 }
 
 function actualizarCarrito(){
 
-contador.innerText=carrito.length
+contador.innerText=
+carrito.length
 
 let total=0
+
 listaCarrito.innerHTML=''
 
-carrito.forEach(x=>{
+carrito.forEach((item,index)=>{
 
-total+=x.precio
+total+=item.precio
 
 listaCarrito.innerHTML+=`
-<div class="bg-[#0d1117] p-3 rounded-xl">
-${x.nombre} - ${x.precio}€
-</div>`
+
+<div class="bg-[#0d1117] p-4 rounded-xl flex justify-between">
+
+<div>
+
+<div class="font-bold">
+${item.nombre}
+</div>
+
+<div class="text-orange-500">
+${item.precio}€
+</div>
+
+</div>
+
+<button
+onclick="eliminarProducto(${index})"
+class="bg-red-600 px-3 rounded">
+
+X
+
+</button>
+
+</div>
+`
 
 })
 
-totalPrecio.innerText=total+'€'
+totalPrecio.innerText=
+total.toFixed(2)+"€"
 
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
+paypal.Buttons({
+
+createOrder:function(data,actions){
+
+if(carrito.length===0){
+
+alert("Añade productos")
+
+return
+
+}
+
+return actions.order.create({
+
+purchase_units:[{
+
+amount:{
+
+value:parseFloat(
+totalPrecio.innerText
+).toFixed(2)
+
+}
+
+}]
+
+})
+
+},
+
+onApprove:function(data,actions){
+
+return actions.order.capture()
+
+.then(()=>{
+
+alert("✅ Pago completado")
+
+carrito=[]
+
+actualizarCarrito()
+
+cerrarCarrito()
+
+})
+
+}
+
+}).render("#paypal-button-container")
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
 renderizarProductos()
+
+actualizarCarrito()
 
 })
 
