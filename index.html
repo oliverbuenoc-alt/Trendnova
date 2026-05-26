@@ -1,179 +1,56 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang='es'>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WIN STORE</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>WIN STORE Premium</title>
+<script src='https://cdn.tailwindcss.com'></script>
 <style>
-body{
-margin:0;
-background:#f3f4f6;
-font-family:Arial,sans-serif;
-}
-.card:hover{
-transform:translateY(-5px);
-transition:.3s;
-}
+body{background:#f5f5f5}
+.product:hover{transform:translateY(-8px);transition:.3s}
+.hero{background:linear-gradient(135deg,#111,#222,#444)}
 </style>
 </head>
-
 <body>
-
-<div class="bg-black text-white text-center p-3">
-🔥 OFERTA FLASH · Envío gratis hoy · -50%
+<div class='bg-black text-white text-center py-2'>🚚 Envío gratis | Pago seguro | Devolución 30 días</div>
+<nav class='bg-white p-5 shadow flex justify-between sticky top-0'>
+<h1 class='font-bold text-2xl'>WIN STORE</h1>
+<button onclick='verCarrito()' class='bg-black text-white px-5 py-2 rounded-xl'>🛒 Carrito (<span id='contador'>0</span>)</button>
+</nav>
+<section class='hero text-white p-12'>
+<h1 class='text-6xl font-bold'>Productos virales & Gaming 2026</h1>
+<p class='mt-3 text-gray-300'>Dropshipping, setup, hogar y gadgets top ventas</p>
+</section>
+<div class='max-w-7xl mx-auto p-8'>
+<div id='productos' class='grid md:grid-cols-4 gap-6'></div>
 </div>
-
-<div class="max-w-7xl mx-auto p-6">
-
-<h1 class="text-5xl font-bold text-center">
-WIN STORE
-</h1>
-
-<p class="text-center text-gray-500 mb-6">
-Winning Products 2026
-</p>
-
-<div class="flex gap-3 overflow-auto mb-8">
-<button class="bg-white p-2 rounded-xl">Todos</button>
-<button class="bg-white p-2 rounded-xl">TikTok</button>
-<button class="bg-white p-2 rounded-xl">Gaming</button>
-<button class="bg-white p-2 rounded-xl">Tech</button>
-</div>
-
-<div id="productos"
-class="grid md:grid-cols-4 gap-6"></div>
-
-<div class="bg-white rounded-3xl p-8 mt-10 shadow">
-
-<h2 class="text-2xl font-bold">
-Métodos de pago
-</h2>
-
-<p>Stripe · PayPal · Tarjeta</p>
-
-<h2 class="text-2xl font-bold mt-6">
-Opiniones
-</h2>
-
-<p>"Me llegó en 5 días" ⭐⭐⭐⭐⭐</p>
-<p>"Lo vi en TikTok y funciona" ⭐⭐⭐⭐⭐</p>
-
-</div>
-
-</div>
-
 <script>
-
-const productos=[
-
-{
-nombre:"Mini Proyector",
-precio:"49€",
-categoria:"Viral",
-stock:"Quedan 7",
-rating:"4.9 ⭐",
-imagen:"https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=500"
-},
-
-{
-nombre:"Smartwatch Ultra",
-precio:"69€",
-categoria:"Top ventas",
-stock:"Quedan 4",
-rating:"4.8 ⭐",
-imagen:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
-},
-
-{
-nombre:"Mini Impresora Bluetooth",
-precio:"29€",
-categoria:"TikTok",
-stock:"Quedan 11",
-rating:"4.9 ⭐",
-imagen:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500"
-},
-
-{
-nombre:"Teclado RGB",
-precio:"59€",
-categoria:"Gaming",
-stock:"Últimas unidades",
-rating:"4.8 ⭐",
-imagen:"https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500"
-}
-
-];
-
-const contenedor=document.getElementById("productos");
-
-productos.forEach(p=>{
-
-contenedor.innerHTML += `
-
-<div class="card bg-white rounded-3xl overflow-hidden shadow-lg">
-
-<img
-src="${p.imagen}"
-class="h-64 w-full object-cover"
->
-
-<div class="p-5">
-
-<div class="flex justify-between">
-
-<span class="bg-red-500 text-white rounded-full px-3 py-1 text-sm">
-${p.categoria}
-</span>
-
-<span>⏰23:59</span>
-
-</div>
-
-<h2 class="font-bold text-xl mt-3">
-${p.nombre}
-</h2>
-
-<p>${p.rating}</p>
-
-<p class="text-red-500">
-${p.stock}
-</p>
-
-<div class="flex justify-between mt-4">
-
-<div>
-<p class="text-2xl font-bold">
-${p.precio}
-</p>
-
-<p class="line-through text-gray-400">
-99€
-</p>
-</div>
-
-<button
-class="bg-black text-white rounded-xl px-4">
-Añadir
-</button>
-
-</div>
-
-<button class="w-full bg-yellow-400 p-3 rounded-xl mt-4">
-Comprar ahora
-</button>
-
-</div>
-
-</div>
-
-`
-
+let carrito=[]
+const lista=[
+{nombre:'Mini Proyector Smart',precio:49,img:'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=500'},
+{nombre:'Smartwatch Ultra',precio:69,img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500'},
+{nombre:'Teclado RGB Gaming',precio:59,img:'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500'},
+{nombre:'Silla Gaming Pro',precio:129,img:'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500'},
+{nombre:'Cafetera Espresso',precio:89,img:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500'},
+{nombre:'Mini Impresora Bluetooth',precio:29,img:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500'},
+{nombre:'Pack LEDs Setup',precio:24,img:'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500'},
+{nombre:'Ratón Gaming RGB',precio:35,img:'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500'}
+]
+const productos=document.getElementById('productos')
+lista.forEach(p=>{
+productos.innerHTML+=`<div class='product bg-white rounded-3xl shadow-xl overflow-hidden'>
+<img src='${p.img}' class='h-60 w-full object-cover'>
+<div class='p-5'>
+<span class='bg-red-500 text-white px-3 py-1 rounded-full'>HOT 🔥</span>
+<h2 class='font-bold text-xl mt-3'>${p.nombre}</h2>
+<p class='text-3xl font-bold mt-2'>${p.precio}€</p>
+<p>⭐⭐⭐⭐⭐ (2.4k)</p>
+<button onclick="comprar('${p.nombre}',${p.precio})" class='w-full bg-black text-white p-3 rounded-xl mt-4'>Añadir al carrito</button>
+<button onclick='checkout()' class='w-full bg-yellow-400 p-3 rounded-xl mt-2'>Comprar ahora</button>
+</div></div>`
 })
-
+function comprar(nombre,precio){carrito.push({nombre,precio});contador.innerText=carrito.length}
+function verCarrito(){alert(carrito.map(x=>x.nombre+' - '+x.precio+'€').join('\n')||'Carrito vacío')}
+function checkout(){window.location.href='https://paypal.com'}
 </script>
-
 </body>
 </html>
