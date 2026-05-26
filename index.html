@@ -1,320 +1,179 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trendnova Blush | Tienda Oficial</title>
-    <style>
-        /* Estilos Globales - Estilo Minimalista Premium */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIN STORE</title>
 
-        body {
-            background-color: #faf7f5; /* Fondo crema suave */
-            color: #1a1a1a;
-        }
+<script src="https://cdn.tailwindcss.com"></script>
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s;
-        }
-
-        /* Barra de Navegación */
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eaeaea;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .logo span {
-            color: #e29587; /* Tono Blush */
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin: 0 20px;
-        }
-
-        nav ul li a {
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        nav ul li a:hover {
-            color: #e29587;
-        }
-
-        .cart-icon {
-            font-size: 20px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background-color: #1a1a1a;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 11px;
-        }
-
-        /* Banner Principal (Hero) */
-        .hero {
-            background-color: #f3ece7;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            padding: 0 8%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 500px;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 44px;
-            line-height: 1.2;
-            font-weight: 400;
-            margin-bottom: 20px;
-            color: #2c2c2c;
-        }
-
-        .hero h1 span {
-            font-style: italic;
-            color: #e29587;
-        }
-
-        .hero p {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #666;
-        }
-
-        .btn-shop {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 14px 35px;
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-            transition: background 0.3s, transform 0.2s;
-            display: inline-block;
-        }
-
-        .btn-shop:hover {
-            background-color: #e29587;
-            transform: translateY(-2px);
-        }
-
-        /* Sección de Productos */
-        .products-section {
-            padding: 80px 8%;
-        }
-
-        .section-title {
-            font-size: 24px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
-        .product-card {
-            background-color: #fff;
-            border-radius: 0px;
-            overflow: hidden;
-            transition: opacity 0.3s;
-            position: relative;
-        }
-
-        .product-img {
-            width: 100%;
-            height: 350px;
-            background-color: #eee;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #a1a1a1;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background-color 0.3s;
-        }
-
-        /* Colores pastel simulando estética minimalista de cosméticos */
-        .p1 { background-color: #f9ebe6; }
-        .p2 { background-color: #f1f3f2; }
-        .p3 { background-color: #f5eae4; }
-        .p4 { background-color: #edf0f2; }
-
-        .product-info {
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .product-title {
-            font-size: 15px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-        }
-
-        .product-price {
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 15px;
-        }
-
-        .btn-add {
-            background-color: transparent;
-            color: #1a1a1a;
-            border: 1px solid #1a1a1a;
-            padding: 10px 20px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s;
-        }
-
-        .btn-add:hover {
-            background-color: #1a1a1a;
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-    </style>
+<style>
+body{
+margin:0;
+background:#f3f4f6;
+font-family:Arial,sans-serif;
+}
+.card:hover{
+transform:translateY(-5px);
+transition:.3s;
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">Trendnova<span>Blush</span></div>
-        <nav>
-            <ul>
-                <li><a href="#">Novedades</a></li>
-                <li><a href="#">Colección</a></li>
-                <li><a href="#">Sobre Nosotros</a></li>
-            </ul>
-        </nav>
-        <div class="cart-icon" onclick="verCarrito()">
-            💼 <span class="cart-count" id="cart-count">0</span>
-        </div>
-    </header>
+<div class="bg-black text-white text-center p-3">
+🔥 OFERTA FLASH · Envío gratis hoy · -50%
+</div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Redefine tu <span>brillo</span> natural</h1>
-            <p>Descubre nuestra nueva línea de cosméticos orgánicos y de larga duración diseñados para el día a día.</p>
-            <a href="#" class="btn-shop">Comprar Ahora</a>
-        </div>
-    </section>
+<div class="max-w-7xl mx-auto p-6">
 
-    <main class="products-section">
-        <h2 class="section-title">Los más deseados</h2>
-        
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-img p1">[ Blush Líquido ]</div>
-                <div class="product-info">
-                    <h3 class="product-title">Blush Rosé Radiance</h3>
-                    <p class="product-price">24.00 €</p>
-                    <button class="btn-add" onclick="agregarAlCarrito()">Añadir</button>
-                </div>
-            </div>
+<h1 class="text-5xl font-bold text-center">
+WIN STORE
+</h1>
 
-            <div class="product-card">
-                <div class="product-img p2">[ Bálsamo Labial ]</div>
-                <div class="product-info">
-                    <h3 class="product-title">Glow Lip Balm</h3>
-                    <p class="product-price">18.50 €</p>
-                    <button class="btn-add" onclick="agregarAlCarrito()">Añadir</button>
-                </div>
-            </div>
+<p class="text-center text-gray-500 mb-6">
+Winning Products 2026
+</p>
 
-            <div class="product-card">
-                <div class="product-img p3">[ Iluminador ]</div>
-                <div class="product-info">
-                    <h3 class="product-title">Silk Highlighter</h3>
-                    <p class="product-price">29.00 €</p>
-                    <button class="btn-add" onclick="agregarAlCarrito()">Añadir</button>
-                </div>
-            </div>
+<div class="flex gap-3 overflow-auto mb-8">
+<button class="bg-white p-2 rounded-xl">Todos</button>
+<button class="bg-white p-2 rounded-xl">TikTok</button>
+<button class="bg-white p-2 rounded-xl">Gaming</button>
+<button class="bg-white p-2 rounded-xl">Tech</button>
+</div>
 
-            <div class="product-card">
-                <div class="product-img p4">[ Serum ]</div>
-                <div class="product-info">
-                    <h3 class="product-title">Hydra-Glow Serum</h3>
-                    <p class="product-price">34.00 €</p>
-                    <button class="btn-add" onclick="agregarAlCarrito()">Añadir</button>
-                </div>
-            </div>
-        </div>
-    </main>
+<div id="productos"
+class="grid md:grid-cols-4 gap-6"></div>
 
-    <footer>
-        <p>&copy; 2026 Trendnova Blush. Diseñado con elegancia.</p>
-    </footer>
+<div class="bg-white rounded-3xl p-8 mt-10 shadow">
 
-    <script>
-        let contador = 0;
-        function agregarAlCarrito() {
-            contador++;
-            document.getElementById('cart-count').innerText = contador;
-        }
-        function verCarrito() {
-            alert('Productos en tu bolsa de Trendnova Blush: ' + contador);
-        }
-    </script>
+<h2 class="text-2xl font-bold">
+Métodos de pago
+</h2>
+
+<p>Stripe · PayPal · Tarjeta</p>
+
+<h2 class="text-2xl font-bold mt-6">
+Opiniones
+</h2>
+
+<p>"Me llegó en 5 días" ⭐⭐⭐⭐⭐</p>
+<p>"Lo vi en TikTok y funciona" ⭐⭐⭐⭐⭐</p>
+
+</div>
+
+</div>
+
+<script>
+
+const productos=[
+
+{
+nombre:"Mini Proyector",
+precio:"49€",
+categoria:"Viral",
+stock:"Quedan 7",
+rating:"4.9 ⭐",
+imagen:"https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=500"
+},
+
+{
+nombre:"Smartwatch Ultra",
+precio:"69€",
+categoria:"Top ventas",
+stock:"Quedan 4",
+rating:"4.8 ⭐",
+imagen:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
+},
+
+{
+nombre:"Mini Impresora Bluetooth",
+precio:"29€",
+categoria:"TikTok",
+stock:"Quedan 11",
+rating:"4.9 ⭐",
+imagen:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500"
+},
+
+{
+nombre:"Teclado RGB",
+precio:"59€",
+categoria:"Gaming",
+stock:"Últimas unidades",
+rating:"4.8 ⭐",
+imagen:"https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500"
+}
+
+];
+
+const contenedor=document.getElementById("productos");
+
+productos.forEach(p=>{
+
+contenedor.innerHTML += `
+
+<div class="card bg-white rounded-3xl overflow-hidden shadow-lg">
+
+<img
+src="${p.imagen}"
+class="h-64 w-full object-cover"
+>
+
+<div class="p-5">
+
+<div class="flex justify-between">
+
+<span class="bg-red-500 text-white rounded-full px-3 py-1 text-sm">
+${p.categoria}
+</span>
+
+<span>⏰23:59</span>
+
+</div>
+
+<h2 class="font-bold text-xl mt-3">
+${p.nombre}
+</h2>
+
+<p>${p.rating}</p>
+
+<p class="text-red-500">
+${p.stock}
+</p>
+
+<div class="flex justify-between mt-4">
+
+<div>
+<p class="text-2xl font-bold">
+${p.precio}
+</p>
+
+<p class="line-through text-gray-400">
+99€
+</p>
+</div>
+
+<button
+class="bg-black text-white rounded-xl px-4">
+Añadir
+</button>
+
+</div>
+
+<button class="w-full bg-yellow-400 p-3 rounded-xl mt-4">
+Comprar ahora
+</button>
+
+</div>
+
+</div>
+
+`
+
+})
+
+</script>
 
 </body>
 </html>
