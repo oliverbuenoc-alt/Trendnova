@@ -1,0 +1,62 @@
+export default function TiendaVirtual() {
+  const productos = [
+    { nombre: 'Mini Proyector LED', precio: '49€', categoria: 'Tendencia' },
+    { nombre: 'Lámpara RGB Inteligente', precio: '29€', categoria: 'Hogar' },
+    { nombre: 'Masajeador Cervical', precio: '39€', categoria: 'Salud' },
+    { nombre: 'Organizador para Coche', precio: '24€', categoria: 'Accesorios' },
+    { nombre: 'Cepillo Eléctrico Facial', precio: '34€', categoria: 'Belleza' },
+    { nombre: 'Mini Impresora Portátil', precio: '59€', categoria: 'Gadgets' }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white p-6">
+      <header className="bg-white rounded-3xl shadow p-8 mb-6 text-center">
+        <h1 className="text-5xl font-bold">TrendNova</h1>
+        <p className="text-gray-600 mt-3">
+          Productos virales y tendencias del momento
+        </p>
+      </header>
+
+      <input
+        className="w-full p-4 rounded-2xl border mb-6"
+        placeholder="Buscar productos virales..."
+      />
+
+      <div className="bg-green-50 rounded-3xl p-5 mb-6 shadow">
+        <h3 className="text-2xl font-bold">Pagos seguros</h3>
+        <p className="text-gray-600 mt-2">
+          Preparado para integrar Stripe y PayPal para recibir pagos directamente en tu cuenta.
+        </p>
+        <div className="flex gap-3 mt-4">
+          <button className="bg-indigo-600 text-white px-4 py-2 rounded-2xl">Conectar Stripe</button>
+          <button className="bg-blue-600 text-white px-4 py-2 rounded-2xl">Conectar PayPal</button>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {productos.map((p, i) => (
+          <div
+            key={i}
+            className="bg-white rounded-3xl shadow-xl p-5 hover:scale-105 transition"
+          >
+            <div className="h-44 bg-gray-200 rounded-2xl mb-4"></div>
+
+            <span className="text-sm text-gray-500">
+              {p.categoria}
+            </span>
+
+            <h2 className="text-xl font-bold mt-1">
+              {p.nombre}
+            </h2>
+
+            <p className="text-2xl mt-2">{p.precio}</p>
+
+            <button className="mt-4 w-full bg-black text-white p-3 rounded-2xl">
+              Comprar ahora
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
