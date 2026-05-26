@@ -4,6 +4,7 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>TitanByte · Hardware Premium, Gaming & Soluciones Tech</title>
 <script src='https://cdn.tailwindcss.com'></script>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
 <style>
 body{background:#0d1117;color:#c9d1d9;scroll-behavior:smooth}
 .product:hover{transform:translateY(-6px);box-shadow: 0 10px 25px -5px rgba(255,107,0,0.25);transition:.3s}
@@ -20,14 +21,21 @@ body{background:#0d1117;color:#c9d1d9;scroll-behavior:smooth}
 <div class='flex flex-col md:flex-row'>
     <nav class='bg-[#161b22] w-full md:w-64 md:min-h-screen sticky top-0 border-b md:border-b-0 md:border-r border-gray-800 p-6 flex flex-col justify-between z-40 shadow-xl'>
         <div>
-            <div class='flex items-center gap-2 mb-6'>
+            <div class='flex items-center gap-2 mb-4'>
                 <span class='text-orange-500 text-3xl'>⚡</span>
                 <h1 class='font-black text-2xl tracking-wider text-white'>Titan<span class='text-orange-500'>Byte</span></h1>
             </div>
+
+            <div class='mb-5 relative'>
+                <input type='text' id='searchBar' oninput='filtrarProductos()' placeholder='Buscar hardware o componente...' class='w-full bg-[#0d1117] text-xs text-white placeholder-gray-500 px-3 py-2.5 rounded-xl border border-gray-800 focus:outline-none focus:border-orange-500 transition'>
+            </div>
+
             <div class='flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-3 md:pb-0 text-sm font-medium text-gray-400 custom-scrollbar'>
                 <a href='#pc' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🖥️ Equipos Montados</a>
                 <a href='#procesadores' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🧠 Procesadores</a>
+                <a href='#aliexpress' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🇨🇳 AliExpress Top</a>
                 <a href='#graficas' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>📼 Tarjetas Gráficas</a>
+                <a href='#amazon' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>📦 Amazon Bestsellers</a>
                 <a href='#almacenamiento' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>💽 SSD y RAM</a>
                 <a href='#gaming' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🎮 Periféricos</a>
                 <a href='#internet' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>📡 Redes e Internet</a>
@@ -42,7 +50,6 @@ body{background:#0d1117;color:#c9d1d9;scroll-behavior:smooth}
     </nav>
 
     <div class='flex-1 bg-[#0d1117]'>
-        
         <section class='w-full relative overflow-hidden bg-black aspect-square md:aspect-[16/7] lg:aspect-[16/5.5] shadow-2xl border-b border-gray-800 flex items-center'>
             <img src='https://pub-2f9543e3cb8d485f81014dae19822a16.r2.dev/titanbyte.png' class='absolute inset-0 w-full h-full object-cover object-center opacity-40 md:opacity-50' alt='TitanByte Cover Background'>
             <div class='absolute inset-0 bg-gradient-to-r from-[#0d1117] via-[#0d1117]/80 to-transparent z-10'></div>
@@ -68,13 +75,19 @@ body{background:#0d1117;color:#c9d1d9;scroll-behavior:smooth}
         </section>
         
         <div class='max-w-7xl mx-auto p-4 md:p-8 space-y-16'>
-            <section id='pc'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🖥️</span> Ordenadores Completos</h2><div id='pcprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='procesadores'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🧠</span> Procesadores (CPUs)</h2><div id='cpuprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='graficas'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>📼</span> Tarjetas Gráficas (GPUs)</h2><div id='gpuprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='almacenamiento'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>💽</span> Almacenamiento SSD y Memorias</h2><div id='storageprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='gaming'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🎮</span> Periféricos y Configuración Gaming</h2><div id='gameprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='internet'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>📡</span> Infraestructura de Red y Enrutadores</h2><div id='netprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='mascotas'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🐶</span> Alimentación y Cuidado de Mascotas</h2><div id='petprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            <section id='pc' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🖥️</span> Ordenadores Completos</h2><div id='pcprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            <section id='procesadores' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🧠</span> Procesadores (CPUs)</h2><div id='cpuprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            
+            <section id='aliexpress' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🇨🇳</span> Más Vendidos AliExpress Tech</h2><div id='aliprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            
+            <section id='graficas' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>📼</span> Tarjetas Gráficas (GPUs)</h2><div id='gpuprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            
+            <section id='amazon' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>📦</span> Top Bestsellers Amazon España</h2><div id='amzprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            
+            <section id='almacenamiento' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>💽</span> Almacenamiento SSD y Memorias</h2><div id='storageprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            <section id='gaming' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🎮</span> Periféricos y Configuración Gaming</h2><div id='gameprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            <section id='internet' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>📡</span> Infraestructura de Red y Enrutadores</h2><div id='netprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
+            <section id='mascotas' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🐶</span> Alimentación y Cuidado de Mascotas</h2><div id='petprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
         </div>
         
         <footer class='border-t border-gray-800 text-center py-8 text-sm text-gray-500 mt-20'>
@@ -100,14 +113,8 @@ body{background:#0d1117;color:#c9d1d9;scroll-behavior:smooth}
                 <span id="totalPrecio" class="text-orange-500">0€</span>
             </div>
             
-            <div class="mb-4 text-xs text-gray-400 border border-dashed border-gray-700 p-2 rounded">
-                💡 <strong>Pasarela PayPal Activa:</strong> Integra tus credenciales del SDK de PayPal para recibir pagos directamente en producción.
-            </div>
-
-            <button onclick="procesarPagoPayPal()" class="w-full bg-[#ffc439] hover:bg-[#f4b41a] text-blue-950 font-black p-3 rounded-xl transition shadow-lg flex items-center justify-center gap-2">
-                <span>Pagar con</span>
-                <span class="italic font-serif text-lg text-blue-800 font-extrabold">PayPal</span>
-            </button>
+            <div id="paypal-button-container" class="w-full mt-4"></div>
+            <div id="carrito-vacio-msg" class="text-center text-xs text-gray-500 mt-2">Añade productos para activar el pago</div>
         </div>
     </div>
 </div>
@@ -115,7 +122,6 @@ body{background:#0d1117;color:#c9d1d9;scroll-behavior:smooth}
 <script>
 let carrito=[]
 
-// CATALOGO ACTUALIZADO CON PRECIOS COMPETITIVOS DE MERCADO REAL
 const data={
 pc:[
     ['PC Gaming Titan Strike Pro', 1349, 'AMD Ryzen 5 7600X · RTX 4070 Super · 32GB DDR5 · SSD 2TB NVMe · Win11 Pro'],
@@ -129,11 +135,23 @@ procesadores:[
     ['AMD Ryzen 5 8600G APU', 195, 'Socket AM5 · Gráficos Integrados Radeon 760M · Gráficos fluidos sin dedicada'],
     ['Intel Core i5-14600K', 315, 'Socket LGA1700 · 14ª Generación · 14 Núcleos / 20 Hilos']
 ],
+aliexpress:[
+    ['Ratón Inalámbrico Titan Shark X3', 38, 'Sensor Premium PAW3395 · 26000 DPI reales · Solo 49g de peso ultra-ligero · Tri-mode híbrido'],
+    ['Teclado Mecánico Titan Pro-Compact 94', 49, 'Formato optimizado 94 teclas · Switches Hot-Swap premium · Retroiluminación RGB estructural'],
+    ['Barra de Iluminación Monitor LED Pro', 29, 'Control táctil de temperatura · Protección ocular anti-luz azul · Fijación magnética universal'],
+    ['Estación Energética GaN 65W Multi-Port', 24, 'Tecnología Nitruro de Galio · 2x USB-C + 1x USB-A · Carga de alta velocidad para portátiles y setups']
+],
 graficas:[
     ['NVIDIA RTX 4060 Ti 8GB', 399, 'Arquitectura Ada Lovelace · DLSS 3.0 Ray Tracing · Juego 1080p/1440p'],
     ['GIGABYTE RTX 4070 Super 12GB', 629, 'Edición OC · Sistema triple ventilación Windforce · Salto de potencia total'],
     ['ZOTAC Gaming GTX 1660 Super', 90, '6GB GDDR6 · Reacondicionada / Excelente estado de entrada multimedia'],
     ['ASUS ROG Strix RTX 4080 16GB', 1129, 'Gama extrema · Diseño robusto con iluminación RGB masiva']
+],
+amazon:[
+    ['Mando Inalámbrico Pro Carbon Series', 55, 'Conectividad Bluetooth nativa y Wireless · Agarre texturizado de alta precisión'],
+    ['Alfombrilla Gaming SpeedEdition L', 22, 'Superficie de tela de microfibra optimizada para baja fricción · Base de goma densa anti-desplazamiento'],
+    ['Soporte de Auriculares Universal RGB', 19, 'Base pesada antideslizante con 3 perfiles de color · Gancho flexible de protección estructural'],
+    ['Sistema Lumínico TV Smart Ambient', 79, 'Tira LED RGBIC avanzada con cámara inteligente · Sincronización inmersiva en tiempo real']
 ],
 almacenamiento:[
     ['Corsair Vengeance DDR5 64GB', 199, 'Kit 2x32GB · Frecuencia 6000MHz CL30 · Arquitectura de alto rendimiento'],
@@ -162,7 +180,6 @@ mascotas:[
 ]
 }
 
-// ENLACES ESTABLES CORREGIDOS PARA ASEGURAR QUE CARGAN TODAS LAS IMÁGENES
 const imageMap={
     'PC Gaming Titan Strike Pro':'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600',
     'PC Master Arena Elite v2':'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=600',
@@ -172,10 +189,18 @@ const imageMap={
     'AMD Ryzen 5 7600X Box':'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600',
     'AMD Ryzen 5 8600G APU':'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600',
     'Intel Core i5-14600K':'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600',
-    'NVIDIA RTX 4060 Ti 8GB':'https://images.unsplash.com/photo-1591488033368-ff22497eb09a?w=600',
+    'Ratón Inalámbrico Titan Shark X3':'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=600',
+    'Teclado Mecánico Titan Pro-Compact 94':'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=600',
+    'Barra de Iluminación Monitor LED Pro':'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600',
+    'Estación Energética GaN 65W Multi-Port':'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600',
+    'NVIDIA RTX 4060 Ti 8GB':'https://images.unsplash.com/photo-1591480333368-ff22497eb09a?w=600',
     'GIGABYTE RTX 4070 Super 12GB':'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600',
     'ZOTAC Gaming GTX 1660 Super':'https://images.unsplash.com/photo-1591489382458-3652bd1f00b7?w=600',
     'ASUS ROG Strix RTX 4080 16GB':'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600',
+    'Mando Inalámbrico Pro Carbon Series':'https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=600',
+    'Alfombrilla Gaming SpeedEdition L':'https://images.unsplash.com/photo-1632292224971-0d45778bd364?w=600',
+    'Soporte de Auriculares Universal RGB':'https://images.unsplash.com/photo-1606220532402-1f600e726527?w=600',
+    'Sistema Lumínico TV Smart Ambient':'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600',
     'Corsair Vengeance DDR5 64GB':'https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?w=600',
     'Kingston FURY Beast DDR5 32GB':'https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?w=600',
     'Samsung 990 Pro NVMe 2TB':'https://images.unsplash.com/photo-1562976540-1502c2145186?w=600',
@@ -195,22 +220,67 @@ const imageMap={
     'Cama Ortopédica Memory Foam':'https://images.unsplash.com/photo-1541599540903-216a46cc1ad6?w=600'
 }
 
-function card(n,p,s){
+function card(n,p,s, categoria){
     const img = imageMap[n] || "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600";
+    
+    let tagHtml = `<span class='absolute top-3 left-3 bg-orange-600 text-white font-black text-[10px] px-2 py-0.5 rounded tracking-wider uppercase shadow-md'>Garantía 3 años</span>`;
+    let urgenciaHtml = `<div class='flex items-center gap-1 text-orange-400 text-[11px] font-medium mt-1'>⭐⭐⭐⭐⭐ <span class='text-gray-500 ml-1'>(Stock Listo)</span></div>`;
+    let precioHtml = `<span class='text-xl font-black text-white'>${p}€</span>`;
+
+    // Filtros de diseño de alta conversión (Estrategia Dropshipping/Venta con Margen)
+    if(categoria === 'aliexpress') {
+        const precioOriginal = Math.floor(p * 1.5); 
+        tagHtml = `<span class='absolute top-3 left-3 bg-amber-500 text-black font-black text-[10px] px-2 py-0.5 rounded tracking-wider uppercase shadow-md animate-pulse'>🔥 Oferta Flash</span>`;
+        urgenciaHtml = `
+        <div class='mt-1 space-y-1'>
+            <div class='flex justify-between text-[10px] font-bold text-red-400 uppercase tracking-tight'>
+                <span>⚠️ Stock Crítico</span>
+                <span>¡Solo 3 unids!</span>
+            </div>
+            <div class='w-full bg-gray-800 h-1.5 rounded-full overflow-hidden'>
+                <div class='bg-red-500 h-full w-[15%]'></div>
+            </div>
+        </div>`;
+        precioHtml = `
+        <div class='flex flex-col'>
+            <span class='text-xs text-gray-500 line-through font-semibold'>${precioOriginal}€</span>
+            <span class='text-xl font-black text-amber-500 leading-none'>${p}€</span>
+        </div>`;
+    } 
+    else if(categoria === 'amazon') {
+        const precioOriginal = Math.floor(p * 1.3);
+        tagHtml = `<span class='absolute top-3 left-3 bg-blue-600 text-white font-black text-[10px] px-2 py-0.5 rounded tracking-wider uppercase shadow-md'>🚚 Envío Urgente 24h</span>`;
+        urgenciaHtml = `
+        <div class='mt-1 space-y-1'>
+            <div class='flex justify-between text-[10px] font-bold text-yellow-500 uppercase tracking-tight'>
+                <span>⭐ Top Ventas</span>
+                <span>Alta Demanda</span>
+            </div>
+            <div class='w-full bg-gray-800 h-1.5 rounded-full overflow-hidden'>
+                <div class='bg-yellow-500 h-full w-[85%]'></div>
+            </div>
+        </div>`;
+        precioHtml = `
+        <div class='flex flex-col'>
+            <span class='text-xs text-gray-500 line-through font-semibold'>${precioOriginal}€</span>
+            <span class='text-xl font-black text-white leading-none'>${p}€</span>
+        </div>`;
+    }
+
     return `
-    <div class='product bg-[#161b22] border border-gray-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg transition duration-300'>
+    <div class='product-card product bg-[#161b22] border border-gray-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg transition duration-300' data-name="${n.toLowerCase()}" data-desc="${s.toLowerCase()}">
         <div class='relative overflow-hidden h-44 bg-[#0d1117]'>
             <img src='${img}' class='h-full w-full object-cover opacity-85 hover:opacity-100 transition duration-300' alt="${n}" loading="lazy">
-            <span class='absolute top-3 left-3 bg-orange-600 text-white font-black text-[10px] px-2 py-0.5 rounded tracking-wider uppercase shadow-md'>Garantía 3 años</span>
+            ${tagHtml}
         </div>
         <div class='p-4 flex-1 flex flex-col justify-between gap-2'>
             <div>
                 <h3 class='font-bold text-base text-white tracking-wide truncate' title="${n}">${n}</h3>
                 <p class='text-gray-400 text-xs mt-0.5 h-8 overflow-hidden line-clamp-2 leading-relaxed'>${s}</p>
-                <div class='flex items-center gap-1 text-orange-400 text-[11px] font-medium mt-1'>⭐⭐⭐⭐⭐ <span class='text-gray-500 ml-1'>(Stock Listo)</span></div>
+                ${urgenciaHtml}
             </div>
             <div class='mt-2 flex items-center justify-between gap-2'>
-                <span class='text-xl font-black text-white'>${p}€</span>
+                ${precioHtml}
                 <button onclick="comprar('${n}',${p})" class='bg-orange-600 hover:bg-orange-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition shadow-md'>Añadir</button>
             </div>
         </div>
@@ -220,7 +290,9 @@ function card(n,p,s){
 const map={
     pc:'pcprod',
     procesadores:'cpuprod',
+    aliexpress:'aliprod',
     graficas:'gpuprod',
+    amazon:'amzprod',
     almacenamiento:'storageprod',
     gaming:'gameprod',
     internet:'netprod',
@@ -229,8 +301,36 @@ const map={
 
 Object.entries(data).forEach(([k,v])=>v.forEach(x=> {
     const el = document.getElementById(map[k]);
-    if(el) el.innerHTML+=card(x[0],x[1],x[2]);
+    if(el) el.innerHTML+=card(x[0],x[1],x[2], k);
 }))
+
+function filtrarProductos() {
+    const query = document.getElementById('searchBar').value.toLowerCase();
+    const cards = document.querySelectorAll('.product-card');
+    
+    cards.forEach(c => {
+        const name = c.getAttribute('data-name');
+        const desc = c.getAttribute('data-desc');
+        if(name.includes(query) || desc.includes(query)) {
+            c.style.display = 'flex';
+        } else {
+            c.style.display = 'none';
+        }
+    });
+
+    Object.values(map).forEach(id => {
+        const grid = document.getElementById(id);
+        if(grid) {
+            const section = grid.closest('.section-block');
+            const visibleCards = grid.querySelectorAll('.product-card[style="display: flex;"], .product-card:not([style*="display: none"])');
+            if(visibleCards.length === 0 && query !== '') {
+                if(section) section.style.display = 'none';
+            } else {
+                if(section) section.style.display = 'block';
+            }
+        }
+    });
+}
 
 function comprar(n,p){
     carrito.push({n,p});
@@ -253,20 +353,31 @@ function eliminarDelCarrito(index){
     actualizarCarritoVisual();
 }
 
+function obtenerTotalCarrito() {
+    return carrito.reduce((sum, item) => sum + item.p, 0);
+}
+
 function actualizarCarritoVisual(){
     const lista = document.getElementById('listaCarrito');
     const totalEl = document.getElementById('totalPrecio');
+    const btnContainer = document.getElementById('paypal-button-container');
+    const vacioMsg = document.getElementById('carrito-vacio-msg');
+    
     lista.innerHTML = '';
     
     if(carrito.length === 0){
         lista.innerHTML = `<div class="text-center text-gray-500 py-8 text-sm">Tu carrito está vacío.</div>`;
         totalEl.innerText = '0€';
+        btnContainer.style.display = 'none';
+        vacioMsg.style.display = 'block';
         return;
     }
     
-    let total = 0;
+    btnContainer.style.display = 'block';
+    vacioMsg.style.display = 'none';
+    
+    let total = obtenerTotalCarrito();
     carrito.forEach((item, index) => {
-        total += item.p;
         lista.innerHTML += `
         <div class="flex justify-between items-center bg-[#21262d] p-2.5 rounded-xl border border-gray-800 text-xs">
             <div class="truncate max-w-[75%]">
@@ -279,14 +390,35 @@ function actualizarCarritoVisual(){
     totalEl.innerText = total + '€';
 }
 
-function procesarPagoPayPal(){
-    if(carrito.length === 0){
-        alert('Añada elementos al carrito antes de proceder a la pasarela de pagos.');
-        return;
+// Inicialización de Pasarela PayPal
+paypal.Buttons({
+    createOrder: function(data, actions) {
+        let total = obtenerTotalCarrito();
+        if (total <= 0) return;
+        
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: total.toString(),
+                    currency_code: 'EUR'
+                }
+            }]
+        });
+    },
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            alert('¡Pago procesado con éxito! Gracias por tu compra en TitanByte, ' + details.payer.name.given_name);
+            carrito = [];
+            document.getElementById('contador').innerText = 0;
+            actualizarCarritoVisual();
+            cerrarCarrito();
+        });
+    },
+    onError: function(err) {
+        console.error('Error en la transacción:', err);
+        alert('Ocurrió un error al procesar el cobro.');
     }
-    let totalCobro = carrito.reduce((sum, item) => sum + item.p, 0);
-    alert(`Iniciando pasarela segura... Redirigiendo a PayPal para procesar el abono de ${totalCobro}€ en tu cuenta de TitanByte.`);
-}
+}).render('#paypal-button-container');
 </script>
 </body>
 </html>
