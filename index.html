@@ -2,40 +2,41 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>TitanByte · Hardware Premium</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- PAYPAL -->
+<!-- PON TU CLIENT ID REAL -->
 <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID_PAYPAL&currency=EUR"></script>
 
 <style>
 
 body{
-    background:#0d1117;
-    color:#c9d1d9;
-    font-family:Arial, Helvetica, sans-serif;
-    scroll-behavior:smooth;
+background:#0d1117;
+color:#fff;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
 }
 
 .product{
-    transition:.25s;
+transition:.25s;
 }
 
 .product:hover{
-    transform:translateY(-6px);
-    box-shadow:0 10px 25px rgba(255,107,0,.25);
+transform:translateY(-8px);
+box-shadow:0 10px 30px rgba(255,107,0,.25);
+border-color:#ff6b00;
 }
 
 .custom-scrollbar::-webkit-scrollbar{
-    width:6px;
+width:6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb{
-    background:#ff6b00;
-    border-radius:10px;
+background:#ff6b00;
+border-radius:20px;
 }
 
 </style>
@@ -43,164 +44,168 @@ body{
 
 <body>
 
-<!-- TOP BAR -->
-<div class="bg-gradient-to-r from-orange-600 to-orange-500 text-white text-center py-2 text-xs md:text-sm font-bold">
-⚡ Hardware Premium · 🚚 Envío Gratis · 💳 Pago Seguro
+<div class="bg-orange-600 text-center py-2 text-sm font-bold">
+⚡ Envío Gratis +50€ · 🛡️ Garantía · 💳 Pago Seguro
 </div>
 
 <div class="flex flex-col md:flex-row">
 
-<!-- SIDEBAR -->
-<nav class="bg-[#161b22] w-full md:w-64 md:min-h-screen sticky top-0 border-r border-gray-800 p-6 z-40">
+<nav class="bg-[#161b22] w-full md:w-72 md:min-h-screen sticky top-0 border-r border-gray-800 p-6">
 
-<div class="flex items-center gap-2 mb-6">
-<span class="text-orange-500 text-3xl">⚡</span>
+<div class="flex items-center gap-3 mb-6">
 
-<h1 class="font-black text-3xl text-white">
+<div class="w-14 h-14 bg-orange-600 rounded-2xl flex items-center justify-center">
+
+<svg width="30" height="30" viewBox="0 0 24 24">
+
+<path d="M12 2L3 7L12 12L21 7L12 2Z" fill="white"/>
+
+<path d="M3 7V17L12 22V12" fill="#ffb366"/>
+
+<path d="M21 7V17L12 22V12" fill="#ff7a00"/>
+
+</svg>
+
+</div>
+
+<div>
+
+<h1 class="font-black text-3xl">
 Titan<span class="text-orange-500">Byte</span>
 </h1>
+
+<div class="text-xs text-gray-500">
+Gaming · Hardware · Premium
+</div>
+
+</div>
+
 </div>
 
 <input
-type="text"
 id="searchBar"
-placeholder="Buscar producto..."
 oninput="filtrarProductos()"
-class="w-full bg-[#0d1117] border border-gray-700 rounded-xl px-4 py-3 text-sm text-white mb-6 focus:outline-none focus:border-orange-500"
+placeholder="Buscar..."
+class="w-full bg-[#0d1117] border border-gray-700 rounded-xl px-4 py-3 mb-6"
 />
 
-<div class="flex flex-row md:flex-col gap-2 overflow-x-auto text-sm custom-scrollbar">
+<div class="space-y-2">
 
-<a href="#pc" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
-🖥️ PCs Gaming
-</a>
+<a href="#pc" class="block bg-[#21262d] p-3 rounded-xl">🖥 PCs Gaming</a>
 
-<a href="#procesadores" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
-🧠 Procesadores
-</a>
+<a href="#procesadores" class="block bg-[#21262d] p-3 rounded-xl">🧠 Procesadores</a>
 
-<a href="#graficas" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
-📼 Tarjetas Gráficas
-</a>
+<a href="#graficas" class="block bg-[#21262d] p-3 rounded-xl">📼 Gráficas</a>
 
-<a href="#gaming" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
-🎮 Gaming
-</a>
+<a href="#gaming" class="block bg-[#21262d] p-3 rounded-xl">🎮 Gaming</a>
 
-<a href="#internet" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
-📡 Redes
-</a>
+<a href="#internet" class="block bg-[#21262d] p-3 rounded-xl">📡 Redes</a>
 
 </div>
 
 <button
 onclick="abrirCarrito()"
-class="bg-orange-600 hover:bg-orange-500 transition w-full mt-8 py-3 rounded-xl font-bold flex justify-between items-center px-4"
+class="bg-orange-600 mt-8 w-full py-4 rounded-xl font-bold flex justify-between px-4"
 >
 
 🛒 Carrito
 
-<span id="contador" class="bg-white text-orange-600 px-2 py-1 rounded-full text-xs font-black">
+<span
+id="contador"
+class="bg-white text-orange-600 px-2 rounded-full"
+>
+
 0
+
 </span>
 
 </button>
 
 </nav>
 
-<!-- MAIN -->
 <main class="flex-1">
 
-<!-- HERO -->
-<section class="relative h-[500px] overflow-hidden border-b border-gray-800">
+<section class="relative overflow-hidden">
 
 <img
-src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80"
-class="absolute inset-0 w-full h-full object-cover opacity-30"
+src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=80"
+class="absolute inset-0 w-full h-full object-cover opacity-20"
 >
 
 <div class="absolute inset-0 bg-gradient-to-r from-[#0d1117] to-transparent"></div>
 
-<div class="relative z-10 h-full flex items-center max-w-6xl mx-auto px-8">
+<div class="max-w-7xl mx-auto px-8 py-24 relative">
 
-<div>
+<h2 class="text-6xl font-black">
 
-<div class="bg-orange-500/10 border border-orange-500/30 inline-block px-4 py-2 rounded-full text-orange-500 font-bold text-xs mb-5">
-HARDWARE GAMING PREMIUM
-</div>
+MONTA TU
 
-<h2 class="text-6xl font-black text-white leading-none">
-TITAN<span class="text-orange-500">BYTE</span>
+<span class="text-orange-500">
+
+SETUP
+
+</span>
+
+IDEAL
+
 </h2>
 
-<p class="text-gray-300 mt-6 max-w-xl text-lg">
-Configuraciones gaming extremas, componentes premium y setups de alto rendimiento.
+<p class="text-gray-400 mt-6 max-w-xl">
+
+Los mejores componentes gaming y setups premium.
+
 </p>
 
 <a
 href="#pc"
-class="inline-block mt-8 bg-orange-600 hover:bg-orange-500 transition px-6 py-4 rounded-xl font-black uppercase tracking-wide"
+class="inline-block mt-8 bg-orange-600 px-8 py-4 rounded-xl font-black"
 >
-Explorar Catálogo
+
+Comprar ahora
+
 </a>
 
 </div>
-</div>
+
 </section>
 
-<!-- PRODUCTOS -->
 <div class="max-w-7xl mx-auto p-6 space-y-20">
 
 <section id="pc">
-<h2 class="text-3xl font-black text-white mb-8">
-🖥️ PCs Gaming
-</h2>
-
-<div id="pcprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+<h2 class="text-3xl font-black mb-8">🖥 PCs Gaming</h2>
+<div id="pcprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 </section>
 
 <section id="procesadores">
-<h2 class="text-3xl font-black text-white mb-8">
-🧠 Procesadores
-</h2>
-
-<div id="cpuprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+<h2 class="text-3xl font-black mb-8">🧠 Procesadores</h2>
+<div id="cpuprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 </section>
 
 <section id="graficas">
-<h2 class="text-3xl font-black text-white mb-8">
-📼 Tarjetas Gráficas
-</h2>
-
-<div id="gpuprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+<h2 class="text-3xl font-black mb-8">📼 Gráficas</h2>
+<div id="gpuprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 </section>
 
 <section id="gaming">
-<h2 class="text-3xl font-black text-white mb-8">
-🎮 Gaming
-</h2>
-
-<div id="gameprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+<h2 class="text-3xl font-black mb-8">🎮 Gaming</h2>
+<div id="gameprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 </section>
 
 <section id="internet">
-<h2 class="text-3xl font-black text-white mb-8">
-📡 Redes
-</h2>
-
-<div id="netprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+<h2 class="text-3xl font-black mb-8">📡 Redes</h2>
+<div id="netprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 </section>
 
 </div>
 
-<footer class="border-t border-gray-800 text-center py-8 text-gray-500 text-sm">
-TitanByte © 2026 · Hardware Premium
+<footer class="border-t border-gray-800 py-8 text-center text-gray-500">
+
+TitanByte © 2026
+
 </footer>
 
 </main>
-</div>
-
-<!-- MODAL CARRITO -->
+    <!-- CARRITO -->
 <div
 id="modalCarrito"
 class="fixed inset-0 bg-black/70 hidden justify-end z-50"
@@ -208,15 +213,15 @@ class="fixed inset-0 bg-black/70 hidden justify-end z-50"
 
 <div class="bg-[#161b22] w-full max-w-md h-full p-6 flex flex-col">
 
-<div class="flex justify-between items-center border-b border-gray-800 pb-4 mb-4">
+<div class="flex justify-between items-center border-b border-gray-800 pb-4">
 
-<h3 class="text-2xl font-black text-white">
+<h3 class="text-2xl font-black">
 🛒 Tu Pedido
 </h3>
 
 <button
 onclick="cerrarCarrito()"
-class="text-3xl text-gray-400 hover:text-white"
+class="text-3xl"
 >
 ×
 </button>
@@ -225,35 +230,34 @@ class="text-3xl text-gray-400 hover:text-white"
 
 <div
 id="listaCarrito"
-class="flex-1 overflow-y-auto space-y-3 custom-scrollbar"
+class="flex-1 overflow-y-auto mt-4 space-y-3 custom-scrollbar"
 ></div>
 
 <div class="border-t border-gray-800 pt-4">
 
-<div class="flex justify-between text-xl font-black mb-5">
+<div class="flex justify-between text-xl font-black mb-4">
 
 <span>Total:</span>
 
 <span id="totalPrecio" class="text-orange-500">
+
 0€
+
 </span>
 
 </div>
 
-<!-- PAYPAL -->
 <div id="paypal-button-container"></div>
 
 </div>
+
 </div>
+
 </div>
 
 <script>
 
-/* =========================
-   DATOS PRODUCTOS
-========================= */
-
-const data = {
+const data={
 
 pc:[
 ['PC Gaming Titan Strike Pro',1349,'Ryzen 5 7600X · RTX 4070 Super'],
@@ -273,13 +277,13 @@ graficas:[
 ['RTX 4060 Ti 8GB',399,'DLSS 3'],
 ['RTX 4070 Super',629,'Gaming 1440p'],
 ['GTX 1660 Super',190,'1080p'],
-['RTX 4080 ROG Strix',1129,'Ultra Enthusiast']
+['RTX 4080 ROG Strix',1129,'Ultra']
 ],
 
 gaming:[
 ['Teclado Mecánico RGB',69,'Switch Red'],
 ['Ratón Gaming Pro',39,'16000 DPI'],
-['Auriculares 7.1',49,'Micrófono cancelación'],
+['Auriculares 7.1',49,'Micrófono'],
 ['Silla Gaming Pro',149,'Ergonómica']
 ],
 
@@ -287,82 +291,55 @@ internet:[
 ['Router ASUS WiFi 7',249,'Tribanda'],
 ['TP-Link Deco Mesh',159,'3 nodos'],
 ['Starlink Kit',349,'Internet satélite'],
-['Amplificador WiFi',29,'Cobertura extendida']
+['Amplificador WiFi',29,'Cobertura']
 ]
 
 }
 
-/* =========================
-   IMÁGENES
-========================= */
+const imageMap={
 
-const imageMap = {
+'PC Gaming Titan Strike Pro':'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80',
 
-'PC Gaming Titan Strike Pro':
-'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=80',
+'PC Master Arena Elite':'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80',
 
-'PC Master Arena Elite':
-'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=900&q=80',
+'Creator Studio Workstation':'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
 
-'Creator Studio Workstation':
-'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80',
+'PC Oficina Pro':'https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?auto=format&fit=crop&w=1200&q=80',
 
-'PC Oficina Pro':
-'https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?auto=format&fit=crop&w=900&q=80',
+'AMD Ryzen 5 7600X':'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
 
-'AMD Ryzen 5 7600X':
-'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+'AMD Ryzen 7 7800X3D':'https://images.unsplash.com/photo-1591799265444-d66432b91588?auto=format&fit=crop&w=1200&q=80',
 
-'AMD Ryzen 7 7800X3D':
-'https://images.unsplash.com/photo-1591799265444-d66432b91588?auto=format&fit=crop&w=900&q=80',
+'Intel Core i5-14600K':'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=1200&q=80',
 
-'Intel Core i5-14600K':
-'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=900&q=80',
+'AMD Ryzen 5 8600G':'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
 
-'AMD Ryzen 5 8600G':
-'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+'RTX 4060 Ti 8GB':'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&w=1200&q=80',
 
-'RTX 4060 Ti 8GB':
-'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&w=900&q=80',
+'RTX 4070 Super':'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80',
 
-'RTX 4070 Super':
-'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=80',
+'GTX 1660 Super':'https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=1200&q=80',
 
-'GTX 1660 Super':
-'https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=900&q=80',
+'RTX 4080 ROG Strix':'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80',
 
-'RTX 4080 ROG Strix':
-'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80',
+'Teclado Mecánico RGB':'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=1200&q=80',
 
-'Teclado Mecánico RGB':
-'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=900&q=80',
+'Ratón Gaming Pro':'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1200&q=80',
 
-'Ratón Gaming Pro':
-'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=900&q=80',
+'Auriculares 7.1':'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80',
 
-'Auriculares 7.1':
-'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80',
+'Silla Gaming Pro':'https://images.unsplash.com/photo-1505797149-43b0069ec26b?auto=format&fit=crop&w=1200&q=80',
 
-'Silla Gaming Pro':
-'https://images.unsplash.com/photo-1505797149-43b0069ec26b?auto=format&fit=crop&w=900&q=80',
+'Router ASUS WiFi 7':'https://images.unsplash.com/photo-1647427060118-4911c9821b82?auto=format&fit=crop&w=1200&q=80',
 
-'Router ASUS WiFi 7':
-'https://images.unsplash.com/photo-1647427060118-4911c9821b82?auto=format&fit=crop&w=900&q=80',
+'TP-Link Deco Mesh':'https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&w=1200&q=80',
 
-'TP-Link Deco Mesh':
-'https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&w=900&q=80',
+'Starlink Kit':'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
 
-'Starlink Kit':
-'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
-
-'Amplificador WiFi':
-'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=80'
-
+'Amplificador WiFi':'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1200&q=80'
 }
 
-/* =========================
-   RENDER PRODUCTOS
-========================= */
+const imagenDefault='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80'
 
 function crearProducto(nombre,precio,desc){
 
@@ -371,36 +348,39 @@ return `
 <div class="product bg-[#161b22] rounded-2xl overflow-hidden border border-gray-800">
 
 <img
-src="${imageMap[nombre]}"
+src="${imageMap[nombre] || imagenDefault}"
+loading="lazy"
+onerror="this.src='${imagenDefault}'"
 class="w-full h-56 object-cover"
-alt="${nombre}"
 >
 
 <div class="p-5">
 
-<h3 class="text-white font-black text-lg">
-${nombre}
-</h3>
+<h3 class="font-black">${nombre}</h3>
 
-<p class="text-gray-400 text-sm mt-2 min-h-[40px]">
+<p class="text-gray-400 text-sm mt-2">
 ${desc}
 </p>
 
 <div class="flex justify-between items-center mt-5">
 
-<span class="text-orange-500 font-black text-2xl">
+<span class="text-orange-500 text-2xl font-black">
 ${precio}€
 </span>
 
 <button
 onclick="agregarCarrito('${nombre}',${precio})"
-class="bg-orange-600 hover:bg-orange-500 transition px-4 py-2 rounded-xl text-sm font-bold"
+class="bg-orange-600 px-4 py-2 rounded-xl"
 >
+
 Añadir
+
 </button>
 
 </div>
+
 </div>
+
 </div>
 
 `
@@ -408,111 +388,78 @@ Añadir
 
 function renderizarProductos(){
 
-document.getElementById('pcprod').innerHTML =
-data.pc.map(p=>crearProducto(...p)).join('')
-
-document.getElementById('cpuprod').innerHTML =
-data.procesadores.map(p=>crearProducto(...p)).join('')
-
-document.getElementById('gpuprod').innerHTML =
-data.graficas.map(p=>crearProducto(...p)).join('')
-
-document.getElementById('gameprod').innerHTML =
-data.gaming.map(p=>crearProducto(...p)).join('')
-
-document.getElementById('netprod').innerHTML =
-data.internet.map(p=>crearProducto(...p)).join('')
+pcprod.innerHTML=data.pc.map(p=>crearProducto(...p)).join('')
+cpuprod.innerHTML=data.procesadores.map(p=>crearProducto(...p)).join('')
+gpuprod.innerHTML=data.graficas.map(p=>crearProducto(...p)).join('')
+gameprod.innerHTML=data.gaming.map(p=>crearProducto(...p)).join('')
+netprod.innerHTML=data.internet.map(p=>crearProducto(...p)).join('')
 
 }
 
-/* =========================
-   BUSCADOR
-========================= */
+let carrito=JSON.parse(localStorage.getItem('carrito'))||[]
 
-function filtrarProductos(){
+function guardar(){
 
-const texto =
-document.getElementById('searchBar')
-.value
-.toLowerCase()
-
-document.querySelectorAll('.product')
-.forEach(card=>{
-
-const contenido =
-card.innerText.toLowerCase()
-
-card.style.display =
-contenido.includes(texto)
-? 'block'
-: 'none'
-
-})
+localStorage.setItem(
+'carrito',
+JSON.stringify(carrito)
+)
 
 }
-
-/* =========================
-   CARRITO
-========================= */
-
-let carrito=[]
 
 function agregarCarrito(nombre,precio){
 
-carrito.push({
-nombre,
-precio
-})
+carrito.push({nombre,precio})
 
+guardar()
 actualizarCarrito()
 
 }
 
-function eliminarProducto(index){
+function eliminarProducto(i){
 
-carrito.splice(index,1)
+carrito.splice(i,1)
 
+guardar()
 actualizarCarrito()
 
 }
 
 function actualizarCarrito(){
 
-document.getElementById('contador')
-.innerText = carrito.length
+contador.innerText=carrito.length
 
-const lista =
-document.getElementById('listaCarrito')
+listaCarrito.innerHTML=''
 
-lista.innerHTML=''
+let total=0
 
-let total = 0
+carrito.forEach((p,i)=>{
 
-carrito.forEach((item,index)=>{
+total+=p.precio
 
-total += item.precio
+listaCarrito.innerHTML+=`
 
-lista.innerHTML += `
-
-<div class="bg-[#0d1117] border border-gray-800 rounded-xl p-4 flex justify-between items-center">
+<div class="bg-[#0d1117] p-3 rounded-xl flex justify-between">
 
 <div>
 
-<h4 class="font-bold text-white text-sm">
-${item.nombre}
-</h4>
+<div>${p.nombre}</div>
 
-<span class="text-orange-500 font-black">
-${item.precio}€
-</span>
+<div class="text-orange-500">
+
+${p.precio}€
+
+</div>
 
 </div>
 
 <button
-onclick="eliminarProducto(${index})"
-class="bg-red-600 hover:bg-red-500 px-3 py-1 rounded-lg text-xs font-bold"
+onclick="eliminarProducto(${i})"
+class="bg-red-600 px-2 rounded"
 >
+
 X
+
 </button>
 
 </div>
@@ -521,68 +468,61 @@ X
 
 })
 
-document.getElementById('totalPrecio')
-.innerText = total.toFixed(2)+'€'
+totalPrecio.innerText=
+total.toFixed(2)+'€'
 
 }
 
 function obtenerTotalCarrito(){
 
-let total = 0
-
-carrito.forEach(item=>{
-total += item.precio
-})
-
-return total
+return carrito.reduce(
+(a,b)=>a+b.precio,
+0
+)
 
 }
 
-/* =========================
-   MODAL
-========================= */
-
 function abrirCarrito(){
 
-document.getElementById('modalCarrito')
-.classList.remove('hidden')
-
-document.getElementById('modalCarrito')
-.classList.add('flex')
+modalCarrito.classList.remove('hidden')
+modalCarrito.classList.add('flex')
 
 }
 
 function cerrarCarrito(){
 
-document.getElementById('modalCarrito')
-.classList.add('hidden')
-
-document.getElementById('modalCarrito')
-.classList.remove('flex')
+modalCarrito.classList.add('hidden')
+modalCarrito.classList.remove('flex')
 
 }
 
-/* =========================
-   PAYPAL
-========================= */
+function filtrarProductos(){
+
+const t=searchBar.value.toLowerCase()
+
+document
+.querySelectorAll('.product')
+.forEach(c=>{
+
+c.style.display=
+c.innerText
+.toLowerCase()
+.includes(t)
+?'block':'none'
+
+})
+
+}
 
 paypal.Buttons({
 
-style:{
-shape:'pill',
-color:'gold',
-layout:'vertical',
-label:'paypal',
-height:48
-},
-
 createOrder:function(data,actions){
 
-const total = obtenerTotalCarrito()
+let total=obtenerTotalCarrito()
 
-if(total <= 0){
+if(total<=0){
 
-alert('Añade productos al carrito')
+alert('Añade productos')
 
 return
 
@@ -593,8 +533,9 @@ return actions.order.create({
 purchase_units:[{
 
 amount:{
-value:total.toFixed(2),
-currency_code:'EUR'
+
+value:total.toFixed(2)
+
 }
 
 }]
@@ -605,39 +546,26 @@ currency_code:'EUR'
 
 onApprove:function(data,actions){
 
-return actions.order.capture()
-.then(function(details){
+return actions
+.order
+.capture()
+.then(()=>{
 
-alert(
-'✅ Pago completado correctamente\n\nGracias ' +
-details.payer.name.given_name
-)
+alert('Pago realizado')
 
 carrito=[]
 
+guardar()
 actualizarCarrito()
 
-cerrarCarrito()
-
 })
-
-},
-
-onError:function(err){
-
-console.error(err)
-
-alert('Error procesando el pago')
 
 }
 
 }).render('#paypal-button-container')
 
-/* =========================
-   INIT
-========================= */
-
 renderizarProductos()
+actualizarCarrito()
 
 </script>
 
