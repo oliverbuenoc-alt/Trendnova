@@ -1,246 +1,645 @@
-<!DOCTYPE html><html lang='es'>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>TitanByte · Hardware Premium, Gaming & Soluciones Tech</title>
-<script src='https://cdn.tailwindcss.com'></script> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TitanByte · Hardware Premium</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- PAYPAL -->
+<script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID_PAYPAL&currency=EUR"></script>
+
 <style>
-body{background:#0d1117;color:#c9d1d9;scroll-behavior:smooth}
-.product:hover{transform:translateY(-6px);box-shadow: 0 10px 25px -5px rgba(255,107,0,0.25);transition:.3s}
-.custom-scrollbar::-webkit-scrollbar {width: 6px; height: 6px;}
-.custom-scrollbar::-webkit-scrollbar-thumb {background: #ff6b00; border-radius: 10px;}
+
+body{
+    background:#0d1117;
+    color:#c9d1d9;
+    font-family:Arial, Helvetica, sans-serif;
+    scroll-behavior:smooth;
+}
+
+.product{
+    transition:.25s;
+}
+
+.product:hover{
+    transform:translateY(-6px);
+    box-shadow:0 10px 25px rgba(255,107,0,.25);
+}
+
+.custom-scrollbar::-webkit-scrollbar{
+    width:6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb{
+    background:#ff6b00;
+    border-radius:10px;
+}
+
 </style>
-   <!-- Carga y configuración de PayPal -->
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="bg-gradient-to-r from-orange-600 to-orange-500 text-white text-center py-2 text-xs md:text-sm font-bold">
+⚡ Hardware Premium · 🚚 Envío Gratis · 💳 Pago Seguro
+</div>
+
+<div class="flex flex-col md:flex-row">
+
+<!-- SIDEBAR -->
+<nav class="bg-[#161b22] w-full md:w-64 md:min-h-screen sticky top-0 border-r border-gray-800 p-6 z-40">
+
+<div class="flex items-center gap-2 mb-6">
+<span class="text-orange-500 text-3xl">⚡</span>
+
+<h1 class="font-black text-3xl text-white">
+Titan<span class="text-orange-500">Byte</span>
+</h1>
+</div>
+
+<input
+type="text"
+id="searchBar"
+placeholder="Buscar producto..."
+oninput="filtrarProductos()"
+class="w-full bg-[#0d1117] border border-gray-700 rounded-xl px-4 py-3 text-sm text-white mb-6 focus:outline-none focus:border-orange-500"
+/>
+
+<div class="flex flex-row md:flex-col gap-2 overflow-x-auto text-sm custom-scrollbar">
+
+<a href="#pc" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
+🖥️ PCs Gaming
+</a>
+
+<a href="#procesadores" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
+🧠 Procesadores
+</a>
+
+<a href="#graficas" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
+📼 Tarjetas Gráficas
+</a>
+
+<a href="#gaming" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
+🎮 Gaming
+</a>
+
+<a href="#internet" class="bg-[#21262d] hover:bg-orange-600 transition p-3 rounded-xl whitespace-nowrap">
+📡 Redes
+</a>
+
+</div>
+
+<button
+onclick="abrirCarrito()"
+class="bg-orange-600 hover:bg-orange-500 transition w-full mt-8 py-3 rounded-xl font-bold flex justify-between items-center px-4"
+>
+
+🛒 Carrito
+
+<span id="contador" class="bg-white text-orange-600 px-2 py-1 rounded-full text-xs font-black">
+0
+</span>
+
+</button>
+
+</nav>
+
+<!-- MAIN -->
+<main class="flex-1">
+
+<!-- HERO -->
+<section class="relative h-[500px] overflow-hidden border-b border-gray-800">
+
+<img
+src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80"
+class="absolute inset-0 w-full h-full object-cover opacity-30"
+>
+
+<div class="absolute inset-0 bg-gradient-to-r from-[#0d1117] to-transparent"></div>
+
+<div class="relative z-10 h-full flex items-center max-w-6xl mx-auto px-8">
+
+<div>
+
+<div class="bg-orange-500/10 border border-orange-500/30 inline-block px-4 py-2 rounded-full text-orange-500 font-bold text-xs mb-5">
+HARDWARE GAMING PREMIUM
+</div>
+
+<h2 class="text-6xl font-black text-white leading-none">
+TITAN<span class="text-orange-500">BYTE</span>
+</h2>
+
+<p class="text-gray-300 mt-6 max-w-xl text-lg">
+Configuraciones gaming extremas, componentes premium y setups de alto rendimiento.
+</p>
+
+<a
+href="#pc"
+class="inline-block mt-8 bg-orange-600 hover:bg-orange-500 transition px-6 py-4 rounded-xl font-black uppercase tracking-wide"
+>
+Explorar Catálogo
+</a>
+
+</div>
+</div>
+</section>
+
+<!-- PRODUCTOS -->
+<div class="max-w-7xl mx-auto p-6 space-y-20">
+
+<section id="pc">
+<h2 class="text-3xl font-black text-white mb-8">
+🖥️ PCs Gaming
+</h2>
+
+<div id="pcprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+</section>
+
+<section id="procesadores">
+<h2 class="text-3xl font-black text-white mb-8">
+🧠 Procesadores
+</h2>
+
+<div id="cpuprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+</section>
+
+<section id="graficas">
+<h2 class="text-3xl font-black text-white mb-8">
+📼 Tarjetas Gráficas
+</h2>
+
+<div id="gpuprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+</section>
+
+<section id="gaming">
+<h2 class="text-3xl font-black text-white mb-8">
+🎮 Gaming
+</h2>
+
+<div id="gameprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+</section>
+
+<section id="internet">
+<h2 class="text-3xl font-black text-white mb-8">
+📡 Redes
+</h2>
+
+<div id="netprod" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+</section>
+
+</div>
+
+<footer class="border-t border-gray-800 text-center py-8 text-gray-500 text-sm">
+TitanByte © 2026 · Hardware Premium
+</footer>
+
+</main>
+</div>
+
+<!-- MODAL CARRITO -->
+<div
+id="modalCarrito"
+class="fixed inset-0 bg-black/70 hidden justify-end z-50"
+>
+
+<div class="bg-[#161b22] w-full max-w-md h-full p-6 flex flex-col">
+
+<div class="flex justify-between items-center border-b border-gray-800 pb-4 mb-4">
+
+<h3 class="text-2xl font-black text-white">
+🛒 Tu Pedido
+</h3>
+
+<button
+onclick="cerrarCarrito()"
+class="text-3xl text-gray-400 hover:text-white"
+>
+×
+</button>
+
+</div>
+
+<div
+id="listaCarrito"
+class="flex-1 overflow-y-auto space-y-3 custom-scrollbar"
+></div>
+
+<div class="border-t border-gray-800 pt-4">
+
+<div class="flex justify-between text-xl font-black mb-5">
+
+<span>Total:</span>
+
+<span id="totalPrecio" class="text-orange-500">
+0€
+</span>
+
+</div>
+
+<!-- PAYPAL -->
+<div id="paypal-button-container"></div>
+
+</div>
+</div>
+</div>
+
 <script>
-    // 1. Cargar el SDK de PayPal dinámicamente
-    const script = document.createElement('script');
-    script.src = "https://www.paypal.com/sdk/js?client-id=AS4-rEMf9gjs9_cRz9_CeqThsgQVYhs7OV3unuxVMWdsDEMkYlcdZAUY_oSu1mvDpt4CfnGB7dWOuDXV&currency=EUR";
-    script.onload = function() {
-        // 2. Inicializar los botones
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                let total = obtenerTotalCarrito();
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: { value: total.toFixed(2), currency_code: 'EUR' }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('¡Pago procesado! Gracias, ' + details.payer.name.given_name);
-                    carrito = [];
-                    actualizarCarritoVisual();
-                    cerrarCarrito();
-                });
-            }
-        }).render('#paypal-button-container');
-    };
-    document.body.appendChild(script);
+
+/* =========================
+   DATOS PRODUCTOS
+========================= */
+
+const data = {
+
+pc:[
+['PC Gaming Titan Strike Pro',1349,'Ryzen 5 7600X · RTX 4070 Super'],
+['PC Master Arena Elite',1899,'Ryzen 7 7800X3D · RTX 4080 Super'],
+['Creator Studio Workstation',2299,'Intel i9 · RTX 4080 · 64GB RAM'],
+['PC Oficina Pro',549,'Intel i5 · SSD NVMe · DDR5']
+],
+
+procesadores:[
+['AMD Ryzen 5 7600X',209,'AM5 · 6 Núcleos'],
+['AMD Ryzen 7 7800X3D',399,'3D V-Cache'],
+['Intel Core i5-14600K',315,'14 Núcleos'],
+['AMD Ryzen 5 8600G',195,'APU Radeon']
+],
+
+graficas:[
+['RTX 4060 Ti 8GB',399,'DLSS 3'],
+['RTX 4070 Super',629,'Gaming 1440p'],
+['GTX 1660 Super',190,'1080p'],
+['RTX 4080 ROG Strix',1129,'Ultra Enthusiast']
+],
+
+gaming:[
+['Teclado Mecánico RGB',69,'Switch Red'],
+['Ratón Gaming Pro',39,'16000 DPI'],
+['Auriculares 7.1',49,'Micrófono cancelación'],
+['Silla Gaming Pro',149,'Ergonómica']
+],
+
+internet:[
+['Router ASUS WiFi 7',249,'Tribanda'],
+['TP-Link Deco Mesh',159,'3 nodos'],
+['Starlink Kit',349,'Internet satélite'],
+['Amplificador WiFi',29,'Cobertura extendida']
+]
+
+}
+
+/* =========================
+   IMÁGENES
+========================= */
+
+const imageMap = {
+
+'PC Gaming Titan Strike Pro':
+'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=80',
+
+'PC Master Arena Elite':
+'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=900&q=80',
+
+'Creator Studio Workstation':
+'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80',
+
+'PC Oficina Pro':
+'https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?auto=format&fit=crop&w=900&q=80',
+
+'AMD Ryzen 5 7600X':
+'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+
+'AMD Ryzen 7 7800X3D':
+'https://images.unsplash.com/photo-1591799265444-d66432b91588?auto=format&fit=crop&w=900&q=80',
+
+'Intel Core i5-14600K':
+'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=900&q=80',
+
+'AMD Ryzen 5 8600G':
+'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+
+'RTX 4060 Ti 8GB':
+'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&w=900&q=80',
+
+'RTX 4070 Super':
+'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=80',
+
+'GTX 1660 Super':
+'https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=900&q=80',
+
+'RTX 4080 ROG Strix':
+'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80',
+
+'Teclado Mecánico RGB':
+'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=900&q=80',
+
+'Ratón Gaming Pro':
+'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=900&q=80',
+
+'Auriculares 7.1':
+'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80',
+
+'Silla Gaming Pro':
+'https://images.unsplash.com/photo-1505797149-43b0069ec26b?auto=format&fit=crop&w=900&q=80',
+
+'Router ASUS WiFi 7':
+'https://images.unsplash.com/photo-1647427060118-4911c9821b82?auto=format&fit=crop&w=900&q=80',
+
+'TP-Link Deco Mesh':
+'https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&w=900&q=80',
+
+'Starlink Kit':
+'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
+
+'Amplificador WiFi':
+'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=80'
+
+}
+
+/* =========================
+   RENDER PRODUCTOS
+========================= */
+
+function crearProducto(nombre,precio,desc){
+
+return `
+
+<div class="product bg-[#161b22] rounded-2xl overflow-hidden border border-gray-800">
+
+<img
+src="${imageMap[nombre]}"
+class="w-full h-56 object-cover"
+alt="${nombre}"
+>
+
+<div class="p-5">
+
+<h3 class="text-white font-black text-lg">
+${nombre}
+</h3>
+
+<p class="text-gray-400 text-sm mt-2 min-h-[40px]">
+${desc}
+</p>
+
+<div class="flex justify-between items-center mt-5">
+
+<span class="text-orange-500 font-black text-2xl">
+${precio}€
+</span>
+
+<button
+onclick="agregarCarrito('${nombre}',${precio})"
+class="bg-orange-600 hover:bg-orange-500 transition px-4 py-2 rounded-xl text-sm font-bold"
+>
+Añadir
+</button>
+
+</div>
+</div>
+</div>
+
+`
+}
+
+function renderizarProductos(){
+
+document.getElementById('pcprod').innerHTML =
+data.pc.map(p=>crearProducto(...p)).join('')
+
+document.getElementById('cpuprod').innerHTML =
+data.procesadores.map(p=>crearProducto(...p)).join('')
+
+document.getElementById('gpuprod').innerHTML =
+data.graficas.map(p=>crearProducto(...p)).join('')
+
+document.getElementById('gameprod').innerHTML =
+data.gaming.map(p=>crearProducto(...p)).join('')
+
+document.getElementById('netprod').innerHTML =
+data.internet.map(p=>crearProducto(...p)).join('')
+
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+
+function filtrarProductos(){
+
+const texto =
+document.getElementById('searchBar')
+.value
+.toLowerCase()
+
+document.querySelectorAll('.product')
+.forEach(card=>{
+
+const contenido =
+card.innerText.toLowerCase()
+
+card.style.display =
+contenido.includes(texto)
+? 'block'
+: 'none'
+
+})
+
+}
+
+/* =========================
+   CARRITO
+========================= */
+
+let carrito=[]
+
+function agregarCarrito(nombre,precio){
+
+carrito.push({
+nombre,
+precio
+})
+
+actualizarCarrito()
+
+}
+
+function eliminarProducto(index){
+
+carrito.splice(index,1)
+
+actualizarCarrito()
+
+}
+
+function actualizarCarrito(){
+
+document.getElementById('contador')
+.innerText = carrito.length
+
+const lista =
+document.getElementById('listaCarrito')
+
+lista.innerHTML=''
+
+let total = 0
+
+carrito.forEach((item,index)=>{
+
+total += item.precio
+
+lista.innerHTML += `
+
+<div class="bg-[#0d1117] border border-gray-800 rounded-xl p-4 flex justify-between items-center">
+
+<div>
+
+<h4 class="font-bold text-white text-sm">
+${item.nombre}
+</h4>
+
+<span class="text-orange-500 font-black">
+${item.precio}€
+</span>
+
+</div>
+
+<button
+onclick="eliminarProducto(${index})"
+class="bg-red-600 hover:bg-red-500 px-3 py-1 rounded-lg text-xs font-bold"
+>
+X
+</button>
+
+</div>
+
+`
+
+})
+
+document.getElementById('totalPrecio')
+.innerText = total.toFixed(2)+'€'
+
+}
+
+function obtenerTotalCarrito(){
+
+let total = 0
+
+carrito.forEach(item=>{
+total += item.precio
+})
+
+return total
+
+}
+
+/* =========================
+   MODAL
+========================= */
+
+function abrirCarrito(){
+
+document.getElementById('modalCarrito')
+.classList.remove('hidden')
+
+document.getElementById('modalCarrito')
+.classList.add('flex')
+
+}
+
+function cerrarCarrito(){
+
+document.getElementById('modalCarrito')
+.classList.add('hidden')
+
+document.getElementById('modalCarrito')
+.classList.remove('flex')
+
+}
+
+/* =========================
+   PAYPAL
+========================= */
+
+paypal.Buttons({
+
+style:{
+shape:'pill',
+color:'gold',
+layout:'vertical',
+label:'paypal',
+height:48
+},
+
+createOrder:function(data,actions){
+
+const total = obtenerTotalCarrito()
+
+if(total <= 0){
+
+alert('Añade productos al carrito')
+
+return
+
+}
+
+return actions.order.create({
+
+purchase_units:[{
+
+amount:{
+value:total.toFixed(2),
+currency_code:'EUR'
+}
+
+}]
+
+})
+
+},
+
+onApprove:function(data,actions){
+
+return actions.order.capture()
+.then(function(details){
+
+alert(
+'✅ Pago completado correctamente\n\nGracias ' +
+details.payer.name.given_name
+)
+
+carrito=[]
+
+actualizarCarrito()
+
+cerrarCarrito()
+
+})
+
+},
+
+onError:function(err){
+
+console.error(err)
+
+alert('Error procesando el pago')
+
+}
+
+}).render('#paypal-button-container')
+
+/* =========================
+   INIT
+========================= */
+
+renderizarProductos()
+
 </script>
 
 </body>
 </html>
- 
-<body>
-
-<div class='bg-gradient-to-r from-orange-600 to-orange-500 text-white text-center py-2 text-xs md:text-sm font-semibold tracking-wide shadow-md'>
-    ⚡ Configura tu Setup · 🚚 Envío Express Gratis en Componentes · 💳 Financiación y Pago Seguro
-</div>
-
-<div class='flex flex-col md:flex-row'>
-    <nav class='bg-[#161b22] w-full md:w-64 md:min-h-screen sticky top-0 border-b md:border-b-0 md:border-r border-gray-800 p-6 flex flex-col justify-between z-40 shadow-xl'>
-        <div>
-            <div class='flex items-center gap-2 mb-4'>
-                <span class='text-orange-500 text-3xl'>⚡</span>
-                <h1 class='font-black text-2xl tracking-wider text-white'>Titan<span class='text-orange-500'>Byte</span></h1>
-            </div>
-
-            <div class='mb-5 relative'>
-                <input type='text' id='searchBar' oninput='filtrarProductos()' placeholder='Buscar hardware o componente...' class='w-full bg-[#0d1117] text-xs text-white placeholder-gray-500 px-3 py-2.5 rounded-xl border border-gray-800 focus:outline-none focus:border-orange-500 transition'>
-            </div>
-
-            <div class='flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-3 md:pb-0 text-sm font-medium text-gray-400 custom-scrollbar'>
-                <a href='#pc' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🖥️ Equipos Montados</a>
-                <a href='#procesadores' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🧠 Procesadores</a>
-                <a href='#aliexpress' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🇨🇳 AliExpress Top</a>
-                <a href='#graficas' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>📼 Tarjetas Gráficas</a>
-                <a href='#amazon' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>📦 Amazon Bestsellers</a>
-                <a href='#almacenamiento' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>💽 SSD y RAM</a>
-                <a href='#gaming' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🎮 Periféricos</a>
-                <a href='#internet' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>📡 Redes e Internet</a>
-                <a href='#mascotas' class='hover:text-orange-500 flex items-center gap-2 whitespace-nowrap bg-[#21262d] md:bg-transparent p-2 rounded-lg md:p-0 transition'>🐶 Nutrición Canina</a>
-            </div>
-        </div>
-        
-        <button onclick='abrirCarrito()' class='bg-orange-600 hover:bg-orange-500 text-white font-bold px-4 py-3 rounded-xl mt-4 md:mt-6 transition flex items-center justify-between shadow-lg shadow-orange-600/20'>
-            <span class='flex items-center gap-2'>🛒 Carrito de Compra</span>
-            <span id='contador' class='bg-white text-orange-600 font-black px-2.5 py-0.5 rounded-full text-xs shadow-inner'>0</span>
-        </button>
-    </nav>
-
-    <div class='flex-1 bg-[#0d1117]'>
-        <section class='w-full relative overflow-hidden bg-black aspect-square md:aspect-[16/7] lg:aspect-[16/5.5] shadow-2xl border-b border-gray-800 flex items-center'>
-            <img src='https://pub-2f9543e3cb8d485f81014dae19822a16.r2.dev/titanbyte.png' class='absolute inset-0 w-full h-full object-cover object-center opacity-40 md:opacity-50' alt='TitanByte Cover Background'>
-            <div class='absolute inset-0 bg-gradient-to-r from-[#0d1117] via-[#0d1117]/80 to-transparent z-10'></div>
-            <div class='absolute inset-0 bg-gradient-to-t from-[#0d1117] via-transparent to-transparent z-10'></div>
-            
-            <div class='relative z-20 max-w-4xl mx-auto px-6 md:px-12 w-full space-y-3 md:space-y-4'>
-                <div class='inline-flex items-center gap-2 bg-orange-600/10 border border-orange-500/30 px-3 py-1 rounded-full text-orange-500 font-bold text-xs uppercase tracking-widest backdrop-blur-md animate-pulse'>
-                    <span>Hardware de Élite para Gamers y Pros</span>
-                </div>
-                <h2 class='text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none'>
-                    TITAN<span class='text-orange-500 bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent'>BYTE</span>
-                </h2>
-                <p class='text-gray-300 text-sm md:text-base max-w-lg font-medium leading-relaxed drop-shadow-md'>
-                    Configuraciones de alto rendimiento optimizadas para el máximo rendimiento gráfico y cero latencia. Tu tienda tech de confianza.
-                </p>
-                <div class='flex items-center gap-3 pt-2'>
-                    <a href='#pc' class='bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-xs md:text-sm px-5 py-3 rounded-xl transition shadow-lg shadow-orange-600/20 tracking-wider uppercase'>Explorar Catálogo</a>
-                    <div class='text-gray-400 text-xs hidden sm:flex items-center gap-1 font-semibold border-l border-gray-800 pl-3'>
-                        ⭐ 4.9/5 de valoración en montaje técnico de componentes
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <div class='max-w-7xl mx-auto p-4 md:p-8 space-y-16'>
-            <section id='pc' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🖥️</span> Ordenadores Completos</h2><div id='pcprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='procesadores' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🧠</span> Procesadores (CPUs)</h2><div id='cpuprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            
-            <section id='aliexpress' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🇨🇳</span> Más Vendidos AliExpress Tech</h2><div id='aliprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            
-            <section id='graficas' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>📼</span> Tarjetas Gráficas (GPUs)</h2><div id='gpuprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            
-            <section id='amazon' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>📦</span> Top Bestsellers Amazon España</h2><div id='amzprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            
-            <section id='almacenamiento' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>💽</span> Almacenamiento SSD y Memorias</h2><div id='storageprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='gaming' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🎮</span> Periféricos y Configuración Gaming</h2><div id='gameprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='internet' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>📡</span> Infraestructura de Red y Enrutadores</h2><div id='netprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-            <section id='mascotas' class='section-block'><h2 class='text-2xl md:text-3xl font-extrabold text-white mb-6 flex items-center gap-2'><span class='text-orange-500'>🐶</span> Alimentación y Cuidado de Mascotas</h2><div id='petprod' class='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'></div></section>
-        </div>
-        
-        <footer class='border-t border-gray-800 text-center py-8 text-sm text-gray-500 mt-20'>
-            TitanByte © 2026 · Soluciones integrales en tecnología y hardware.
-        </footer>
-    </div>
-</div>
-
-<div id="modalCarrito" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-end">
-    <div class="bg-[#161b22] w-full max-w-md h-full p-6 flex flex-col justify-between shadow-2xl border-l border-gray-800">
-        <div>
-            <div class="flex justify-between items-center border-b border-gray-800 pb-4 mb-4">
-                <h3 class="text-xl font-bold text-white flex items-center gap-2">🛒 Pedido Actual</h3>
-                <button onclick="cerrarCarrito()" class="text-gray-400 hover:text-white text-2xl font-bold px-2">&times;</button>
-            </div>
-            <div id="listaCarrito" class="space-y-3 max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar">
-            </div>
-        </div>
-        
-        <div class="border-t border-gray-800 pt-4 bg-[#0d1117] p-4 rounded-xl">
-            <div class="flex justify-between text-lg font-bold text-white mb-4">
-                <span>Subtotal (IVA incl.):</span>
-                <span id="totalPrecio" class="text-orange-500">0€</span>
-            </div>
-            
-            <div id="paypal-button-container" class="w-full mt-4"></div>
-            <div id="carrito-vacio-msg" class="text-center text-xs text-gray-500 mt-2">Añade productos para activar el pago</div>
-        </div>
-    </div>
-</div>
-
-<script>
-let carrito=[]
-
-const data={
-pc:[
-    ['PC Gaming Titan Strike Pro', 1349, 'AMD Ryzen 5 7600X · RTX 4070 Super · 32GB DDR5 · SSD 2TB NVMe · Win11 Pro'],
-    ['PC Master Arena Elite v2', 1899, 'AMD Ryzen 7 7800X3D · RTX 4080 Super · 32GB RAM DDR5 · SSD 2TB Gen4 · Win11 Pro'],
-    ['PC Creator Studio Workstation', 2299, 'Intel Core i9-14900K · RTX 4080 · 64GB DDR5 Dual Channel · SSD 4TB Enterprise · Win11 Pro'],
-    ['PC Oficina Pro Micro', 549, 'Intel Core i5-14400 · 16GB DDR5 · SSD 1TB NVMe · Win11 Pro']
-],
-procesadores:[
-    ['AMD Ryzen 5 7600X Box', 209, 'Socket AM5 · 4.7GHz base (5.3GHz Turbo) · 6 Núcleos / 12 Hilos'],
-    ['AMD Ryzen 7 7800X3D', 399, 'Socket AM5 · Arquitectura 3D V-Cache · Máximos FPS en competitivo'],
-    ['AMD Ryzen 5 8600G APU', 195, 'Socket AM5 · Gráficos Integrados Radeon 760M · Gráficos fluidos sin dedicada'],
-    ['Intel Core i5-14600K', 315, 'Socket LGA1700 · 14ª Generación · 14 Núcleos / 20 Hilos']
-],
-aliexpress:[
-    ['Ratón Inalámbrico Titan Shark X3', 38, 'Sensor Premium PAW3395 · 26000 DPI reales · Solo 49g de peso ultra-ligero · Tri-mode híbrido'],
-    ['Teclado Mecánico Titan Pro-Compact 94', 49, 'Formato optimizado 94 teclas · Switches Hot-Swap premium · Retroiluminación RGB estructural'],
-    ['Barra de Iluminación Monitor LED Pro', 29, 'Control táctil de temperatura · Protección ocular anti-luz azul · Fijación magnética universal'],
-    ['Estación Energética GaN 65W Multi-Port', 24, 'Tecnología Nitruro de Galio · 2x USB-C + 1x USB-A · Carga de alta velocidad para portátiles y setups']
-],
-graficas:[
-    ['NVIDIA RTX 4060 Ti 8GB', 399, 'Arquitectura Ada Lovelace · DLSS 3.0 Ray Tracing · Juego 1080p/1440p'],
-    ['GIGABYTE RTX 4070 Super 12GB', 629, 'Edición OC · Sistema triple ventilación Windforce · Salto de potencia total'],
-    ['ZOTAC Gaming GTX 1660 Super', 190, '6GB GDDR6 · Reacondicionada / Excelente estado de entrada multimedia'],
-    ['ASUS ROG Strix RTX 4080 16GB', 1129, 'Gama extrema · Diseño robusto con iluminación RGB masiva']
-],
-amazon:[
-    ['Mando Inalámbrico Pro Carbon Series', 55, 'Conectividad Bluetooth nativa y Wireless · Agarre texturizado de alta precisión'],
-    ['Alfombrilla Gaming SpeedEdition L', 22, 'Superficie de tela de microfibra optimizada para baja fricción · Base de goma densa anti-desplazamiento'],
-    ['Soporte de Auriculares Universal RGB', 19, 'Base pesada antideslizante con 3 perfiles de color · Gancho flexible de protección estructural'],
-    ['Sistema Lumínico TV Smart Ambient', 79, 'Tira LED RGBIC avanzada con cámara inteligente · Sincronización inmersiva en tiempo real']
-],
-almacenamiento:[
-    ['Corsair Vengeance DDR5 64GB', 700, 'Kit 2x32GB · Frecuencia 6000MHz CL30 · Arquitectura de alto rendimiento'],
-    ['Kingston FURY Beast DDR5 32GB', 450, 'Kit 2x16GB · Perfiles AMD EXPO e Intel XMP 3.0 · Bajo perfil'],
-    ['Samsung 990 Pro NVMe 2TB', 390, 'SSD M.2 PCIe Gen 4x4 · Velocidades secuenciales extremas de 7450 MB/s'],
-    ['Crucial P3 Plus M.2 1TB', 190, 'SSD NVMe PCIe Gen4 · Solución rápida y eficiente de almacenamiento'],
-    ['WD Black SN850X NVMe 4TB', 600, 'Gama Profesional Gaming · Con disipador · Ideal para bibliotecas pesadas']
-],
-gaming:[
-    ['Teclado Mecánico RGB Pro', 69, 'Switch Red Lineal · Estructura de aluminio reforzado · Layout ES'],
-    ['Ratón Óptico Pro Gaming', 39, 'Sensor de 16000 DPI reales · Ultra ligero e inalámbrico'],
-    ['Auriculares Premium 7.1', 49, 'Sonido espacial envolvente · Micrófono con cancelación activa de ruido'],
-    ['Silla Ergonómica Setup Pro', 149, 'Respaldo regulable en malla transpirable · Soporte lumbar adaptativo']
-],
-internet:[
-    ['Starlink Kit Satelital V2', 349, 'Equipo oficial de recepción · Banda ancha de baja latencia en cualquier sitio'],
-    ['Router ASUS ROG WiFi 7', 249, 'Estándar WiFi 7 · Tribanda optimizado para latencias críticas en gaming'],
-    ['TP-Link Deco Mesh System', 159, 'Pack de 3 nodos · Cobertura total de vivienda eliminando zonas muertas'],
-    ['Amplificador WiFi Pro 1200', 29, 'Repetidor compacto de doble banda · Extensión rápida de cobertura']
-],
-mascotas:[
-    ['Royal Canin Maxi Adult 15kg', 59, 'Alimento seco formulado para perros de razas grandes · Soporte articular'],
-    ['Purina Pro Plan Medium 14kg', 54, 'Rico en pollo de alta calidad · Optimiza salud de piel y pelo'],
-    ['Advance Sensitive Salmon 12kg', 49, 'Indicado para perros con sensibilidad digestiva o intolerancias'],
-    ['Cama Ortopédica Memory Foam', 39, 'Estructura viscoelástica para descanso articular · Funda lavable']
-]
-}
-
-const imageMap={
-    'PC Gaming Titan Strike Pro':'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600',
-    'PC Master Arena Elite v2':'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=600',
-    'PC Creator Studio Workstation':'https://images.unsplash.com/photo-1618424181497-157f25b6ddd5?w=600',
-    'PC Oficina Pro Micro':'https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600',
-    'AMD Ryzen 7 7800X3D':'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600',
-    'AMD Ryzen 5 7600X Box':'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600',
-    'AMD Ryzen 5 8600G APU':'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600',
-    'Intel Core i5-14600K':'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600',
-    'Ratón Inalámbrico Titan Shark X3':'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=600',
-    'Teclado Mecánico Titan Pro-Compact 94':'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=600',
-    'Barra de Iluminación Monitor LED Pro':'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600',
-    'Estación Energética GaN 65W Multi-Port':'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600',
-    'NVIDIA RTX 4060 Ti 8GB':'https://images.unsplash.com/photo-1591480333368-ff22497eb09a?w=600',
-    'GIGABYTE RTX 4070 Super 12GB':'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600',
-    'ZOTAC Gaming GTX 1660 Super':'https://images.unsplash.com/photo-1591489382458-3652bd1f00b7?w=600',
-    'ASUS ROG Strix RTX 4080 16GB':'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600',
-    'Mando Inalámbrico Pro Carbon Series':'https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=600',
-    'Alfombrilla Gaming SpeedEdition L':'https://images.unsplash.com/photo-1632292224971-0d45778bd364?w=600',
-    'Soporte de Auriculares Universal RGB':'https://images.unsplash.com/photo-1606220532402-1f600e726527?w=600',
-    'Sistema Lumínico TV Smart Ambient':'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600',
-    'Corsair Vengeance DDR5 64GB':'https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?w=600',
-    'Kingston FURY Beast DDR5 32GB':'https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?w=600',
-    'Samsung 990 Pro NVMe 2TB':'https://images.unsplash.com/photo-1562976540-1502c2145186?w=600',
-    'Crucial P3 Plus M.2 1TB':'https://images.unsplash.com/photo-1562976540-1502c2145186?w=600',
-    'WD Black SN850X NVMe 4TB':'https://images.unsplash.com/photo-1562976540-1502c2145186?w=600',
-    'Teclado Mecánico RGB Pro':'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=600',
-    'Ratón Óptico Pro Gaming':'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=600',
-    'Auriculares Premium 7.1':'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600',
-    'Silla Ergonómica Setup Pro':'https://images.unsplash.com/photo-1505797149-43b0069ec26b?w=600',
-    'Starlink Kit Satelital V2':'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600',
-    'Router ASUS ROG WiFi 7':'https://images.unsplash.com/photo-1647427060118-4911c9821b82?w=600',
-    'TP-Link Deco Mesh System':'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600',
-    'Amplificador WiFi Pro 1200':'https://images.unspla
