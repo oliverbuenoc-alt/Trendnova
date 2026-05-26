@@ -5,52 +5,47 @@
 <title>NEXORA</title>
 <script src='https://cdn.tailwindcss.com'></script>
 <style>
-body{background:#eef2f7}.product:hover{transform:scale(1.03);transition:.25s}.hero{background:linear-gradient(135deg,#ff6b00,#ff8c00,#ffb347)}
+body{background:#eef2f7;scroll-behavior:smooth}
+.hero{background:linear-gradient(135deg,#ff6b00,#ff8c00,#ffb347)}
+.product:hover{transform:translateY(-6px);transition:.3s}
 </style>
 </head>
 <body>
-<div class='bg-orange-600 text-white text-center py-2'>⚡ Ofertas del día | 🚚 Envío rápido | 💳 Pago seguro | ⭐ Miles de clientes satisfechos</div>
-<nav class='bg-white shadow p-4 flex justify-between sticky top-0 z-50'>
-<h1 class='text-3xl font-bold'>TRENDHIVE PRO</h1>
-<div class='flex gap-4'>
-<a href='#gaming'><button>Gaming</button></a><a href='#pc'><button>PC</button></a><a href='#cafe'><button>Café</button></a><a href='#setup'><button>Setup</button></a><a href='#mascotas'><button>Mascotas</button></a>
+<div class='bg-orange-600 text-white text-center py-2'>⚡ Ofertas del día · 🚚 Envío rápido · 💳 Pago seguro</div>
+<nav class='bg-white sticky top-0 shadow p-4 flex justify-between items-center z-50'>
+<h1 class='font-bold text-3xl text-orange-600'>NEXORA</h1>
+<div class='flex gap-4 overflow-auto'>
+<a href='#pc'>PC</a>
+<a href='#gaming'>Gaming</a>
+<a href='#cafe'>Café</a>
+<a href='#mascotas'>Mascotas</a>
+<a href='#gadgets'>Gadgets</a>
+</div>
 <button onclick='verCarrito()' class='bg-orange-600 text-white px-4 py-2 rounded-xl'>🛒 <span id='contador'>0</span></button>
-</div></nav>
-<section class='hero text-white p-16'>
-<h1 class='text-6xl font-bold'>Tecnología, gaming y top ventas al mejor precio</h1>
-<p class='text-xl text-gray-300 mt-3'>Dropshipping • Gaming • Gadgets • Hogar • Tecnología</p>
-<div class='flex gap-4 mt-6'><button class='bg-white text-black px-6 py-3 rounded-2xl'>Comprar ahora</button><button class='border px-6 py-3 rounded-2xl'>Ver tendencias</button></div>
+</nav>
+<section class='hero text-white p-14'>
+<h1 class='text-6xl font-bold'>Tecnología y Top Ventas</h1>
+<p class='mt-4 text-xl'>Gaming, mascotas, hogar y productos virales</p>
 </section>
 <div class='max-w-7xl mx-auto p-8'>
-<h2 class='text-4xl font-bold mb-6'>Categorías</h2><section id='gaming'></section><section id='pc'></section><section id='cafe'></section><section id='setup'></section><section id='mascotas'></section>
-<div class='grid md:grid-cols-5 gap-4'>
-<div class='bg-white p-6 rounded-3xl shadow'>🎮 Gaming</div><div class='bg-white p-6 rounded-3xl shadow'>🖥️ PC</div><div class='bg-white p-6 rounded-3xl shadow'>☕ Cafeteras</div><div class='bg-white p-6 rounded-3xl shadow'>🏠 Hogar</div><div class='bg-white p-6 rounded-3xl shadow'>📱 Gadgets</div></div>
-<h2 class='text-4xl font-bold mt-12 mb-6'>Top ventas</h2><div id='productos' class='grid md:grid-cols-4 gap-6'></div>
-<section class='bg-white mt-12 p-10 rounded-3xl shadow'>
-<h2 class='text-3xl font-bold'>Clientes satisfechos</h2>
-<div class='grid md:grid-cols-3 gap-6 mt-6'><div>⭐⭐⭐⭐⭐ “Muy top”</div><div>⭐⭐⭐⭐⭐ “Llegó rápido”</div><div>⭐⭐⭐⭐⭐ “Volveré a comprar”</div></div></section>
-<section class='grid md:grid-cols-3 gap-6 mt-12'>
-<div class='bg-white p-8 rounded-3xl shadow'>🚚 Envío mundial</div><div class='bg-white p-8 rounded-3xl shadow'>💳 Stripe / PayPal</div><div class='bg-white p-8 rounded-3xl shadow'>🛡️ Compra segura</div></section>
-<footer class='bg-orange-600 text-white p-10 mt-12 rounded-t-3xl'><div class='grid md:grid-cols-4 gap-4'><div><b>WIN STORE</b><p>Sobre nosotros</p></div><div><b>Ayuda</b><p>Pedidos</p></div><div><b>Legal</b><p>Privacidad</p></div><div><b>Contacto</b><p>soporte@winstore.com</p></div></div></footer>
+<section id='pc'><h2 class='text-4xl font-bold mb-6'>🖥️ PC</h2><div id='pcprod' class='grid md:grid-cols-4 gap-6'></div></section>
+<section id='gaming' class='mt-12'><h2 class='text-4xl font-bold mb-6'>🎮 Gaming</h2><div id='gameprod' class='grid md:grid-cols-4 gap-6'></div></section>
+<section id='cafe' class='mt-12'><h2 class='text-4xl font-bold mb-6'>☕ Café</h2><div id='cafeprod' class='grid md:grid-cols-4 gap-6'></div></section>
+<section id='mascotas' class='mt-12'><h2 class='text-4xl font-bold mb-6'>🐶 Mascotas</h2><div id='petprod' class='grid md:grid-cols-4 gap-6'></div></section>
+<section id='gadgets' class='mt-12'><h2 class='text-4xl font-bold mb-6'>📱 Gadgets</h2><div id='gadprod' class='grid md:grid-cols-4 gap-6'></div></section>
 </div>
 <script>
-let carrito=[];const productos=[
-['RTX Setup RGB',799,'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500'],
-['Monitor Curvo Gaming',229,'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500'],
-['Teclado Mecánico RGB',59,'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500'],
-['Ratón Pro Gaming',35,'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500'],
-['Cafetera Espresso Premium',89,'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500'],
-['Mini Proyector Smart',49,'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=500'],
-['Mini Impresora Bluetooth',29,'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500'],
-['Silla Gaming Pro',129,'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500'],
-['Auriculares Gaming RGB',49,'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'],
-['Royal Canin Maxi Adult',54,'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500'],['Purina Pro Plan OptiBalance',49,'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500'],['Acana Adult Dog',62,'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500'],['Taste of the Wild High Prairie',59,'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500'],
-['Cama Ortopédica Perros',39,'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500'],
-['Fuente Automática Mascotas',27,'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=500'],
-['Correa LED Nocturna',19,'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=500'],
-['Juguete Interactivo Perro',22,'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500'],['Freidora de Aire XL',79,'https://images.unsplash.com/photo-1585515656973-4d3c4f0f39f9?w=500'],['Aspirador Robot Inteligente',149,'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=500'],['Tira LED Habitación RGB',19,'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500'],['Mini Mando Bluetooth',18,'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500'],['Organizador Escritorio Premium',24,'https://images.unsplash.com/photo-1516382799247-87df95d790b7?w=500'],['Power Bank 30000mAh',39,'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500'],['Cepillo Secador 5 en 1',42,'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500'],['Cámara Vigilancia WiFi',35,'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500']]
-productos.forEach(p=>document.getElementById('productos').innerHTML+=`<div class='product bg-white rounded-3xl overflow-hidden shadow'><img src='${p[2]}' class='h-60 w-full object-cover'><div class='p-5'><span class='bg-red-500 text-white px-3 py-1 rounded-full'>HOT</span><h2 class='font-bold text-xl mt-3'>${p[0]}</h2><p>⭐⭐⭐⭐⭐ (2.3k)</p><p class='text-3xl font-bold'>${p[1]}€</p><button onclick="comprar('${p[0]}',${p[1]})" class='w-full bg-orange-600 text-white p-3 rounded-xl mt-3'>Añadir</button></div></div>`)
+let carrito=[];
+const data={
+pc:[['RTX Setup RGB',799],['Monitor Curvo Gaming',229],['SSD NVMe 2TB',129],['Webcam HD',45]],
+gaming:[['Teclado Mecánico RGB',59],['Ratón Pro Gaming',35],['Silla Gaming',129],['Auriculares RGB',49]],
+cafe:[['Cafetera Espresso',89],['Molinillo Café',39],['Espumador Leche',29],['Taza Inteligente',35]],
+mascotas:[['Royal Canin Maxi',54],['Purina Pro Plan',49],['Cama Ortopédica',39],['Fuente Mascotas',27]],
+gadgets:[['Mini Impresora',29],['Freidora Aire XL',79],['Robot Aspirador',149],['PowerBank 30000',39]]}
+function card(n,p){return `<div class='product bg-white rounded-3xl shadow overflow-hidden'><img src='https://picsum.photos/400/300?random=${n}' class='h-52 w-full object-cover'><div class='p-5'><span class='bg-orange-600 text-white px-2 py-1 rounded-full'>TOP</span><h3 class='font-bold text-xl mt-2'>${n}</h3><p>⭐⭐⭐⭐⭐ (2.5k)</p><p class='text-3xl font-bold'>${p}€</p><button onclick="comprar('${n}',${p})" class='w-full bg-orange-600 text-white p-3 rounded-xl mt-3'>Añadir</button></div></div>`}
+Object.entries(data).forEach(([k,v])=>v.forEach(x=>document.getElementById(k==='gaming'?'gameprod':k==='cafe'?'cafeprod':k==='mascotas'?'petprod':k==='gadgets'?'gadprod':'pcprod').innerHTML+=card(x[0],x[1])))
 function comprar(n,p){carrito.push({n,p});contador.innerText=carrito.length}
-function verCarrito(){alert(carrito.map(x=>x.n+'-'+x.p+'€').join('\n')||'Vacío')}
+function verCarrito(){alert(carrito.map(x=>x.n+' '+x.p+'€').join('\n')||'Carrito vacío')}
 </script>
-</body></html>
+</body>
+</html>
