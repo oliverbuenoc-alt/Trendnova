@@ -1,782 +1,433 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TitanByte · Hardware Premium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TitanByte · Hardware Premium</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AQ0-loNUSHmKJ0yAqvJaGxQj8bvMpKc4_cAzd2rLPURK0VPhIpvp-fsAU5xAOawA9zYKEJmdOukeikNi&currency=EUR"></script>
 
-<script src="https://www.paypal.com/sdk/js?client-id=AQ0-loNUSHmKJ0yAqvJaGxQj8bvMpKc4_cAzd2rLPURK0VPhIpvp-fsAU5xAOawA9zYKEJmdOukeikNi&currency=EUR"></script>
+    <style>
+        body {
+            background: #0b0f14;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
 
-<style>
+        .product {
+            transition: .25s;
+            border: 1px solid #242424;
+        }
 
-body{
-background:#0b0f14;
-color:white;
-font-family:Arial,sans-serif;
-margin:0;
-scroll-behavior:smooth;
-}
+        .product:hover {
+            transform: translateY(-6px);
+            border-color: #ff6b00;
+            box-shadow: 0 0 25px rgba(255, 107, 0, .3);
+        }
 
-.product{
-transition:.25s;
-border:1px solid #242424;
-}
+        @keyframes shake {
+            0% { transform: translateX(0) }
+            25% { transform: translateX(-6px) }
+            50% { transform: translateX(6px) }
+            75% { transform: translateX(-6px) }
+            100% { transform: translateX(0) }
+        }
 
-.product:hover{
-transform:translateY(-6px);
-border-color:#ff6b00;
-box-shadow:0 0 25px rgba(255,107,0,.3);
-}
-
-@keyframes shake{
-0%{transform:translateX(0)}
-25%{transform:translateX(-6px)}
-50%{transform:translateX(6px)}
-75%{transform:translateX(-6px)}
-100%{transform:translateX(0)}
-}
-
-.shake{
-animation:shake .35s;
-}
-
-</style>
+        .shake {
+            animation: shake .35s;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="bg-orange-600 text-center py-2 font-bold">
-
-⚡ Envío Gratis · 💳 Pago Seguro · 🛡 Garantía
-
-</div>
-
-<div class="flex flex-col md:flex-row">
-
-<nav class="bg-[#161b22] md:w-72 p-6 border-r border-gray-800">
-
-<div class="flex items-center gap-3 mb-8">
-
-<div class="w-14 h-14 rounded-2xl bg-orange-600 flex items-center justify-center text-2xl">
-⚡
-</div>
-
-<div>
-<h1 class="text-3xl font-black">
-Titan<span class="text-orange-500">Byte</span>
-</h1>
-<div class="text-gray-500 text-xs">
-Hardware Gaming Premium
-</div>
-</div>
-
-</div>
-
-<input
-id="searchBar"
-placeholder="Buscar producto..."
-oninput="filtrarProductos()"
-class="w-full p-3 rounded-xl bg-[#0d1117] border border-gray-700 mb-6"
-/>
-
-<div class="space-y-2">
-
-<a href="#pc" class="block bg-[#21262d] p-3 rounded-xl">🖥 PCs Gaming</a>
-
-<a href="#cpu" class="block bg-[#21262d] p-3 rounded-xl">🧠 Procesadores</a>
-
-<a href="#gpu" class="block bg-[#21262d] p-3 rounded-xl">📼 Gráficas</a>
-
-<a href="#ssd" class="block bg-[#21262d] p-3 rounded-xl">💾 SSD</a>
-
-<a href="#rgb" class="block bg-[#21262d] p-3 rounded-xl">🌈 RGB</a>
-
-<a href="#fuentes" class="block bg-[#21262d] p-3 rounded-xl">⚡ Fuentes</a>
-
-<a href="#montapc" class="block bg-[#21262d] p-3 rounded-xl">🛠 Monta tu PC</a>
-
-</div>
-
-<button
-onclick="abrirCarrito()"
-class="bg-orange-600 mt-8 w-full rounded-xl p-4 font-bold flex justify-between">
-
-🛒 Carrito
-
-<span id="contador"
-class="bg-white text-orange-600 px-2 rounded-full">
-
-0
-
-</span>
-
-</button>
-
-</nav>
-
-<main class="flex-1">
-
-<section class="relative overflow-hidden">
-
-<img
-src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80"
-class="absolute inset-0 w-full h-full object-cover opacity-20">
-
-<div class="relative p-10 max-w-7xl mx-auto">
-
-<div class="bg-orange-600/20 border border-orange-500 inline-block px-4 py-2 rounded-full text-orange-400 font-bold">
-
-🔥 HARDWARE PREMIUM
-
-</div>
-
-<h2 class="text-6xl font-black mt-6">
-
-MONTA TU
-<span class="text-orange-500">SETUP</span>
-
-</h2>
-
-<p class="mt-5 text-gray-400 max-w-xl">
-
-Gaming extremo, hardware premium y PCs configurados.
-
-</p>
-
-</div>
-
-</section>
-
-<div class="max-w-7xl mx-auto p-6 space-y-20">
-
-<section id="pc">
-<h2 class="text-3xl font-black mb-8">🖥 PCs Gaming</h2>
-<div id="pcprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-</section>
-
-<section id="cpu">
-<h2 class="text-3xl font-black mb-8">🧠 Procesadores</h2>
-<div id="cpuprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-</section>
-
-<section id="gpu">
-<h2 class="text-3xl font-black mb-8">📼 Gráficas</h2>
-<div id="gpuprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-</section>
-
-<section id="ssd">
-<h2 class="text-3xl font-black mb-8">💾 SSD</h2>
-<div id="ssdprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-</section>
-
-<section id="rgb">
-<h2 class="text-3xl font-black mb-8">🌈 Ventiladores RGB</h2>
-<div id="rgbprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-</section>
-
-<section id="fuentes">
-<h2 class="text-3xl font-black mb-8">⚡ Fuentes</h2>
-<div id="psuprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
-</section>
-
-<section id="montapc">
-
-<h2 class="text-3xl font-black mb-8">
-
-🛠 Monta tu PC desde 0
-
-</h2>
-
-<div class="bg-[#161b22] p-6 rounded-2xl">
-
-<select id="pieza" class="bg-[#0d1117] w-full p-3 rounded">
-
-<option>RTX 5090 - 2499€</option>
-<option>Ryzen 9 - 999€</option>
-<option>SSD 4TB - 399€</option>
-<option>Corsair 1000W - 299€</option>
-
-</select>
-
-<button
-class="bg-orange-600 mt-4 p-4 rounded-xl font-bold">
-
-Añadir configuración
-
-</button>
-
-</div>
-
-</section>
-
-</div>
-
-<footer class="text-center border-t border-gray-800 py-8 text-gray-500">
-
-TitanByte © 2026
-
-</footer>
-
-</main>
-<!-- CARRITO -->
-<div id="modalCarrito"
-class="fixed inset-0 bg-black/70 hidden justify-end z-50">
-
-<div id="panelCarrito"
-class="bg-[#161b22] w-full max-w-md h-full p-6 flex flex-col">
-
-<div class="flex justify-between items-center border-b border-gray-800 pb-4">
-
-<h3 class="text-2xl font-black">
-🛒 Tu Pedido
-</h3>
-
-<button onclick="cerrarCarrito()" class="text-3xl">
-×
-</button>
-
-</div>
-
-<div id="listaCarrito"
-class="flex-1 overflow-y-auto mt-4 space-y-3"></div>
-
-<div class="border-t border-gray-800 pt-4">
-
-<div class="flex justify-between text-xl font-black mb-4">
-
-<span>Total:</span>
-
-<span id="totalPrecio"
-class="text-orange-500">
-
-0€
-
-</span>
-
-</div>
-
-<div id="paypal-button-container"></div>
-
-</div>
-</div>
-</div>
-
-<script>
-
-const data={
-pc:[
-['Titan Beast X',2499,'Ryzen 9 · RTX 5080 · 64GB'],
-['Titan Strike Elite',3199,'7800X3D · RTX 5090'],
-['Titan Creator Pro',2799,'Intel Ultra · RTX 5080'],
-['PC Stream Master',2199,'RTX 5070 Ti · 32GB']
-],
-
-cpu:[
-['AMD Ryzen 7 7800X3D',599,'Gaming extremo'],
-['AMD Ryzen 9 9950X3D',999,'Premium'],
-['Intel Core Ultra 9',849,'Alto rendimiento'],
-
-['AMD Ryzen 7 9700X',549,'Zen 5'],
-['AMD Ryzen 9 7950X',799,'16 Núcleos'],
-['Intel Core i7-13700KF',499,'Gaming + Streaming'],
-['Intel Xeon W7',1399,'Profesional'],
-['AMD EPYC 4124P',1599,'Servidor']
-],
-
-gpu:[
-['RTX 5070 Ti',999,'4K Gaming'],
-['RTX 5080',1799,'Ultra'],
-['RTX 5090',2499,'Máximo rendimiento'],
-
-['RTX 3050 8GB',399,'Esports 1080p'],
-['RTX 3060 12GB',529,'Gaming Full HD'],
-['RTX 3080 Ti',1399,'4K Ready'],
-['RTX 3090',1699,'24GB Creator'],
-['RTX 3090 Ti',1899,'Enthusiast'],
-['AMD RX 7600',429,'1080p Ultra'],
-['AMD RX 7700 XT',699,'1440p Gaming'],
-['Intel Arc B580',449,'Nueva generación'],
-['Intel Arc A770',529,'16GB'],
-['Sapphire RX 7600 XT',589,'AMD Edition'],
-['PowerColor RX 7900 GRE',999,'RGB OC'],
-['ZOTAC RTX 3080 Trinity',1299,'Triple Fan']
-],
-
-ssd:[
-['Samsung 990 Pro 4TB',399,'PCIe 4.0'],
-['WD Black SN850X',299,'2TB Gaming'],
-['Corsair MP700',499,'PCIe 5.0'],
-
-['Kingston Fury Renegade 2TB',269,'PCIe 4.0'],
-['Crucial T705 2TB',359,'PCIe 5.0'],
-['Seagate FireCuda 530 4TB',449,'Gaming NVMe'],
-['Lexar NM790 4TB',329,'Alta velocidad'],
-['ADATA Legend 960 Max 2TB',239,'7400MB/s'],
-['SK Hynix Platinum P41 2TB',279,'Premium NVMe'],
-['TeamGroup Cardea A440 Pro',259,'PS5 Compatible'],
-['Sabrent Rocket 4 Plus 4TB',399,'Alto rendimiento'],
-['MSI Spatium M580 FROZR',389,'Disipador incluido'],
-['Gigabyte AORUS Gen4 7000s',299,'NVMe Gaming']
-],
-
-rgb:[
-['Lian Li RGB Fan Kit',119,'Pack x3'],
-['Corsair iCUE QX120',149,'RGB'],
-['NZXT RGB Duo',89,'ARGB']
-],
-
-fuentes:[
-['Corsair RM1000x',299,'1000W Gold'],
-['ASUS ROG Thor',449,'1200W'],
-['MSI MPG 1000W',279,'ATX 3.1'],
-
-['NOX Urano VX 650W',49,'80+ Bronze'],
-['Tacens Anima 500W',39,'Básica'],
-['Kolink Core 600W',54,'80+'],
-['Aerocool VX Plus 550W',45,'Gaming básico'],
-['Mars Gaming MPB650',59,'650W RGB'],
-['Tempest PSU 600W',42,'Económica'],
-['Sharkoon WPM Gold 550W',69,'Semi modular'],
-['DeepCool PF550',52,'550W fiable'],
-['GameMax GP-600',48,'600W budget'],
-['Nfortec Scutum 650W',55,'Gaming entry']
-]
-}
-
-const images={
-
-pc:'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80',
-
-cpu:'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
-
-gpu:'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&w=1200&q=80',
-
-ssd:'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1200&q=80',
-
-rgb:'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80',
-
-fuentes:'https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&w=1200&q=80'
-
-}
-
-function crearProducto(nombre,precio,desc,tipo){
-
-return `
-
-<div class="product bg-[#161b22] rounded-2xl overflow-hidden">
-
-<img
-src="${images[tipo]}"
-class="w-full h-56 object-cover">
-
-<div class="p-5">
-
-<h3 class="font-black">${nombre}</h3>
-
-<p class="text-gray-400 text-sm">${desc}</p>
-
-<div class="flex justify-between items-center mt-5">
-
-<span class="text-orange-500 text-2xl font-black">
-
-${precio}€
-
-</span>
-
-<button
-onclick="agregarCarrito('${nombre}',${precio})"
-class="bg-orange-600 px-4 py-2 rounded-xl">
-
-Añadir
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`
-
-}
-
-function renderizarProductos(){
-
-pcprod.innerHTML=
-data.pc.map(x=>crearProducto(...x,'pc')).join('')
-
-cpuprod.innerHTML=
-data.cpu.map(x=>crearProducto(...x,'cpu')).join('')
-
-gpuprod.innerHTML=
-data.gpu.map(x=>crearProducto(...x,'gpu')).join('')
-
-ssdprod.innerHTML=
-data.ssd.map(x=>crearProducto(...x,'ssd')).join('')
-
-rgbprod.innerHTML=
-data.rgb.map(x=>crearProducto(...x,'rgb')).join('')
-
-psuprod.innerHTML=
-data.fuentes.map(x=>crearProducto(...x,'fuentes')).join('')
-
-}
-
-function filtrarProductos(){
-
-const texto=
-searchBar.value.toLowerCase()
-
-document
-.querySelectorAll('.product')
-.forEach(card=>{
-
-card.style.display=
-card.innerText
-.toLowerCase()
-.includes(texto)
-?'block':'none'
-
-})
-
-}
-
-let carrito=[]
-
-function agregarCarrito(nombre,precio){
-
-carrito.push({nombre,precio})
-
-actualizarCarrito()
-
-abrirCarrito()
-
-}
-
-function abrirCarrito(){
-
-modalCarrito.classList.remove('hidden')
-
-modalCarrito.classList.add('flex')
-
-panelCarrito.classList.add('shake')
-
-setTimeout(()=>{
-
-panelCarrito.classList.remove('shake')
-
-},350)
-
-}
-
-function cerrarCarrito(){
-
-modalCarrito.classList.add('hidden')
-
-modalCarrito.classList.remove('flex')
-
-}
-
-function eliminarProducto(index){
-
-carrito.splice(index,1)
-
-actualizarCarrito()
-
-}
-
-function actualizarCarrito(){
-
-contador.innerText=
-carrito.length
-
-listaCarrito.innerHTML=''
-
-let total=0
-
-carrito.forEach((item,index)=>{
-
-total+=item.precio
-
-listaCarrito.innerHTML+=`
-
-<div class="bg-[#0d1117] rounded-xl p-4 flex justify-between">
-
-<div>
-
-<b>${item.nombre}</b>
-
-<div class="text-orange-500">
-${item.precio}€
-</div>
-
-</div>
-
-<button
-onclick="eliminarProducto(${index})"
-class="bg-red-600 px-3 rounded">
-
-X
-
-</button>
-
-</div>
-
-`
-
-})
-
-totalPrecio.innerText=
-total.toFixed(2)+"€"
-
-}
-
-paypal.Buttons({
-
-createOrder:(data,actions)=>{
-
-if(carrito.length===0){
-
-alert("Añade productos")
-return
-
-}
-
-return actions.order.create({
-
-purchase_units:[{
-
-amount:{
-value:parseFloat(
-totalPrecio.innerText
-).toFixed(2)
-}
-
-}]
-
-})
-
-},
-
-onApprove:(data,actions)=>{
-
-return actions.order.capture()
-.then(()=>{
-
-alert("✅ Pago completado")
-
-carrito=[]
-
-actualizarCarrito()
-
-cerrarCarrito()
-
-})
-
-}
-
-}).render('#paypal-button-container')
-
-/* ======================
- AMAZON + WINTOWIN
-====================== */
-
-const amazonTop=[
-
-['Echo Dot 5',59,'Más vendido',
-'https://images.unsplash.com/photo-1512446816042-444d64126727?auto=format&fit=crop&w=1200&q=80'],
-
-['AirPods Pro',249,'Top audio',
-'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=1200&q=80'],
-
-['Samsung T9 SSD',179,'Amazon Choice',
-'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1200&q=80'],
-
-['Razer DeathAdder',69,'Más vendido',
-'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1200&q=80']
-
-]
-
-document.querySelector(".space-y-20")
-.insertAdjacentHTML(
-"beforeend",
-
-`
-
-<section id="amazon">
-
-<h2 class="text-4xl font-black mb-8">
-
-📦 Amazon + WinToWin · Más vendidos
-
-</h2>
-
-<div id="amazonGrid"
-class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-
-</div>
-
-</section>
-
-`
-
-)
-
-amazonGrid.innerHTML=
-amazonTop.map(p=>`
-
-<div class="product bg-[#161b22] rounded-2xl overflow-hidden">
-
-<div class="absolute bg-yellow-500 text-black px-3 py-1 m-3 rounded-full text-xs font-black">
-
-${p[2]}
-
-</div>
-
-<img src="${p[3]}"
-class="w-full h-56 object-cover">
-
-<div class="p-5">
-
-<h3 class="font-black">
-${p[0]}
-</h3>
-
-<div class="text-orange-500 text-3xl font-black mt-4">
-
-${p[1]}€
-
-</div>
-
-<button
-onclick="agregarCarrito('${p[0]}',${p[1]})"
-class="bg-orange-600 w-full p-3 mt-4 rounded-xl">
-
-Comprar
-
-</button>
-
-</div>
-
-</div>
-
-`).join('')
-/* ======================
- ALIEXPRESS PRODUCTOS
-====================== */
-
-const aliexpressProductos=[
-
-['Mini Proyector LED',49,'-58%',
-'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80'],
-
-['Tira RGB Inteligente',19,'-67%',
-'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80'],
-
-['Mini Teclado RGB',29,'-50%',
-'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=1200&q=80'],
-
-['Auriculares Gaming RGB',39,'-60%',
-'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80'],
-
-['Controlador RGB ARGB',22,'-48%',
-'https://images.unsplash.com/photo-1555617981-dac3880eac6e?auto=format&fit=crop&w=1200&q=80'],
-
-['Dock USB-C 8 en 1',49,'-37%',
-'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=1200&q=80'],
-
-['Brazo Monitor Gaming',42,'-44%',
-'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80'],
-
-['Mini Display CPU Temp',34,'-41%',
-'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80'],
-
-['Soporte Cascos RGB',18,'-55%',
-'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80'],
-
-['Luz LED Escritorio Gamer',27,'-39%',
-'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80']
-
-document.addEventListener(
-'DOMContentLoaded',
-()=>{
-
-renderizarProductos()
-})
-const bloque=`
-
-<section id="aliexpress">
-
-<h2 class="text-4xl font-black mb-8">
-
-🔥 AliExpress · WinToWin
-
-</h2>
-
-<div id="aliGrid"
-class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-
-</div>
-
-</section>
-
-`
-
-document
-.querySelector(".space-y-20")
-.insertAdjacentHTML(
-"afterbegin",
-bloque
-)
-
-document.getElementById("aliGrid").innerHTML=
-
-aliexpressProductos.map(p=>`
-
-<div class="product bg-[#161b22] rounded-2xl overflow-hidden">
-
-<div class="absolute bg-red-600 px-3 py-1 rounded-full m-3 font-black">
-
-${p[2]}
-
-</div>
-
-<img
-src="${p[3]}"
-class="w-full h-56 object-cover">
-
-<div class="p-5">
-
-<h3 class="font-black">
-
-${p[0]}
-
-</h3>
-
-<div class="text-orange-500 text-3xl font-black mt-4">
-
-${p[1]}€
-
-</div>
-
-<button
-onclick="agregarCarrito('${p[0]}',${p[1]})"
-class="bg-orange-600 p-3 rounded-xl w-full mt-4">
-
-Comprar
-
-</button>
-
-</div>
-
-</div>
-
-`).join('')
-
-})
-</script>
+    <div class="bg-orange-600 text-center py-2 font-bold">
+        ⚡ Envío Gratis · 💳 Pago Seguro · 🛡 Garantía
+    </div>
+
+    <div class="flex flex-col md:flex-row">
+        <nav class="bg-[#161b22] md:w-72 p-6 border-r border-gray-800">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-14 h-14 rounded-2xl bg-orange-600 flex items-center justify-center text-2xl">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-3xl font-black">
+                        Titan<span class="text-orange-500">Byte</span>
+                    </h1>
+                    <div class="text-gray-500 text-xs">
+                        Hardware Gaming Premium
+                    </div>
+                </div>
+            </div>
+
+            <input id="searchBar" placeholder="Buscar producto..." oninput="filtrarProductos()" class="w-full p-3 rounded-xl bg-[#0d1117] border border-gray-700 mb-6" />
+
+            <div class="space-y-2">
+                <a href="#pc" class="block bg-[#21262d] p-3 rounded-xl">🖥 PCs Gaming</a>
+                <a href="#cpu" class="block bg-[#21262d] p-3 rounded-xl">🧠 Procesadores</a>
+                <a href="#gpu" class="block bg-[#21262d] p-3 rounded-xl">📼 Gráficas</a>
+                <a href="#ssd" class="block bg-[#21262d] p-3 rounded-xl">💾 SSD</a>
+                <a href="#rgb" class="block bg-[#21262d] p-3 rounded-xl">🌈 RGB</a>
+                <a href="#fuentes" class="block bg-[#21262d] p-3 rounded-xl">⚡ Fuentes</a>
+                <a href="#montapc" class="block bg-[#21262d] p-3 rounded-xl">🛠 Monta tu PC</a>
+            </div>
+
+            <button onclick="abrirCarrito()" class="bg-orange-600 mt-8 w-full rounded-xl p-4 font-bold flex justify-between">
+                🛒 Carrito
+                <span id="contador" class="bg-white text-orange-600 px-2 rounded-full">0</span>
+            </button>
+        </nav>
+
+        <main class="flex-1">
+            <section class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                <div class="relative p-10 max-w-7xl mx-auto">
+                    <div class="bg-orange-600/20 border border-orange-500 inline-block px-4 py-2 rounded-full text-orange-400 font-bold">
+                        🔥 HARDWARE PREMIUM
+                    </div>
+                    <h2 class="text-6xl font-black mt-6">
+                        MONTA TU <span class="text-orange-500">SETUP</span>
+                    </h2>
+                    <p class="mt-5 text-gray-400 max-w-xl">
+                        Gaming extremo, hardware premium y PCs configurados.
+                    </p>
+                </div>
+            </section>
+
+            <div class="max-w-7xl mx-auto p-6 space-y-20">
+                <section id="pc">
+                    <h2 class="text-3xl font-black mb-8">🖥 PCs Gaming</h2>
+                    <div id="pcprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                </section>
+
+                <section id="cpu">
+                    <h2 class="text-3xl font-black mb-8">🧠 Procesadores</h2>
+                    <div id="cpuprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                </section>
+
+                <section id="gpu">
+                    <h2 class="text-3xl font-black mb-8">📼 Gráficas</h2>
+                    <div id="gpuprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                </section>
+
+                <section id="ssd">
+                    <h2 class="text-3xl font-black mb-8">💾 SSD</h2>
+                    <div id="ssdprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                </section>
+
+                <section id="rgb">
+                    <h2 class="text-3xl font-black mb-8">🌈 Ventiladores RGB</h2>
+                    <div id="rgbprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                </section>
+
+                <section id="fuentes">
+                    <h2 class="text-3xl font-black mb-8">⚡ Fuentes</h2>
+                    <div id="psuprod" class="grid md:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                </section>
+
+                <section id="montapc">
+                    <h2 class="text-3xl font-black mb-8">🛠 Monta tu PC desde 0</h2>
+                    <div class="bg-[#161b22] p-6 rounded-2xl">
+                        <select id="pieza" class="bg-[#0d1117] w-full p-3 rounded">
+                            <option>RTX 5090 - 2499€</option>
+                            <option>Ryzen 9 - 999€</option>
+                            <option>SSD 4TB - 399€</option>
+                            <option>Corsair 1000W - 299€</option>
+                        </select>
+                        <button class="bg-orange-600 mt-4 p-4 rounded-xl font-bold">
+                            Añadir configuración
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="text-center border-t border-gray-800 py-8 text-gray-500">
+                TitanByte © 2026
+            </footer>
+        </main>
+    </div>
+
+    <div id="modalCarrito" class="fixed inset-0 bg-black/70 hidden justify-end z-50">
+        <div id="panelCarrito" class="bg-[#161b22] w-full max-w-md h-full p-6 flex flex-col">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+                <h3 class="text-2xl font-black">🛒 Tu Pedido</h3>
+                <button onclick="cerrarCarrito()" class="text-3xl">×</button>
+            </div>
+            <div id="listaCarrito" class="flex-1 overflow-y-auto mt-4 space-y-3"></div>
+            <div class="border-t border-gray-800 pt-4">
+                <div class="flex justify-between text-xl font-black mb-4">
+                    <span>Total:</span>
+                    <span id="totalPrecio" class="text-orange-500">0€</span>
+                </div>
+                <div id="paypal-button-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            pc: [
+                ['Titan Beast X', 2499, 'Ryzen 9 · RTX 5080 · 64GB'],
+                ['Titan Strike Elite', 3199, '7800X3D · RTX 5090'],
+                ['Titan Creator Pro', 2799, 'Intel Ultra · RTX 5080'],
+                ['PC Stream Master', 2199, 'RTX 5070 Ti · 32GB']
+            ],
+            cpu: [
+                ['AMD Ryzen 7 7800X3D', 599, 'Gaming extremo'],
+                ['AMD Ryzen 9 9950X3D', 999, 'Premium'],
+                ['Intel Core Ultra 9', 849, 'Alto rendimiento'],
+                ['AMD Ryzen 7 9700X', 549, 'Zen 5'],
+                ['AMD Ryzen 9 7950X', 799, '16 Núcleos'],
+                ['Intel Core i7-13700KF', 499, 'Gaming + Streaming'],
+                ['Intel Xeon W7', 1399, 'Profesional'],
+                ['AMD EPYC 4124P', 1599, 'Servidor']
+            ],
+            gpu: [
+                ['RTX 5070 Ti', 999, '4K Gaming'],
+                ['RTX 5080', 1799, 'Ultra'],
+                ['RTX 5090', 2499, 'Máximo rendimiento'],
+                ['RTX 3050 8GB', 399, 'Esports 1080p'],
+                ['RTX 3060 12GB', 529, 'Gaming Full HD'],
+                ['RTX 3080 Ti', 1399, '4K Ready'],
+                ['RTX 3090', 1699, '24GB Creator'],
+                ['RTX 3090 Ti', 1899, 'Enthusiast'],
+                ['AMD RX 7600', 429, '1080p Ultra'],
+                ['AMD RX 7700 XT', 699, '1440p Gaming'],
+                ['Intel Arc B580', 449, 'Nueva generación'],
+                ['Intel Arc A770', 529, '16GB'],
+                ['Sapphire RX 7600 XT', 589, 'AMD Edition'],
+                ['PowerColor RX 7900 GRE', 999, 'RGB OC'],
+                ['ZOTAC RTX 3080 Trinity', 1299, 'Triple Fan']
+            ],
+            ssd: [
+                ['Samsung 990 Pro 4TB', 399, 'PCIe 4.0'],
+                ['WD Black SN850X', 299, '2TB Gaming'],
+                ['Corsair MP700', 499, 'PCIe 5.0'],
+                ['Kingston Fury Renegade 2TB', 269, 'PCIe 4.0'],
+                ['Crucial T705 2TB', 359, 'PCIe 5.0'],
+                ['Seagate FireCuda 530 4TB', 449, 'Gaming NVMe'],
+                ['Lexar NM790 4TB', 329, 'Alta velocidad'],
+                ['ADATA Legend 960 Max 2TB', 239, '7400MB/s'],
+                ['SK Hynix Platinum P41 2TB', 279, 'Premium NVMe'],
+                ['TeamGroup Cardea A440 Pro', 259, 'PS5 Compatible'],
+                ['Sabrent Rocket 4 Plus 4TB', 399, 'Alto rendimiento'],
+                ['MSI Spatium M580 FROZR', 389, 'Disipador incluido'],
+                ['Gigabyte AORUS Gen4 7000s', 299, 'NVMe Gaming']
+            ],
+            rgb: [
+                ['Lian Li RGB Fan Kit', 119, 'Pack x3'],
+                ['Corsair iCUE QX120', 149, 'RGB'],
+                ['NZXT RGB Duo', 89, 'ARGB']
+            ],
+            fuentes: [
+                ['Corsair RM1000x', 299, '1000W Gold'],
+                ['ASUS ROG Thor', 449, '1200W'],
+                ['MSI MPG 1000W', 279, 'ATX 3.1'],
+                ['NOX Urano VX 650W', 49, '80+ Bronze'],
+                ['Tacens Anima 500W', 39, 'Básica'],
+                ['Kolink Core 600W', 54, '80+'],
+                ['Aerocool VX Plus 550W', 45, 'Gaming básico'],
+                ['Mars Gaming MPB650', 59, '650W RGB'],
+                ['Tempest PSU 600W', 42, 'Económica'],
+                ['Sharkoon WPM Gold 550W', 69, 'Semi modular'],
+                ['DeepCool PF550', 52, '550W fiable'],
+                ['GameMax GP-600', 48, '600W budget'],
+                ['Nfortec Scutum 650W', 55, 'Gaming entry']
+            ]
+        };
+
+        const images = {
+            pc: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80',
+            cpu: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+            gpu: 'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&w=1200&q=80',
+            ssd: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1200&q=80',
+            rgb: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80',
+            fuentes: 'https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&w=1200&q=80'
+        };
+
+        const amazonTop = [
+            ['Echo Dot 5', 59, 'Más vendido', 'https://images.unsplash.com/photo-1512446816042-444d64126727?auto=format&fit=crop&w=1200&q=80'],
+            ['AirPods Pro', 249, 'Top audio', 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=1200&q=80'],
+            ['Samsung T9 SSD', 179, 'Amazon Choice', 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1200&q=80'],
+            ['Razer DeathAdder', 69, 'Más vendido', 'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1200&q=80']
+        ];
+
+        const aliexpressProductos = [
+            ['Mini Proyector LED', 49, '-58%', 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80'],
+            ['Tira RGB Inteligente', 19, '-67%', 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80'],
+            ['Mini Teclado RGB', 29, '-50%', 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=1200&q=80'],
+            ['Auriculares Gaming RGB', 39, '-60%', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80'], // <-- Faltaba esta coma
+            ['Controlador RGB ARGB', 22, '-48%', 'https://images.unsplash.com/photo-1555617981-dac3880eac6e?auto=format&fit=crop&w=1200&q=80'],
+            ['Dock USB-C 8 en 1', 49, '-37%', 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=1200&q=80'],
+            ['Brazo Monitor Gaming', 42, '-44%', 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80'],
+            ['Mini Display CPU Temp', 34, '-41%', 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80'],
+            ['Soporte Cascos RGB', 18, '-55%', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80'],
+            ['Luz LED Escritorio Gamer', 27, '-39%', 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80']
+        ];
+
+        let carrito = [];
+
+        function crearProducto(nombre, precio, desc, tipo) {
+            return `
+                <div class="product bg-[#161b22] rounded-2xl overflow-hidden">
+                    <img src="${images[tipo]}" class="w-full h-56 object-cover">
+                    <div class="p-5">
+                        <h3 class="font-black">${nombre}</h3>
+                        <p class="text-gray-400 text-sm">${desc}</p>
+                        <div class="flex justify-between items-center mt-5">
+                            <span class="text-orange-500 text-2xl font-black">${precio}€</span>
+                            <button onclick="agregarCarrito('${nombre}',${precio})" class="bg-orange-600 px-4 py-2 rounded-xl">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderizarProductos() {
+            pcprod.innerHTML = data.pc.map(x => crearProducto(...x, 'pc')).join('');
+            cpuprod.innerHTML = data.cpu.map(x => crearProducto(...x, 'cpu')).join('');
+            gpuprod.innerHTML = data.gpu.map(x => crearProducto(...x, 'gpu')).join('');
+            ssdprod.innerHTML = data.ssd.map(x => crearProducto(...x, 'ssd')).join('');
+            rgbprod.innerHTML = data.rgb.map(x => crearProducto(...x, 'rgb')).join('');
+            psuprod.innerHTML = data.fuentes.map(x => crearProducto(...x, 'fuentes')).join('');
+        }
+
+        function filtrarProductos() {
+            const texto = searchBar.value.toLowerCase();
+            document.querySelectorAll('.product').forEach(card => {
+                card.style.display = card.innerText.toLowerCase().includes(texto) ? 'block' : 'none';
+            });
+        }
+
+        function agregarCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            actualizarCarrito();
+            abrirCarrito();
+        }
+
+        function abrirCarrito() {
+            modalCarrito.classList.remove('hidden');
+            modalCarrito.classList.add('flex');
+            panelCarrito.classList.add('shake');
+            setTimeout(() => {
+                panelCarrito.classList.remove('shake');
+            }, 350);
+        }
+
+        function cerrarCarrito() {
+            modalCarrito.classList.add('hidden');
+            modalCarrito.classList.remove('flex');
+        }
+
+        function eliminarProducto(index) {
+            carrito.splice(index, 1);
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            contador.innerText = carrito.length;
+            listaCarrito.innerHTML = '';
+            let total = 0;
+
+            carrito.forEach((item, index) => {
+                total += item.precio;
+                listaCarrito.innerHTML += `
+                    <div class="bg-[#0d1117] rounded-xl p-4 flex justify-between">
+                        <div>
+                            <b>${item.nombre}</b>
+                            <div class="text-orange-500">${item.precio}€</div>
+                        </div>
+                        <button onclick="eliminarProducto(${index})" class="bg-red-600 px-3 rounded">X</button>
+                    </div>
+                `;
+            });
+            totalPrecio.innerText = total.toFixed(2) + "€";
+        }
+
+        // Inicialización tras cargar el DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarProductos();
+
+            // Inyectar sección Amazon
+            document.querySelector(".space-y-20").insertAdjacentHTML("beforeend", `
+                <section id="amazon">
+                    <h2 class="text-4xl font-black mb-8">📦 Amazon + WinToWin · Más vendidos</h2>
+                    <div id="amazonGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6"></div>
+                </section>
+            `);
+
+            amazonGrid.innerHTML = amazonTop.map(p => `
+                <div class="product bg-[#161b22] rounded-2xl overflow-hidden relative">
+                    <div class="absolute bg-yellow-500 text-black px-3 py-1 m-3 rounded-full text-xs font-black z-10">
+                        ${p[2]}
+                    </div>
+                    <img src="${p[3]}" class="w-full h-56 object-cover">
+                    <div class="p-5">
+                        <h3 class="font-black">${p[0]}</h3>
+                        <div class="text-orange-500 text-3xl font-black mt-4">${p[1]}€</div>
+                        <button onclick="agregarCarrito('${p[0]}',${p[1]})" class="bg-orange-600 w-full p-3 mt-4 rounded-xl">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Inyectar sección AliExpress
+            const bloqueAli = `
+                <section id="aliexpress">
+                    <h2 class="text-4xl font-black mb-8">🔥 AliExpress · WinToWin</h2>
+                    <div id="aliGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6"></div>
+                </section>
+            `;
+            document.querySelector(".space-y-20").insertAdjacentHTML("afterbegin", bloqueAli);
+
+            aliGrid.innerHTML = aliexpressProductos.map(p => `
+                <div class="product bg-[#161b22] rounded-2xl overflow-hidden relative">
+                    <div class="absolute bg-red-600 px-3 py-1 rounded-full m-3 font-black z-10">
+                        ${p[2]}
+                    </div>
+                    <img src="${p[3]}" class="w-full h-56 object-cover">
+                    <div class="p-5">
+                        <h3 class="font-black">${p[0]}</h3>
+                        <div class="text-orange-500 text-3xl font-black mt-4">${p[1]}€</div>
+                        <button onclick="agregarCarrito('${p[0]}',${p[1]})" class="bg-orange-600 p-3 rounded-xl w-full mt-4">
+                            Comprar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        });
+
+        // SDK de PayPal
+        paypal.Buttons({
+            createOrder: (data, actions) => {
+                if (carrito.length === 0) {
+                    alert("Añade productos");
+                    return;
+                }
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: parseFloat(totalPrecio.innerText).toFixed(2)
+                        }
+                    }]
+                });
+            },
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(() => {
+                    alert("✅ Pago completado");
+                    carrito = [];
+                    actualizarCarrito();
+                    cerrarCarrito();
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
 </body>
 </html>
