@@ -2,55 +2,55 @@
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>WIN STORE Premium</title>
+<title>WIN STORE PRO</title>
 <script src='https://cdn.tailwindcss.com'></script>
 <style>
-body{background:#f5f5f5}
-.product:hover{transform:translateY(-8px);transition:.3s}
-.hero{background:linear-gradient(135deg,#111,#222,#444)}
+body{background:#f3f4f6}.product:hover{transform:scale(1.03);transition:.25s}.hero{background:linear-gradient(135deg,#0f172a,#1e293b,#111827)}
 </style>
 </head>
 <body>
-<div class='bg-black text-white text-center py-2'>🚚 Envío gratis | Pago seguro | Devolución 30 días</div>
-<nav class='bg-white p-5 shadow flex justify-between sticky top-0'>
-<h1 class='font-bold text-2xl'>WIN STORE</h1>
-<button onclick='verCarrito()' class='bg-black text-white px-5 py-2 rounded-xl'>🛒 Carrito (<span id='contador'>0</span>)</button>
-</nav>
-<section class='hero text-white p-12'>
-<h1 class='text-6xl font-bold'>Productos virales & Gaming 2026</h1>
-<p class='mt-3 text-gray-300'>Dropshipping, setup, hogar y gadgets top ventas</p>
+<div class='bg-black text-white text-center py-2'>🔥 Ofertas Flash | 🚚 Envío Gratis | 💳 Pago Seguro | ↩️ 30 días devolución</div>
+<nav class='bg-white shadow p-4 flex justify-between sticky top-0 z-50'>
+<h1 class='text-3xl font-bold'>WIN STORE PRO</h1>
+<div class='flex gap-4'>
+<button>Gaming</button><button>PC</button><button>Café</button><button>Setup</button>
+<button onclick='verCarrito()' class='bg-black text-white px-4 py-2 rounded-xl'>🛒 <span id='contador'>0</span></button>
+</div></nav>
+<section class='hero text-white p-16'>
+<h1 class='text-6xl font-bold'>Winning Products 2026</h1>
+<p class='text-xl text-gray-300 mt-3'>Dropshipping • Gaming • Gadgets • Hogar • Tecnología</p>
+<div class='flex gap-4 mt-6'><button class='bg-white text-black px-6 py-3 rounded-2xl'>Comprar ahora</button><button class='border px-6 py-3 rounded-2xl'>Ver tendencias</button></div>
 </section>
 <div class='max-w-7xl mx-auto p-8'>
-<div id='productos' class='grid md:grid-cols-4 gap-6'></div>
+<h2 class='text-4xl font-bold mb-6'>Categorías</h2>
+<div class='grid md:grid-cols-5 gap-4'>
+<div class='bg-white p-6 rounded-3xl shadow'>🎮 Gaming</div><div class='bg-white p-6 rounded-3xl shadow'>🖥️ PC</div><div class='bg-white p-6 rounded-3xl shadow'>☕ Cafeteras</div><div class='bg-white p-6 rounded-3xl shadow'>🏠 Hogar</div><div class='bg-white p-6 rounded-3xl shadow'>📱 Gadgets</div></div>
+<h2 class='text-4xl font-bold mt-12 mb-6'>Top ventas</h2><div id='productos' class='grid md:grid-cols-4 gap-6'></div>
+<section class='bg-white mt-12 p-10 rounded-3xl shadow'>
+<h2 class='text-3xl font-bold'>Clientes satisfechos</h2>
+<div class='grid md:grid-cols-3 gap-6 mt-6'><div>⭐⭐⭐⭐⭐ “Muy top”</div><div>⭐⭐⭐⭐⭐ “Llegó rápido”</div><div>⭐⭐⭐⭐⭐ “Volveré a comprar”</div></div></section>
+<section class='grid md:grid-cols-3 gap-6 mt-12'>
+<div class='bg-white p-8 rounded-3xl shadow'>🚚 Envío mundial</div><div class='bg-white p-8 rounded-3xl shadow'>💳 Stripe / PayPal</div><div class='bg-white p-8 rounded-3xl shadow'>🛡️ Compra segura</div></section>
+<footer class='bg-black text-white p-10 mt-12 rounded-t-3xl'><div class='grid md:grid-cols-4 gap-4'><div><b>WIN STORE</b><p>Sobre nosotros</p></div><div><b>Ayuda</b><p>Pedidos</p></div><div><b>Legal</b><p>Privacidad</p></div><div><b>Contacto</b><p>soporte@winstore.com</p></div></div></footer>
 </div>
 <script>
-let carrito=[]
-const lista=[
-{nombre:'Mini Proyector Smart',precio:49,img:'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=500'},
-{nombre:'Smartwatch Ultra',precio:69,img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500'},
-{nombre:'Teclado RGB Gaming',precio:59,img:'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500'},
-{nombre:'Silla Gaming Pro',precio:129,img:'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500'},
-{nombre:'Cafetera Espresso',precio:89,img:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500'},
-{nombre:'Mini Impresora Bluetooth',precio:29,img:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500'},
-{nombre:'Pack LEDs Setup',precio:24,img:'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500'},
-{nombre:'Ratón Gaming RGB',precio:35,img:'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500'}
-]
-const productos=document.getElementById('productos')
-lista.forEach(p=>{
-productos.innerHTML+=`<div class='product bg-white rounded-3xl shadow-xl overflow-hidden'>
-<img src='${p.img}' class='h-60 w-full object-cover'>
-<div class='p-5'>
-<span class='bg-red-500 text-white px-3 py-1 rounded-full'>HOT 🔥</span>
-<h2 class='font-bold text-xl mt-3'>${p.nombre}</h2>
-<p class='text-3xl font-bold mt-2'>${p.precio}€</p>
-<p>⭐⭐⭐⭐⭐ (2.4k)</p>
-<button onclick="comprar('${p.nombre}',${p.precio})" class='w-full bg-black text-white p-3 rounded-xl mt-4'>Añadir al carrito</button>
-<button onclick='checkout()' class='w-full bg-yellow-400 p-3 rounded-xl mt-2'>Comprar ahora</button>
-</div></div>`
-})
-function comprar(nombre,precio){carrito.push({nombre,precio});contador.innerText=carrito.length}
-function verCarrito(){alert(carrito.map(x=>x.nombre+' - '+x.precio+'€').join('\n')||'Carrito vacío')}
-function checkout(){window.location.href='https://paypal.com'}
+let carrito=[];const productos=[
+['RTX Setup RGB',799,'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500'],
+['Monitor Curvo Gaming',229,'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500'],
+['Teclado Mecánico RGB',59,'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500'],
+['Ratón Pro Gaming',35,'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500'],
+['Cafetera Espresso Premium',89,'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500'],
+['Mini Proyector Smart',49,'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=500'],
+['Mini Impresora Bluetooth',29,'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500'],
+['Silla Gaming Pro',129,'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500'],
+['Auriculares Gaming RGB',49,'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'],
+['Pienso Premium Perro Adulto',34,'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500'],
+['Cama Ortopédica Perros',39,'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500'],
+['Fuente Automática Mascotas',27,'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=500'],
+['Correa LED Nocturna',19,'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=500'],
+['Juguete Interactivo Perro',22,'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500']]
+productos.forEach(p=>document.getElementById('productos').innerHTML+=`<div class='product bg-white rounded-3xl overflow-hidden shadow'><img src='${p[2]}' class='h-60 w-full object-cover'><div class='p-5'><span class='bg-red-500 text-white px-3 py-1 rounded-full'>HOT</span><h2 class='font-bold text-xl mt-3'>${p[0]}</h2><p>⭐⭐⭐⭐⭐ (2.3k)</p><p class='text-3xl font-bold'>${p[1]}€</p><button onclick="comprar('${p[0]}',${p[1]})" class='w-full bg-black text-white p-3 rounded-xl mt-3'>Añadir</button></div></div>`)
+function comprar(n,p){carrito.push({n,p});contador.innerText=carrito.length}
+function verCarrito(){alert(carrito.map(x=>x.n+'-'+x.p+'€').join('\n')||'Vacío')}
 </script>
-</body>
-</html>
+</body></html>
