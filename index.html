@@ -1,432 +1,539 @@
-<!DOCTYPE html>
-<html lang="es">
+<!--
+PARTE 1:
+Header + Hero + Buscador + Categorías
+
+PARTE 2:
+20+ productos virales: proyectores, LEDs, gadgets coche, mini impresoras, setup gamer, streamer, hogar inteligente, accesorios móvil.
+
+PARTE 3:
+Carrito localStorage + PayPal + ofertas + contador + opiniones + temporizador.
+--><!DOCTYPE html><html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>TitanByte Pro · El Mayor Stock de Hardware</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
-    <script src="https://www.paypal.com/sdk/js?client-id=AQ0-loNUSHmKJ0yAqvJaGxQj8bvMpKc4_cAzd2rLPURK0VPhIpvp-fsAU5xAOawA9zYKEJmdOukeikNi&currency=EUR"></script>
-
-    <style>
-        :root {
-            --brand: #ff6b00;
-            --bg: #05070a;
-            --card: #0f1218;
-        }
-        body {
-            background-color: var(--bg);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .font-title { font-family: 'Orbitron', sans-serif; }
-        
-        .glass {
-            background: rgba(15, 18, 24, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .product-card {
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: var(--card);
-            border: 1px solid #1e232d;
-        }
-        .product-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--brand);
-            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.15);
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #05070a; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--brand); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TitanByte | Tecnología Viral</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="overflow-x-hidden">
+<body class="bg-black text-white"><header class="sticky top-0 bg-black/90 backdrop-blur border-b border-zinc-800 z-50">
+<div class="max-w-7xl mx-auto flex justify-between items-center p-5">
+<h1 class="text-4xl font-black">TitanByte</h1>
+<div class="flex gap-3">
+<input placeholder="Buscar gadgets..." class="bg-zinc-900 rounded-xl p-3 w-56">
+<button class="bg-white text-black px-5 rounded-xl">🛒 Carrito</button>
+</div>
+</div>
+</header><section class="text-center py-24 px-6 bg-gradient-to-b from-zinc-900 to-black">
+<h2 class="text-6xl font-black max-w-4xl mx-auto">Tecnología viral que la gente compra hoy</h2>
+<p class="text-zinc-400 mt-6 max-w-2xl mx-auto">Productos tendencia inspirados en TikTok, Amazon y gadgets virales.</p>
+<button class="mt-8 bg-white text-black px-10 py-4 rounded-3xl font-bold">Comprar ahora</button><div class="grid md:grid-cols-4 gap-4 max-w-5xl mx-auto mt-12">
+<div class="bg-zinc-900 p-4 rounded-3xl">🚚 Envío rápido</div>
+<div class="bg-zinc-900 p-4 rounded-3xl">⭐ Miles vendidos</div>
+<div class="bg-zinc-900 p-4 rounded-3xl">💳 Pago seguro</div>
+<div class="bg-zinc-900 p-4 rounded-3xl">🔥 Oferta limitada</div>
+</div>
+</section><section class="max-w-7xl mx-auto p-6">
+<h2 class="text-3xl font-bold mb-8">Más vendidos hoy</h2>
+<div class="grid md:grid-cols-4 gap-6"><div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200" class="h-64 w-full object-cover">
+<div class="p-5">
+<p class="text-green-400">🔥 Viral</p>
+<h3 class="text-xl font-bold">Paneles LED Gaming</h3>
+<p class="text-3xl font-bold mt-3">79€ <span class="line-through text-zinc-500 text-lg">129€</span></p>
+<p class="text-orange-400 mt-2">237 vendidos esta semana</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
+</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=1200" class="h-64 w-full object-cover">
+<div class="p-5">
+<p class="text-green-400">🎮 Setup</p>
+<h3 class="text-xl font-bold">Teclado Mecánico RGB</h3>
+<p class="text-3xl font-bold mt-3">89€ <span class="line-through text-zinc-500 text-lg">139€</span></p>
+<p class="text-orange-400 mt-2">521 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
+</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200" class="h-64 w-full object-cover">
+<div class="p-5">
+<p class="text-green-400">🏠 Smart</p>
+<h3 class="text-xl font-bold">Lámpara RGB Inteligente</h3>
+<p class="text-3xl font-bold mt-3">45€ <span class="line-through text-zinc-500 text-lg">79€</span></p>
+<p class="text-orange-400 mt-2">321 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
+</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200" class="h-64 w-full object-cover">
+<div class="p-5">
+<p class="text-green-400">🚗 Auto</p>
+<h3 class="text-xl font-bold">Aspirador Portátil Coche</h3>
+<p class="text-3xl font-bold mt-3">39€ <span class="line-through text-zinc-500 text-lg">69€</span></p>
+<p class="text-orange-400 mt-2">402 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
+</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200" class="h-64 w-full object-cover">
+<div class="p-5">
+<p class="text-green-400">📽 Trending</p>
+<h3 class="text-xl font-bold">Mini Proyector Smart</h3>
+<p class="text-3xl font-bold mt-3">89€ <span class="line-through text-zinc-500 text-lg">149€</span></p>
+<p class="text-orange-400 mt-2">679 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
+</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?q=80&w=1200" class="h-64 w-full object-cover">
+<div class="p-5">
+<p class="text-green-400">📱 Gadget</p>
+<h3 class="text-xl font-bold">Mini Cámara WiFi</h3>
+<p class="text-3xl font-bold mt-3">49€ <span class="line-through text-zinc-500 text-lg">79€</span></p>
+<p class="text-orange-400 mt-2">412 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
+</div></div></div>
+</section><footer class="border-t border-zinc-800 p-10 text-center text-zinc-500">
+© TitanByte 2026 | Tecnología viral premium
+<section class="max-w-7xl mx-auto p-6">
+<h2 class="text-3xl font-bold mb-8">🔥 Ofertas Flash</h2>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-gradient-to-r from-zinc-900 to-zinc-800 p-8 rounded-3xl"><h3 class="text-2xl font-bold">Pack Setup Gamer</h3><p class="mt-3 text-zinc-400">LED + teclado + accesorios</p><div class="text-4xl font-black mt-4">129€</div></div>
+<div class="bg-gradient-to-r from-zinc-900 to-zinc-800 p-8 rounded-3xl"><h3 class="text-2xl font-bold">Top TikTok Box</h3><p class="mt-3 text-zinc-400">3 gadgets virales</p><div class="text-4xl font-black mt-4">89€</div></div>
+<div class="bg-gradient-to-r from-zinc-900 to-zinc-800 p-8 rounded-3xl"><h3 class="text-2xl font-bold">Streamer Pro</h3><p class="mt-3 text-zinc-400">Setup creador contenido</p><div class="text-4xl font-black mt-4">149€</div></div>
+</div>
+</section><section class="max-w-7xl mx-auto p-6">
+<h2 class="text-3xl font-bold mb-8">⭐ Opiniones</h2>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-zinc-900 p-6 rounded-3xl">★★★★★<p class="mt-4">Llegó rápido y brutal calidad.</p></div>
+<div class="bg-zinc-900 p-6 rounded-3xl">★★★★★<p class="mt-4">El proyector fue una locura.</p></div>
+<div class="bg-zinc-900 p-6 rounded-3xl">★★★★★<p class="mt-4">Parece una tienda grande.</p></div>
+</div>
+</section><section class="max-w-7xl mx-auto p-6 text-center">
+<h2 class="text-5xl font-black">⏰ Oferta termina en</h2>
+<div id="timer" class="text-6xl mt-6 font-bold"></div>
+</section><footer class="border-t border-zinc-800 p-10 text-center text-zinc-500">© TitanByte 2026 | Tecnología viral premium</footer>
+<script>
+let total=7200;setInterval(()=>{total--;let h=Math.floor(total/3600),m=Math.floor(total%3600/60),s=total%60;document.getElementById('timer').innerText=`${h}:${m}:${s}`},1000)
+</script>
+<section class="max-w-3xl mx-auto p-6">
+<h2 class="text-3xl font-bold text-center mb-6">💳 Pago rápido</h2>
+<div class="bg-zinc-900 p-8 rounded-3xl text-center">
+<p class="mb-4">Compra segura con PayPal</p>
+<div id="paypal-button-container"></div>
+</div>
+</section><script src="https://www.paypal.com/sdk/js?client-id=AQ0-loNUSHmKJ0yAqvJaGxQj8bvMpKc4_cAzd2rLPURK0VPhIpvp-fsAU5xAOawA9zYKEJmdOukeikNi&currency=EUR"></script><script>
+const carrito=JSON.parse(localStorage.getItem('titanbyte-cart'))||[];
+const botones=document.querySelectorAll('.buy-btn');
+const contador=document.createElement('div');
+contador.className='fixed bottom-5 right-5 bg-white text-black p-4 rounded-2xl font-bold z-50';
+contador.innerText='🛒 0 productos';
+document.body.appendChild(contador);
 
-    <!-- Navbar Móvil -->
-    <header class="lg:hidden glass fixed top-0 w-full z-50 p-4 flex justify-between items-center">
-        <h1 class="font-title font-black text-xl text-orange-500">TITANBYTE</h1>
-        <button onclick="abrirCarrito()" class="relative bg-orange-600 px-3 py-1.5 rounded-xl font-bold text-sm">
-            🛒 <span id="cart-count-mob">0</span>
-        </button>
-    </header>
+botones.forEach(btn=>{
+ btn.onclick=()=>{
+   carrito.push({precio:89,nombre:'Producto TitanByte'});
+   localStorage.setItem('titanbyte-cart',JSON.stringify(carrito));
+   contador.innerText=`🛒 ${carrito.length} productos`;
+ }
+})
 
-    <div class="flex">
-        <!-- Sidebar de Navegación Completo -->
-        <aside class="hidden lg:flex w-80 h-screen sticky top-0 flex-col glass border-r border-white/5 p-8">
-            <div class="mb-8">
-                <h1 class="font-title font-black text-3xl tracking-tighter italic">
-                    TITAN<span class="text-orange-500">BYTE</span>
-                </h1>
-                <p class="text-gray-500 text-xs mt-1 uppercase tracking-widest">Premium Hardware</p>
-            </div>
+paypal.Buttons({
+createOrder:function(data,actions){
+const total=carrito.reduce((a,b)=>a+b.precio,0)||1;
+return actions.order.create({purchase_units:[{amount:{value:String(total)}}]})
+},
+onApprove:function(data,actions){
+return actions.order.capture().then(function(details){
+alert('Pedido realizado '+details.payer.name.given_name)
+carrito.length=0;
+localStorage.removeItem('titanbyte-cart');
+contador.innerText='🛒 0 productos';
+})
+}
+}).render('#paypal-button-container')
+</script></body></html>
+<section class="max-w-7xl mx-auto p-6">
+<h2 class="text-3xl font-bold mb-8">🔥 Más vendidos hoy</h2>
 
-            <nav class="flex-1 space-y-2 overflow-y-auto pr-2">
-                <a href="#aliexpress" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>🔥</span> AliExpress WinToWin</a>
-                <a href="#amazon" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>📦</span> Amazon Top Ventas</a>
-                <a href="#pc" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>🖥️</span> PCs Gaming</a>
-                <a href="#cpu" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>🧠</span> Procesadores</a>
-                <a href="#gpu" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>📼</span> Tarjetas Gráficas</a>
-                <a href="#ssd" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>💾</span> Almacenamiento SSD</a>
-                <a href="#rgb" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>🌈</span> Componentes RGB</a>
-                <a href="#fuentes" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>⚡</span> Fuentes de Alimentación</a>
-                <a href="#montapc" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 text-sm"><span>🛠️</span> Monta tu PC</a>
-            </nav>
+<div class="grid md:grid-cols-4 gap-6">
 
-            <div class="mt-4 pt-4 border-t border-white/5">
-                <button onclick="abrirCarrito()" class="w-full bg-orange-600 hover:bg-orange-700 transition-all p-4 rounded-xl font-bold flex justify-between items-center">
-                    <span>Ver Carrito</span>
-                    <span id="cart-total-side" class="bg-black/20 px-2 py-1 rounded-lg text-xs">0.00€</span>
-                </button>
-            </div>
-        </aside>
+<!-- PRODUCTO -->
+<div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200"
+class="h-64 w-full object-cover">
 
-        <!-- Contenido Principal -->
-        <main class="flex-1 p-4 lg:p-12 mt-16 lg:mt-0">
-            
-            <!-- Hero Banner -->
-            <section class="relative h-[380px] rounded-3xl overflow-hidden mb-12 bg-cover bg-center" style="background-image: linear-gradient(to top, #05070a, rgba(5,7,10,0.3)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80');">
-                <div class="absolute bottom-8 left-8 max-w-xl">
-                    <span class="bg-orange-600 text-[10px] font-black px-3 py-1 rounded-full mb-3 inline-block tracking-widest">CATÁLOGO GLOBAL COMPLETO</span>
-                    <h2 class="text-5xl font-black font-title leading-tight mb-2">TODO EL HARDWARE <br>EN UN SOLO <span class="text-orange-500">LUGAR</span></h2>
-                    <p class="text-gray-400 text-sm">Componentes premium, ofertas AliExpress y periféricos de Amazon con stock garantizado.</p>
-                </div>
-            </section>
+<div class="p-5">
+<p class="text-green-400">📽 Viral</p>
+<h3 class="text-xl font-bold">Mini Proyector Smart HD</h3>
+<p class="text-3xl font-bold mt-3">89€
+<span class="line-through text-zinc-500 text-lg">149€</span></p>
+<p class="text-orange-400 mt-2">679 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
+Añadir al carrito
+</button>
+</div>
+</div>
 
-            <!-- Buscador Global Activo -->
-            <div class="mb-12">
-                <input type="text" id="buscador" oninput="filtrar()" placeholder="Buscar entre todos los componentes y ofertas del catálogo..." class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-orange-500 transition-all text-lg">
-            </div>
+<div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200"
+class="h-64 w-full object-cover">
 
-            <!-- Contenedor donde se inyecta TODO el stock -->
-            <div id="shop-content" class="space-y-20"></div>
+<div class="p-5">
+<p class="text-green-400">🎮 Gaming</p>
+<h3 class="text-xl font-bold">Paneles LED RGB</h3>
+<p class="text-3xl font-bold mt-3">79€
+<span class="line-through text-zinc-500">129€</span></p>
+<p class="text-orange-400 mt-2">237 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
+Añadir al carrito
+</button>
+</div>
+</div>
 
-            <!-- Sección de montaje interactivo reubicada de forma nativa -->
-            <section id="montapc" class="mt-20">
-                <div class="flex items-center gap-4 mb-8">
-                    <h3 class="text-3xl font-black font-title uppercase tracking-tighter">🛠️ Monta tu PC desde 0</h3>
-                    <div class="h-[1px] flex-1 bg-white/10"></div>
-                </div>
-                <div class="bg-[#0f1218] border border-white/5 p-6 rounded-2xl max-w-xl">
-                    <label class="block text-gray-400 text-sm mb-3">Selecciona un componente rápido para agregar:</label>
-                    <select id="pieza" class="bg-[#05070a] text-white w-full p-3 rounded-xl border border-white/10 focus:outline-none focus:border-orange-500">
-                        <option value="RTX 5090,2499">RTX 5090 - 2499€</option>
-                        <option value="Ryzen 9,999">Ryzen 9 - 999€</option>
-                        <option value="SSD 4TB,399">SSD 4TB - 399€</option>
-                        <option value="Corsair 1000W,299">Corsair 1000W - 299€</option>
-                    </select>
-                    <button onclick="agregarPiezaCustom()" class="bg-orange-600 hover:bg-orange-700 transition-all mt-4 px-6 py-3 rounded-xl font-bold text-sm">
-                        Añadir configuración al carrito
-                    </button>
-                </div>
-            </section>
+<div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=1200"
+class="h-64 w-full object-cover">
 
-            <footer class="mt-24 pt-12 border-t border-white/5 text-center text-gray-500">
-                <p class="font-title text-sm tracking-widest italic">TITANBYTE SYSTEM © 2026</p>
-            </footer>
-        </main>
-    </div>
+<div class="p-5">
+<p class="text-green-400">⌨ Setup</p>
+<h3 class="text-xl font-bold">Teclado Mecánico RGB</h3>
+<p class="text-3xl font-bold mt-3">89€
+<span class="line-through text-zinc-500">139€</span></p>
+<p class="text-orange-400 mt-2">521 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
+Añadir al carrito
+</button>
+</div>
+</div>
 
-    <!-- Modal Lateral de Pedido / Carrito -->
-    <div id="cart-modal" class="fixed inset-0 bg-black/80 z-[100] hidden backdrop-blur-sm">
-        <div id="cart-panel" class="absolute right-0 top-0 w-full max-w-md h-full glass p-8 flex flex-col transition-transform duration-300">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="font-title text-2xl font-black">🛒 TU PEDIDO</h3>
-                <button onclick="cerrarCarrito()" class="text-gray-400 hover:text-white text-4xl">&times;</button>
-            </div>
+<div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?q=80&w=1200"
+class="h-64 w-full object-cover">
 
-            <div id="cart-items" class="flex-1 overflow-y-auto space-y-3 pr-2"></div>
+<div class="p-5">
+<p class="text-green-400">📷 Smart</p>
+<h3 class="text-xl font-bold">Mini Cámara WiFi</h3>
+<p class="text-3xl font-bold mt-3">49€
+<span class="line-through text-zinc-500">79€</span></p>
+<p class="text-orange-400 mt-2">412 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
+Añadir al carrito
+</button>
+</div>
+</div>
 
-            <div class="mt-6 pt-6 border-t border-white/10">
-                <div class="flex justify-between text-xl font-black mb-6">
-                    <span>TOTAL:</span>
-                    <span id="cart-total-modal" class="text-orange-500">0.00€</span>
-                </div>
-                <div id="paypal-button-container"></div>
-            </div>
-        </div>
-    </div>
+<div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200"
+class="h-64 w-full object-cover">
 
-    <script>
-        // TODAS tus imágenes originales mapeadas
-        const images = {
-            pc: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80',
-            cpu: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
-            gpu: 'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&w=600&q=80',
-            ssd: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=600&q=80',
-            rgb: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=600&q=80',
-            fuentes: 'https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&w=600&q=80'
-        };
+<div class="p-5">
+<p class="text-green-400">🚗 Auto</p>
+<h3 class="text-xl font-bold">Aspirador Coche Portátil</h3>
+<p class="text-3xl font-bold mt-3">39€
+<span class="line-through text-zinc-500">69€</span></p>
+<p class="text-orange-400 mt-2">402 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
+Añadir al carrito
+</button>
+</div>
+</div>
 
-        // TODO TU STOCK COMPLETO SIN QUITAR NI UN SOLO ELEMENTO
-        const catalogData = [
-            {
-                category: "🔥 AliExpress · WinToWin",
-                id: "aliexpress",
-                badgeColor: "bg-red-600",
-                products: [
-                    { name: 'Mini Proyector LED', price: 49, desc: '-58%', img: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Tira RGB Inteligente', price: 19, desc: '-67%', img: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Mini Teclado RGB', price: 29, desc: '-50%', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Auriculares Gaming RGB', price: 39, desc: '-60%', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Controlador RGB ARGB', price: 22, desc: '-48%', img: 'https://images.unsplash.com/photo-1555617981-dac3880eac6e?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Dock USB-C 8 en 1', price: 49, desc: '-37%', img: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Brazo Monitor Gaming', price: 42, desc: '-44%', img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Mini Display CPU Temp', price: 34, desc: '-41%', img: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Soporte Cascos RGB', price: 18, desc: '-55%', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Luz LED Escritorio Gamer', price: 27, desc: '-39%', img: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=400&q=80' }
-                ]
-            },
-            {
-                category: "📦 Amazon + WinToWin · Más vendidos",
-                id: "amazon",
-                badgeColor: "bg-yellow-500 text-black",
-                products: [
-                    { name: 'Echo Dot 5', price: 59, desc: 'Más vendido', img: 'https://images.unsplash.com/photo-1512446816042-444d64126727?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'AirPods Pro', price: 249, desc: 'Top audio', img: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Samsung T9 SSD', price: 179, desc: 'Amazon Choice', img: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80' },
-                    { name: 'Razer DeathAdder', price: 69, desc: 'Más vendido', img: 'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=400&q=80' }
-                ]
-            },
-            {
-                category: "🖥️ PCs Gaming",
-                id: "pc",
-                badgeColor: "bg-orange-600",
-                products: [
-                    { name: 'Titan Beast X', price: 2499, desc: 'Ryzen 9 · RTX 5080 · 64GB', useGlobalImg: 'pc' },
-                    { name: 'Titan Strike Elite', price: 3199, desc: '7800X3D · RTX 5090', useGlobalImg: 'pc' },
-                    { name: 'Titan Creator Pro', price: 2799, desc: 'Intel Ultra · RTX 5080', useGlobalImg: 'pc' },
-                    { name: 'PC Stream Master', price: 2199, desc: 'RTX 5070 Ti · 32GB', useGlobalImg: 'pc' }
-                ]
-            },
-            {
-                category: "🧠 Procesadores",
-                id: "cpu",
-                badgeColor: "bg-orange-600",
-                products: [
-                    { name: 'AMD Ryzen 7 7800X3D', price: 599, desc: 'Gaming extremo', useGlobalImg: 'cpu' },
-                    { name: 'AMD Ryzen 9 9950X3D', price: 999, desc: 'Premium', useGlobalImg: 'cpu' },
-                    { name: 'Intel Core Ultra 9', price: 849, desc: 'Alto rendimiento', useGlobalImg: 'cpu' },
-                    { name: 'AMD Ryzen 7 9700X', price: 549, desc: 'Zen 5', useGlobalImg: 'cpu' },
-                    { name: 'AMD Ryzen 9 7950X', price: 799, desc: '16 Núcleos', useGlobalImg: 'cpu' },
-                    { name: 'Intel Core i7-13700KF', price: 499, desc: 'Gaming + Streaming', useGlobalImg: 'cpu' },
-                    { name: 'Intel Xeon W7', price: 1399, desc: 'Profesional', useGlobalImg: 'cpu' },
-                    { name: 'AMD EPYC 4124P', price: 1599, desc: 'Servidor', useGlobalImg: 'cpu' }
-                ]
-            },
-            {
-                category: "📼 Tarjetas Gráficas",
-                id: "gpu",
-                badgeColor: "bg-orange-600",
-                products: [
-                    { name: 'RTX 5070 Ti', price: 999, desc: '4K Gaming', useGlobalImg: 'gpu' },
-                    { name: 'RTX 5080', price: 1799, desc: 'Ultra', useGlobalImg: 'gpu' },
-                    { name: 'RTX 5090', price: 2499, desc: 'Máximo rendimiento', useGlobalImg: 'gpu' },
-                    { name: 'RTX 3050 8GB', price: 399, desc: 'Esports 1080p', useGlobalImg: 'gpu' },
-                    { name: 'RTX 3060 12GB', price: 529, desc: 'Gaming Full HD', useGlobalImg: 'gpu' },
-                    { name: 'RTX 3080 Ti', price: 1399, desc: '4K Ready', useGlobalImg: 'gpu' },
-                    { name: 'RTX 3090', price: 1699, desc: '24GB Creator', useGlobalImg: 'gpu' },
-                    { name: 'RTX 3090 Ti', price: 1899, desc: 'Enthusiast', useGlobalImg: 'gpu' },
-                    { name: 'AMD RX 7600', price: 429, desc: '1080p Ultra', useGlobalImg: 'gpu' },
-                    { name: 'AMD RX 7700 XT', price: 699, desc: '1440p Gaming', useGlobalImg: 'gpu' },
-                    { name: 'Intel Arc B580', price: 449, desc: 'Nueva generación', useGlobalImg: 'gpu' },
-                    { name: 'Intel Arc A770', price: 529, desc: '16GB', useGlobalImg: 'gpu' },
-                    { name: 'Sapphire RX 7600 XT', price: 589, desc: 'AMD Edition', useGlobalImg: 'gpu' },
-                    { name: 'PowerColor RX 7900 GRE', price: 999, desc: 'RGB OC', useGlobalImg: 'gpu' },
-                    { name: 'ZOTAC RTX 3080 Trinity', price: 1299, desc: 'Triple Fan', useGlobalImg: 'gpu' }
-                ]
-            },
-            {
-                category: "💾 Discos SSD",
-                id: "ssd",
-                badgeColor: "bg-orange-600",
-                products: [
-                    { name: 'Samsung 990 Pro 4TB', price: 399, desc: 'PCIe 4.0', useGlobalImg: 'ssd' },
-                    { name: 'WD Black SN850X', price: 299, desc: '2TB Gaming', useGlobalImg: 'ssd' },
-                    { name: 'Corsair MP700', price: 499, desc: 'PCIe 5.0', useGlobalImg: 'ssd' },
-                    { name: 'Kingston Fury Renegade 2TB', price: 269, desc: 'PCIe 4.0', useGlobalImg: 'ssd' },
-                    { name: 'Crucial T705 2TB', price: 359, desc: 'PCIe 5.0', useGlobalImg: 'ssd' },
-                    { name: 'Seagate FireCuda 530 4TB', price: 449, desc: 'Gaming NVMe', useGlobalImg: 'ssd' },
-                    { name: 'Lexar NM790 4TB', price: 329, desc: 'Alta velocidad', useGlobalImg: 'ssd' },
-                    { name: 'ADATA Legend 960 Max 2TB', price: 239, desc: '7400MB/s', useGlobalImg: 'ssd' },
-                    { name: 'SK Hynix Platinum P41 2TB', price: 279, desc: 'Premium NVMe', useGlobalImg: 'ssd' },
-                    { name: 'TeamGroup Cardea A440 Pro', price: 259, desc: 'PS5 Compatible', useGlobalImg: 'ssd' },
-                    { name: 'Sabrent Rocket 4 Plus 4TB', price: 399, desc: 'Alto rendimiento', useGlobalImg: 'ssd' },
-                    { name: 'MSI Spatium M580 FROZR', price: 389, desc: 'Disipador incluido', useGlobalImg: 'ssd' },
-                    { name: 'Gigabyte AORUS Gen4 7000s', price: 299, desc: 'NVMe Gaming', useGlobalImg: 'ssd' }
-                ]
-            },
-            {
-                category: "🌈 Ventiladores RGB",
-                id: "rgb",
-                badgeColor: "bg-orange-600",
-                products: [
-                    { name: 'Lian Li RGB Fan Kit', price: 119, desc: 'Pack x3', useGlobalImg: 'rgb' },
-                    { name: 'Corsair iCUE QX120', price: 149, desc: 'RGB', useGlobalImg: 'rgb' },
-                    { name: 'NZXT RGB Duo', price: 89, desc: 'ARGB', useGlobalImg: 'rgb' }
-                ]
-            },
-            {
-                category: "⚡ Fuentes de Alimentación",
-                id: "fuentes",
-                badgeColor: "bg-orange-600",
-                products: [
-                    { name: 'Corsair RM1000x', price: 299, desc: '1000W Gold', useGlobalImg: 'fuentes' },
-                    { name: 'ASUS ROG Thor', price: 449, desc: '1200W', useGlobalImg: 'fuentes' },
-                    { name: 'MSI MPG 1000W', price: 279, desc: 'ATX 3.1', useGlobalImg: 'fuentes' },
-                    { name: 'NOX Urano VX 650W', price: 49, desc: '80+ Bronze', useGlobalImg: 'fuentes' },
-                    { name: 'Tacens Anima 500W', price: 39, desc: 'Básica', useGlobalImg: 'fuentes' },
-                    { name: 'Kolink Core 600W', price: 54, desc: '80+', useGlobalImg: 'fuentes' },
-                    { name: 'Aerocool VX Plus 550W', price: 45, desc: 'Gaming básico', useGlobalImg: 'fuentes' },
-                    { name: 'Mars Gaming MPB650', price: 59, desc: '650W RGB', useGlobalImg: 'fuentes' },
-                    { name: 'Tempest PSU 600W', price: 42, desc: 'Económica', useGlobalImg: 'fuentes' },
-                    { name: 'Sharkoon WPM Gold 550W', price: 69, desc: 'Semi modular', useGlobalImg: 'fuentes' },
-                    { name: 'DeepCool PF550', price: 52, desc: '550W fiable', useGlobalImg: 'fuentes' },
-                    { name: 'GameMax GP-600', price: 48, desc: '600W budget', useGlobalImg: 'fuentes' },
-                    { name: 'Nfortec Scutum 650W', price: 55, desc: 'Gaming entry', useGlobalImg: 'fuentes' }
-                ]
-            }
-        ];
+<div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200"
+class="h-64 w-full object-cover">
 
-        let cart = [];
+<div class="p-5">
+<p class="text-green-400">🏠 Hogar</p>
+<h3 class="text-xl font-bold">Lámpara RGB Inteligente</h3>
+<p class="text-3xl font-bold mt-3">45€
+<span class="line-through text-zinc-500">79€</span></p>
+<p class="text-orange-400 mt-2">321 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
+Añadir al carrito
+</button>
+</div>
+</div>
 
-        // Generación dinámica y estructurada de la UI de la tienda
-        function renderShop() {
-            const container = document.getElementById('shop-content');
-            container.innerHTML = catalogData.map(cat => `
-                <section id="${cat.id}">
-                    <div class="flex items-center gap-4 mb-6">
-                        <h3 class="text-2xl font-black font-title uppercase tracking-tight">${cat.category}</h3>
-                        <div class="h-[1px] flex-1 bg-white/10"></div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-                        ${cat.products.map(p => {
-                            const imgSrc = p.img ? p.img : images[p.useGlobalImg];
-                            return `
-                                <div class="product-card rounded-2xl p-5 relative flex flex-col justify-between">
-                                    <div>
-                                        <span class="absolute top-3 left-3 ${cat.badgeColor} text-[10px] font-black px-2.5 py-0.5 rounded-full z-10">${p.desc}</span>
-                                        <div class="h-44 overflow-hidden rounded-xl mb-4 bg-black/40">
-                                            <img src="${imgSrc}" alt="${p.name}" class="w-full h-full object-cover">
-                                        </div>
-                                        <h4 class="font-bold text-sm leading-tight mb-1">${p.name}</h4>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                        <span class="text-orange-500 font-title font-black text-xl">${p.price}€</span>
-                                        <button onclick="addToCart('${p.name}', ${p.price})" class="bg-orange-600 hover:bg-orange-700 transition-all text-xs font-bold px-3 py-2 rounded-xl">
-                                            Añadir
-                                        </button>
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                </section>
-            `).join('');
-        }
+<div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?q=80&w=1200"
+class="h-64 w-full object-cover">
 
-        // Lógica de adición inteligente al carrito (suma por cantidades)
-        function addToCart(name, price) {
-            const found = cart.find(item => item.name === name);
-            if (found) {
-                found.qty++;
-            } else {
-                cart.push({ name, price, qty: 1 });
-            }
-            updateCartUI();
-            abrirCarrito();
-        }
+<div class="p-5">
+<p class="text-green-400">🎥 Premium</p>
+<h3 class="text-xl font-bold">Pack Streamer Pro</h3>
+<p class="text-3xl font-bold mt-3">149€
+<span class="line-through text-zinc-500">249€</span></p>
+<p class="text-orange-400 mt-2">189 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
+Añadir al carrito
+</button>
+</div>
+</div>
 
-        function agregarPiezaCustom() {
-            const select = document.getElementById('pieza');
-            const [name, priceStr] = select.value.split(',');
-            addToCart(`[Custom] ${name}`, parseInt(priceStr));
-        }
+<div class="bg-zinc-900 rounded-3xl overflow-hidden">
+<img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?q=80&w=1200"
+class="h-64 w-full object-cover">
 
-        function updateCartUI() {
-            const itemsContainer = document.getElementById('cart-items');
-            const total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+<div class="p-5">
+<p class="text-green-400">📱 Gadget</p>
+<h3 class="text-xl font-bold">Power Bank Magnética</h3>
+<p class="text-3xl font-bold mt-3">44€
+<span class="line-through text-zinc-500">69€</span></p>
+<p class="text-orange-400 mt-2">700 vendidos</p>
+<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
+Añadir al carrito
+</button>
+</div>
+</div>
 
-            document.getElementById('cart-count-mob').innerText = totalQty;
-            document.getElementById('cart-total-side').innerText = total.toFixed(2) + "€";
-            document.getElementById('cart-total-modal').innerText = total.toFixed(2) + "€";
+</div>
+</section>
+<!-- PANEL CARRITO -->
+<div id="cartPanel"
+class="fixed top-0 right-[-420px] w-[380px] h-full bg-zinc-950 border-l border-zinc-800 z-50 p-6 transition-all duration-300 overflow-y-auto">
 
-            itemsContainer.innerHTML = cart.map((item, idx) => `
-                <div class="bg-white/5 p-4 rounded-xl border border-white/5 flex justify-between items-center">
-                    <div>
-                        <h5 class="font-bold text-xs">${item.name}</h5>
-                        <p class="text-orange-500 text-xs font-semibold mt-0.5">${item.qty} x ${item.price}€</p>
-                    </div>
-                    <button onclick="removeFromCart(${idx})" class="bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white px-2.5 py-1 rounded-md text-xs transition-colors font-bold">
-                        X
-                    </button>
-                </div>
-            `).join('');
+<div class="flex justify-between items-center">
+<h2 class="text-2xl font-bold">🛒 Tu carrito</h2>
 
-            if (cart.length === 0) {
-                itemsContainer.innerHTML = `<div class="text-center text-gray-500 py-8 text-sm">Tu carrito está vacío</div>`;
-            }
-        }
+<button onclick="toggleCart()"
+class="bg-zinc-800 px-4 py-2 rounded-xl">
+Cerrar
+</button>
+</div>
 
-        function removeFromCart(index) {
-            if (cart[index].qty > 1) {
-                cart[index].qty--;
-            } else {
-                cart.splice(index, 1);
-            }
-            updateCartUI();
-        }
+<div id="cartItems" class="mt-6 space-y-4"></div>
 
-        function abrirCarrito() {
-            const modal = document.getElementById('cart-modal');
-            modal.classList.remove('hidden');
-        }
+<div class="border-t border-zinc-800 mt-6 pt-6">
+<p class="text-xl">
+Total:
+<span id="cartTotal" class="font-bold">0€</span>
+</p>
 
-        function cerrarCarrito() {
-            document.getElementById('cart-modal').classList.add('hidden');
-        }
+<div class="mt-5" id="paypal-button-container"></div>
+</div>
+</div>
 
-        // Buscador reactivo ultra-rápido en tiempo real
-        function filtrar() {
-            const term = document.getElementById('buscador').value.toLowerCase();
-            document.querySelectorAll('.product-card').forEach(card => {
-                const targetText = card.innerText.toLowerCase();
-                card.style.display = targetText.includes(term) ? 'flex' : 'none';
-            });
-        }
+<!-- BOTÓN FLOTANTE -->
+<button onclick="toggleCart()"
+class="fixed bottom-5 right-5 bg-white text-black px-6 py-4 rounded-2xl font-bold z-40 shadow-2xl">
 
-        // Integración segura del SDK de PayPal
-        paypal.Buttons({
-            createOrder: (data, actions) => {
-                const total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-                if (total <= 0) {
-                    alert("Por favor, añade productos al carrito.");
-                    return;
-                }
-                return actions.order.create({
-                    purchase_units: [{ amount: { value: total.toFixed(2) } }]
-                });
-            },
-            onApprove: (data, actions) => {
-                return actions.order.capture().then(() => {
-                    alert("⚡ ¡Pago completado! Tu pedido se ha registrado correctamente.");
-                    cart = [];
-                    updateCartUI();
-                    cerrarCarrito();
-                });
-            }
-        }).render('#paypal-button-container');
+🛒 <span id="cartCount">0</span>
+</button>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderShop();
-            updateCartUI();
-        });
-    </script>
-</body>
-</html>
+<!-- OFERTA -->
+<section class="text-center py-20">
+<h2 class="text-5xl font-black">
+⏰ Oferta termina en
+</h2>
+
+<div id="timer"
+class="text-6xl mt-8 font-bold">
+02:00:00
+</div>
+</section>
+
+<!-- PAYPAL -->
+<script src="https://www.paypal.com/sdk/js?client-id=AQ0-loNUSHmKJ0yAqvJaGxQj8bvMpKc4_cAzd2rLPURK0VPhIpvp-fsAU5xAOawA9zYKEJmdOukeikNi&currency=EUR"></script>
+
+<script>
+
+let carrito=
+JSON.parse(
+localStorage.getItem(
+"titanbyte-cart"
+)) || [];
+
+const botones=
+document.querySelectorAll(".buy-btn");
+
+function guardar(){
+localStorage.setItem(
+"titanbyte-cart",
+JSON.stringify(carrito)
+);
+
+renderCart();
+}
+
+botones.forEach(btn=>{
+
+btn.onclick=()=>{
+
+const card=
+btn.closest(".bg-zinc-900");
+
+const nombre=
+card.querySelector("h3").innerText;
+
+const precioTexto=
+card.querySelector(".text-3xl")
+.innerText;
+
+const precio=
+parseInt(precioTexto);
+
+carrito.push({
+nombre,
+precio
+});
+
+guardar();
+
+};
+
+});
+
+function renderCart(){
+
+document.getElementById(
+"cartCount"
+).innerText=
+carrito.length;
+
+const contenedor=
+document.getElementById(
+"cartItems"
+);
+
+contenedor.innerHTML="";
+
+let total=0;
+
+carrito.forEach((p,i)=>{
+
+total+=p.precio;
+
+contenedor.innerHTML +=`
+
+<div class="bg-zinc-900 p-4 rounded-2xl">
+
+<p class="font-bold">
+${p.nombre}
+</p>
+
+<p>${p.precio}€</p>
+
+<button
+onclick="eliminar(${i})"
+class="mt-3 bg-red-500 px-3 py-2 rounded-xl">
+
+Eliminar
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById(
+"cartTotal"
+).innerText=
+total+"€";
+
+}
+
+function eliminar(i){
+
+carrito.splice(i,1);
+
+guardar();
+
+}
+
+function toggleCart(){
+
+const panel=
+document.getElementById(
+"cartPanel"
+);
+
+if(panel.style.right==="0px"){
+
+panel.style.right="-420px";
+
+}else{
+
+panel.style.right="0px";
+
+}
+
+}
+
+paypal.Buttons({
+
+createOrder:
+function(data,actions){
+
+const total=
+carrito.reduce(
+(a,b)=>a+b.precio,0
+);
+
+return actions.order.create({
+
+purchase_units:[
+{
+amount:{
+value:
+String(
+total||1
+)
+}
+}
+]
+
+});
+
+},
+
+onApprove:
+function(data,actions){
+
+return actions
+.order
+.capture()
+
+.then(function(details){
+
+alert(
+"Gracias "+
+details.payer.name.given_name
+);
+
+carrito=[];
+
+guardar();
+
+toggleCart();
+
+});
+
+}
+
+})
+
+.render(
+"#paypal-button-container"
+);
+
+renderCart();
+
+let tiempo=7200;
+
+setInterval(()=>{
+
+tiempo--;
+
+let h=
+Math.floor(
+tiempo/3600
+);
+
+let m=
+Math.floor(
+(tiempo%3600)/60
+);
+
+let s=
+tiempo%60;
+
+document.getElementById(
+"timer"
+).innerText=
+`${h}:${m}:${s}`;
+
+},1000);
+
+</script>
