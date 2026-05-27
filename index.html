@@ -1,539 +1,551 @@
-<!--
-PARTE 1:
-Header + Hero + Buscador + Categorías
-
-PARTE 2:
-20+ productos virales: proyectores, LEDs, gadgets coche, mini impresoras, setup gamer, streamer, hogar inteligente, accesorios móvil.
-
-PARTE 3:
-Carrito localStorage + PayPal + ofertas + contador + opiniones + temporizador.
---><!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TitanByte | Tecnología Viral</title>
-<script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TitanByte Pro · El Mayor Stock de Hardware & Gaming</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
+    
+    <!-- TU SDK DE PAYPAL CON TU CLIENT ID INTACTO -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AQ0-loNUSHmKJ0yAqvJaGxQj8bvMpKc4_cAzd2rLPURK0VPhIpvp-fsAU5xAOawA9zYKEJmdOukeikNi&currency=EUR"></script>
+
+    <style>
+        :root {
+            --brand: #ff6b00;
+            --bg: #05070a;
+            --card: #0f1218;
+        }
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .font-title { font-family: 'Orbitron', sans-serif; }
+        
+        .glass {
+            background: rgba(15, 18, 24, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--card);
+            border: 1px solid #1e232d;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--brand);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2);
+        }
+
+        /* Animación para Popups de Venta Reciente */
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slideup { animation: slideUp 0.5s ease out forwards; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #05070a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--brand); }
+    </style>
 </head>
-<body class="bg-black text-white"><header class="sticky top-0 bg-black/90 backdrop-blur border-b border-zinc-800 z-50">
-<div class="max-w-7xl mx-auto flex justify-between items-center p-5">
-<h1 class="text-4xl font-black">TitanByte</h1>
-<div class="flex gap-3">
-<input placeholder="Buscar gadgets..." class="bg-zinc-900 rounded-xl p-3 w-56">
-<button class="bg-white text-black px-5 rounded-xl">🛒 Carrito</button>
-</div>
-</div>
-</header><section class="text-center py-24 px-6 bg-gradient-to-b from-zinc-900 to-black">
-<h2 class="text-6xl font-black max-w-4xl mx-auto">Tecnología viral que la gente compra hoy</h2>
-<p class="text-zinc-400 mt-6 max-w-2xl mx-auto">Productos tendencia inspirados en TikTok, Amazon y gadgets virales.</p>
-<button class="mt-8 bg-white text-black px-10 py-4 rounded-3xl font-bold">Comprar ahora</button><div class="grid md:grid-cols-4 gap-4 max-w-5xl mx-auto mt-12">
-<div class="bg-zinc-900 p-4 rounded-3xl">🚚 Envío rápido</div>
-<div class="bg-zinc-900 p-4 rounded-3xl">⭐ Miles vendidos</div>
-<div class="bg-zinc-900 p-4 rounded-3xl">💳 Pago seguro</div>
-<div class="bg-zinc-900 p-4 rounded-3xl">🔥 Oferta limitada</div>
-</div>
-</section><section class="max-w-7xl mx-auto p-6">
-<h2 class="text-3xl font-bold mb-8">Más vendidos hoy</h2>
-<div class="grid md:grid-cols-4 gap-6"><div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200" class="h-64 w-full object-cover">
-<div class="p-5">
-<p class="text-green-400">🔥 Viral</p>
-<h3 class="text-xl font-bold">Paneles LED Gaming</h3>
-<p class="text-3xl font-bold mt-3">79€ <span class="line-through text-zinc-500 text-lg">129€</span></p>
-<p class="text-orange-400 mt-2">237 vendidos esta semana</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
-</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=1200" class="h-64 w-full object-cover">
-<div class="p-5">
-<p class="text-green-400">🎮 Setup</p>
-<h3 class="text-xl font-bold">Teclado Mecánico RGB</h3>
-<p class="text-3xl font-bold mt-3">89€ <span class="line-through text-zinc-500 text-lg">139€</span></p>
-<p class="text-orange-400 mt-2">521 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
-</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200" class="h-64 w-full object-cover">
-<div class="p-5">
-<p class="text-green-400">🏠 Smart</p>
-<h3 class="text-xl font-bold">Lámpara RGB Inteligente</h3>
-<p class="text-3xl font-bold mt-3">45€ <span class="line-through text-zinc-500 text-lg">79€</span></p>
-<p class="text-orange-400 mt-2">321 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
-</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200" class="h-64 w-full object-cover">
-<div class="p-5">
-<p class="text-green-400">🚗 Auto</p>
-<h3 class="text-xl font-bold">Aspirador Portátil Coche</h3>
-<p class="text-3xl font-bold mt-3">39€ <span class="line-through text-zinc-500 text-lg">69€</span></p>
-<p class="text-orange-400 mt-2">402 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
-</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200" class="h-64 w-full object-cover">
-<div class="p-5">
-<p class="text-green-400">📽 Trending</p>
-<h3 class="text-xl font-bold">Mini Proyector Smart</h3>
-<p class="text-3xl font-bold mt-3">89€ <span class="line-through text-zinc-500 text-lg">149€</span></p>
-<p class="text-orange-400 mt-2">679 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
-</div></div><div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?q=80&w=1200" class="h-64 w-full object-cover">
-<div class="p-5">
-<p class="text-green-400">📱 Gadget</p>
-<h3 class="text-xl font-bold">Mini Cámara WiFi</h3>
-<p class="text-3xl font-bold mt-3">49€ <span class="line-through text-zinc-500 text-lg">79€</span></p>
-<p class="text-orange-400 mt-2">412 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">Añadir al carrito</button>
-</div></div></div>
-</section><footer class="border-t border-zinc-800 p-10 text-center text-zinc-500">
-© TitanByte 2026 | Tecnología viral premium
-<section class="max-w-7xl mx-auto p-6">
-<h2 class="text-3xl font-bold mb-8">🔥 Ofertas Flash</h2>
-<div class="grid md:grid-cols-3 gap-6">
-<div class="bg-gradient-to-r from-zinc-900 to-zinc-800 p-8 rounded-3xl"><h3 class="text-2xl font-bold">Pack Setup Gamer</h3><p class="mt-3 text-zinc-400">LED + teclado + accesorios</p><div class="text-4xl font-black mt-4">129€</div></div>
-<div class="bg-gradient-to-r from-zinc-900 to-zinc-800 p-8 rounded-3xl"><h3 class="text-2xl font-bold">Top TikTok Box</h3><p class="mt-3 text-zinc-400">3 gadgets virales</p><div class="text-4xl font-black mt-4">89€</div></div>
-<div class="bg-gradient-to-r from-zinc-900 to-zinc-800 p-8 rounded-3xl"><h3 class="text-2xl font-bold">Streamer Pro</h3><p class="mt-3 text-zinc-400">Setup creador contenido</p><div class="text-4xl font-black mt-4">149€</div></div>
-</div>
-</section><section class="max-w-7xl mx-auto p-6">
-<h2 class="text-3xl font-bold mb-8">⭐ Opiniones</h2>
-<div class="grid md:grid-cols-3 gap-6">
-<div class="bg-zinc-900 p-6 rounded-3xl">★★★★★<p class="mt-4">Llegó rápido y brutal calidad.</p></div>
-<div class="bg-zinc-900 p-6 rounded-3xl">★★★★★<p class="mt-4">El proyector fue una locura.</p></div>
-<div class="bg-zinc-900 p-6 rounded-3xl">★★★★★<p class="mt-4">Parece una tienda grande.</p></div>
-</div>
-</section><section class="max-w-7xl mx-auto p-6 text-center">
-<h2 class="text-5xl font-black">⏰ Oferta termina en</h2>
-<div id="timer" class="text-6xl mt-6 font-bold"></div>
-</section><footer class="border-t border-zinc-800 p-10 text-center text-zinc-500">© TitanByte 2026 | Tecnología viral premium</footer>
-<script>
-let total=7200;setInterval(()=>{total--;let h=Math.floor(total/3600),m=Math.floor(total%3600/60),s=total%60;document.getElementById('timer').innerText=`${h}:${m}:${s}`},1000)
-</script>
-<section class="max-w-3xl mx-auto p-6">
-<h2 class="text-3xl font-bold text-center mb-6">💳 Pago rápido</h2>
-<div class="bg-zinc-900 p-8 rounded-3xl text-center">
-<p class="mb-4">Compra segura con PayPal</p>
-<div id="paypal-button-container"></div>
-</div>
-</section><script src="https://www.paypal.com/sdk/js?client-id=AQ0-loNUSHmKJ0yAqvJaGxQj8bvMpKc4_cAzd2rLPURK0VPhIpvp-fsAU5xAOawA9zYKEJmdOukeikNi&currency=EUR"></script><script>
-const carrito=JSON.parse(localStorage.getItem('titanbyte-cart'))||[];
-const botones=document.querySelectorAll('.buy-btn');
-const contador=document.createElement('div');
-contador.className='fixed bottom-5 right-5 bg-white text-black p-4 rounded-2xl font-bold z-50';
-contador.innerText='🛒 0 productos';
-document.body.appendChild(contador);
-
-botones.forEach(btn=>{
- btn.onclick=()=>{
-   carrito.push({precio:89,nombre:'Producto TitanByte'});
-   localStorage.setItem('titanbyte-cart',JSON.stringify(carrito));
-   contador.innerText=`🛒 ${carrito.length} productos`;
- }
-})
-
-paypal.Buttons({
-createOrder:function(data,actions){
-const total=carrito.reduce((a,b)=>a+b.precio,0)||1;
-return actions.order.create({purchase_units:[{amount:{value:String(total)}}]})
-},
-onApprove:function(data,actions){
-return actions.order.capture().then(function(details){
-alert('Pedido realizado '+details.payer.name.given_name)
-carrito.length=0;
-localStorage.removeItem('titanbyte-cart');
-contador.innerText='🛒 0 productos';
-})
-}
-}).render('#paypal-button-container')
-</script></body></html>
-<section class="max-w-7xl mx-auto p-6">
-<h2 class="text-3xl font-bold mb-8">🔥 Más vendidos hoy</h2>
-
-<div class="grid md:grid-cols-4 gap-6">
-
-<!-- PRODUCTO -->
-<div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200"
-class="h-64 w-full object-cover">
-
-<div class="p-5">
-<p class="text-green-400">📽 Viral</p>
-<h3 class="text-xl font-bold">Mini Proyector Smart HD</h3>
-<p class="text-3xl font-bold mt-3">89€
-<span class="line-through text-zinc-500 text-lg">149€</span></p>
-<p class="text-orange-400 mt-2">679 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
-Añadir al carrito
-</button>
-</div>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200"
-class="h-64 w-full object-cover">
-
-<div class="p-5">
-<p class="text-green-400">🎮 Gaming</p>
-<h3 class="text-xl font-bold">Paneles LED RGB</h3>
-<p class="text-3xl font-bold mt-3">79€
-<span class="line-through text-zinc-500">129€</span></p>
-<p class="text-orange-400 mt-2">237 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
-Añadir al carrito
-</button>
-</div>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=1200"
-class="h-64 w-full object-cover">
-
-<div class="p-5">
-<p class="text-green-400">⌨ Setup</p>
-<h3 class="text-xl font-bold">Teclado Mecánico RGB</h3>
-<p class="text-3xl font-bold mt-3">89€
-<span class="line-through text-zinc-500">139€</span></p>
-<p class="text-orange-400 mt-2">521 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
-Añadir al carrito
-</button>
-</div>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?q=80&w=1200"
-class="h-64 w-full object-cover">
-
-<div class="p-5">
-<p class="text-green-400">📷 Smart</p>
-<h3 class="text-xl font-bold">Mini Cámara WiFi</h3>
-<p class="text-3xl font-bold mt-3">49€
-<span class="line-through text-zinc-500">79€</span></p>
-<p class="text-orange-400 mt-2">412 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
-Añadir al carrito
-</button>
-</div>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200"
-class="h-64 w-full object-cover">
-
-<div class="p-5">
-<p class="text-green-400">🚗 Auto</p>
-<h3 class="text-xl font-bold">Aspirador Coche Portátil</h3>
-<p class="text-3xl font-bold mt-3">39€
-<span class="line-through text-zinc-500">69€</span></p>
-<p class="text-orange-400 mt-2">402 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
-Añadir al carrito
-</button>
-</div>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200"
-class="h-64 w-full object-cover">
-
-<div class="p-5">
-<p class="text-green-400">🏠 Hogar</p>
-<h3 class="text-xl font-bold">Lámpara RGB Inteligente</h3>
-<p class="text-3xl font-bold mt-3">45€
-<span class="line-through text-zinc-500">79€</span></p>
-<p class="text-orange-400 mt-2">321 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
-Añadir al carrito
-</button>
-</div>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?q=80&w=1200"
-class="h-64 w-full object-cover">
-
-<div class="p-5">
-<p class="text-green-400">🎥 Premium</p>
-<h3 class="text-xl font-bold">Pack Streamer Pro</h3>
-<p class="text-3xl font-bold mt-3">149€
-<span class="line-through text-zinc-500">249€</span></p>
-<p class="text-orange-400 mt-2">189 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
-Añadir al carrito
-</button>
-</div>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl overflow-hidden">
-<img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?q=80&w=1200"
-class="h-64 w-full object-cover">
-
-<div class="p-5">
-<p class="text-green-400">📱 Gadget</p>
-<h3 class="text-xl font-bold">Power Bank Magnética</h3>
-<p class="text-3xl font-bold mt-3">44€
-<span class="line-through text-zinc-500">69€</span></p>
-<p class="text-orange-400 mt-2">700 vendidos</p>
-<button class="buy-btn w-full mt-4 bg-white text-black py-3 rounded-xl">
-Añadir al carrito
-</button>
-</div>
-</div>
-
-</div>
-</section>
-<!-- PANEL CARRITO -->
-<div id="cartPanel"
-class="fixed top-0 right-[-420px] w-[380px] h-full bg-zinc-950 border-l border-zinc-800 z-50 p-6 transition-all duration-300 overflow-y-auto">
-
-<div class="flex justify-between items-center">
-<h2 class="text-2xl font-bold">🛒 Tu carrito</h2>
-
-<button onclick="toggleCart()"
-class="bg-zinc-800 px-4 py-2 rounded-xl">
-Cerrar
-</button>
-</div>
-
-<div id="cartItems" class="mt-6 space-y-4"></div>
-
-<div class="border-t border-zinc-800 mt-6 pt-6">
-<p class="text-xl">
-Total:
-<span id="cartTotal" class="font-bold">0€</span>
-</p>
-
-<div class="mt-5" id="paypal-button-container"></div>
-</div>
-</div>
-
-<!-- BOTÓN FLOTANTE -->
-<button onclick="toggleCart()"
-class="fixed bottom-5 right-5 bg-white text-black px-6 py-4 rounded-2xl font-bold z-40 shadow-2xl">
-
-🛒 <span id="cartCount">0</span>
-</button>
-
-<!-- OFERTA -->
-<section class="text-center py-20">
-<h2 class="text-5xl font-black">
-⏰ Oferta termina en
-</h2>
-
-<div id="timer"
-class="text-6xl mt-8 font-bold">
-02:00:00
-</div>
-</section>
-
-<!-- PAYPAL -->
-<script src="https://www.paypal.com/sdk/js?client-id=AQ0-loNUSHmKJ0yAqvJaGxQj8bvMpKc4_cAzd2rLPURK0VPhIpvp-fsAU5xAOawA9zYKEJmdOukeikNi&currency=EUR"></script>
-
-<script>
-
-let carrito=
-JSON.parse(
-localStorage.getItem(
-"titanbyte-cart"
-)) || [];
-
-const botones=
-document.querySelectorAll(".buy-btn");
-
-function guardar(){
-localStorage.setItem(
-"titanbyte-cart",
-JSON.stringify(carrito)
-);
-
-renderCart();
-}
-
-botones.forEach(btn=>{
-
-btn.onclick=()=>{
-
-const card=
-btn.closest(".bg-zinc-900");
-
-const nombre=
-card.querySelector("h3").innerText;
-
-const precioTexto=
-card.querySelector(".text-3xl")
-.innerText;
-
-const precio=
-parseInt(precioTexto);
-
-carrito.push({
-nombre,
-precio
-});
-
-guardar();
-
-};
-
-});
-
-function renderCart(){
-
-document.getElementById(
-"cartCount"
-).innerText=
-carrito.length;
-
-const contenedor=
-document.getElementById(
-"cartItems"
-);
-
-contenedor.innerHTML="";
-
-let total=0;
-
-carrito.forEach((p,i)=>{
-
-total+=p.precio;
-
-contenedor.innerHTML +=`
-
-<div class="bg-zinc-900 p-4 rounded-2xl">
-
-<p class="font-bold">
-${p.nombre}
-</p>
-
-<p>${p.precio}€</p>
-
-<button
-onclick="eliminar(${i})"
-class="mt-3 bg-red-500 px-3 py-2 rounded-xl">
-
-Eliminar
-
-</button>
-
-</div>
-
-`;
-
-});
-
-document.getElementById(
-"cartTotal"
-).innerText=
-total+"€";
-
-}
-
-function eliminar(i){
-
-carrito.splice(i,1);
-
-guardar();
-
-}
-
-function toggleCart(){
-
-const panel=
-document.getElementById(
-"cartPanel"
-);
-
-if(panel.style.right==="0px"){
-
-panel.style.right="-420px";
-
-}else{
-
-panel.style.right="0px";
-
-}
-
-}
-
-paypal.Buttons({
-
-createOrder:
-function(data,actions){
-
-const total=
-carrito.reduce(
-(a,b)=>a+b.precio,0
-);
-
-return actions.order.create({
-
-purchase_units:[
-{
-amount:{
-value:
-String(
-total||1
-)
-}
-}
-]
-
-});
-
-},
-
-onApprove:
-function(data,actions){
-
-return actions
-.order
-.capture()
-
-.then(function(details){
-
-alert(
-"Gracias "+
-details.payer.name.given_name
-);
-
-carrito=[];
-
-guardar();
-
-toggleCart();
-
-});
-
-}
-
-})
-
-.render(
-"#paypal-button-container"
-);
-
-renderCart();
-
-let tiempo=7200;
-
-setInterval(()=>{
-
-tiempo--;
-
-let h=
-Math.floor(
-tiempo/3600
-);
-
-let m=
-Math.floor(
-(tiempo%3600)/60
-);
-
-let s=
-tiempo%60;
-
-document.getElementById(
-"timer"
-).innerText=
-`${h}:${m}:${s}`;
-
-},1000);
-
-</script>
+<body class="overflow-x-hidden">
+
+    <!-- ESTRATEGIA MARKETING 1: BANNER DE URGENCIA (FOMO) -->
+    <div class="bg-gradient-to-r from-red-600 via-orange-600 to-red-600 text-center py-2 px-4 text-xs font-black uppercase tracking-widest sticky top-0 z-[60] flex justify-center items-center gap-2">
+        <span>⚡ ¡OFERTAS DE PRIMAVERA! USA EL CUPÓN <span class="bg-black text-white px-2 py-0.5 rounded">TITAN26</span> </span>
+        <span class="hidden md:inline">| LA OFERTA TERMINA EN:</span>
+        <span id="countdown" class="font-title bg-black/40 px-2 py-0.5 rounded">09:59</span>
+    </div>
+
+    <!-- Navbar Móvil -->
+    <header class="lg:hidden glass fixed top-8 w-full z-50 p-4 flex justify-between items-center">
+        <h1 class="font-title font-black text-xl text-orange-500">TITANBYTE</h1>
+        <button onclick="abrirCarrito()" class="relative bg-orange-600 px-3 py-1.5 rounded-xl font-bold text-sm">
+            🛒 <span id="cart-count-mob">0</span>
+        </button>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar de Navegación Completo -->
+        <aside class="hidden lg:flex w-80 h-screen sticky top-8 flex-col glass border-r border-white/5 p-8 z-40">
+            <div class="mb-8">
+                <h1 class="font-title font-black text-3xl tracking-tighter italic">
+                    TITAN<span class="text-orange-500">BYTE</span>
+                </h1>
+                <p class="text-gray-500 text-xs mt-1 uppercase tracking-widest">Premium Hardware Hub</p>
+            </div>
+
+            <nav class="flex-1 space-y-1 overflow-y-auto pr-2 text-xs">
+                <a href="#aliexpress" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>🔥</span> AliExpress WinToWin</a>
+                <a href="#amazon" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>📦</span> Amazon Top Ventas</a>
+                <a href="#pc" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>🖥️</span> PCs Gaming</a>
+                <a href="#cpu" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>🧠</span> Procesadores</a>
+                <a href="#gpu" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>📼</span> Tarjetas Gráficas</a>
+                <a href="#ssd" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>💾</span> Almacenamiento SSD</a>
+                <a href="#streaming" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>🎙️</span> Streaming & Creadores</a>
+                <a href="#consolas" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>🎮</span> Consolas & Simulación</a>
+                <a href="#rgb" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>🌈</span> Componentes RGB</a>
+                <a href="#fuentes" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>⚡</span> Fuentes de Alimentación</a>
+                <a href="#montapc" class="flex items-center gap-3 text-gray-400 hover:text-orange-500 transition-colors p-2 rounded-lg hover:bg-white/5"><span>🛠️</span> Monta tu PC</a>
+            </nav>
+
+            <div class="mt-4 pt-4 border-t border-white/5">
+                <button onclick="abrirCarrito()" class="w-full bg-orange-600 hover:bg-orange-700 transition-all p-4 rounded-xl font-bold flex justify-between items-center text-sm">
+                    <span>Ver Carrito</span>
+                    <span id="cart-total-side" class="bg-black/20 px-2 py-1 rounded-lg text-xs">0.00€</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="flex-1 p-4 lg:p-12 mt-20 lg:mt-0">
+            
+            <!-- Hero Banner -->
+            <section class="relative h-[380px] rounded-3xl overflow-hidden mb-12 bg-cover bg-center" style="background-image: linear-gradient(to top, #05070a, rgba(5,7,10,0.2)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80');">
+                <div class="absolute bottom-8 left-8 max-w-xl">
+                    <span class="bg-orange-600 text-[10px] font-black px-3 py-1 rounded-full mb-3 inline-block tracking-widest animate-pulse">🔴 COMPRA ASEGURADA - STOCK EN TIEMPO REAL</span>
+                    <h2 class="text-5xl font-black font-title leading-tight mb-2">MAXIMIZA TU RENDIMIENTO <span class="text-orange-500">GAMING</span></h2>
+                    <p class="text-gray-400 text-sm">Distribuidor oficial de componentes premium de última generación. Envíos blindados en 24/48 horas.</p>
+                </div>
+            </section>
+
+            <!-- Buscador Global Activo -->
+            <div class="mb-12">
+                <input type="text" id="buscador" oninput="filtrar()" placeholder="Buscar hardware, marcas, ofertas de AliExpress o Amazon..." class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-orange-500 transition-all text-lg">
+            </div>
+
+            <!-- Contenedor donde se inyecta TODO el stock -->
+            <div id="shop-content" class="space-y-20"></div>
+
+            <!-- Sección de montaje interactivo -->
+            <section id="montapc" class="mt-20">
+                <div class="flex items-center gap-4 mb-8">
+                    <h3 class="text-3xl font-black font-title uppercase tracking-tighter">🛠️ Configurador de Presupuestos</h3>
+                    <div class="h-[1px] flex-1 bg-white/10"></div>
+                </div>
+                <div class="bg-[#0f1218] border border-white/5 p-6 rounded-2xl max-w-xl">
+                    <label class="block text-gray-400 text-sm mb-3">Añade componentes rápidos a tu setup personalizado:</label>
+                    <select id="pieza" class="bg-[#05070a] text-white w-full p-3 rounded-xl border border-white/10 focus:outline-none focus:border-orange-500 text-sm">
+                        <option value="RTX 5090 Beast,2499">RTX 5090 Beast Edition - 2499€</option>
+                        <option value="Ryzen 9 9950X3D,999">Ryzen 9 9950X3D - 999€</option>
+                        <option value="SSD NVMe 4TB Premium,399">SSD M.2 NVMe 4TB - 399€</option>
+                        <option value="Fuente Corsair ATX 3.1 1000W,299">Corsair ATX 3.1 1000W - 299€</option>
+                    </select>
+                    <button onclick="agregarPiezaCustom()" class="bg-orange-600 hover:bg-orange-700 transition-all mt-4 px-6 py-3 rounded-xl font-bold text-sm w-full sm:w-auto">
+                        Añadir configuración al pedido
+                    </button>
+                </div>
+            </section>
+
+            <footer class="mt-24 pt-12 border-t border-white/5 text-center text-gray-500">
+                <p class="font-title text-sm tracking-widest italic">TITANBYTE SYSTEM © 2026</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Modal Lateral de Pedido / Carrito -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/80 z-[100] hidden backdrop-blur-sm">
+        <div id="cart-panel" class="absolute right-0 top-0 w-full max-w-md h-full glass p-8 flex flex-col transition-transform duration-300">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-title text-2xl font-black">🛒 TU CESTA DE COMPRA</h3>
+                <button onclick="cerrarCarrito()" class="text-gray-400 hover:text-white text-4xl">&times;</button>
+            </div>
+
+            <!-- ESTRATEGIA MARKETING 3: BARRA DE ENVÍO GRATIS -->
+            <div id="shipping-promo-bar" class="bg-white/5 border border-white/10 rounded-xl p-3 mb-4 text-xs"></div>
+
+            <div id="cart-items" class="flex-1 overflow-y-auto space-y-3 pr-2"></div>
+
+            <!-- ESTRATEGIA MARKETING 4: VENTA CRUZADA (CROSS-SELLING) -->
+            <div id="cross-sell-box" class="bg-orange-600/10 border border-orange-500/30 p-3 rounded-xl my-4 flex justify-between items-center text-xs">
+                <div>
+                    <span class="font-bold text-orange-400">🔥 Oferta estrella:</span>
+                    <p class="text-gray-300">Pack Bridas Velcros Organizadores RGB</p>
+                </div>
+                <button onclick="addToCart('Pack Bridas Velcros RGB', 9)" class="bg-orange-600 hover:bg-orange-700 font-bold px-3 py-1.5 rounded-lg whitespace-nowrap">+9.00€</button>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-white/10">
+                <div class="flex justify-between text-xl font-black mb-6">
+                    <span>TOTAL:</span>
+                    <span id="cart-total-modal" class="text-orange-500">0.00€</span>
+                </div>
+                <!-- PASARELA EXCLUSIVA DE PAYPAL -->
+                <div id="paypal-button-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESTRATEGIA MARKETING 2: SOCIAL PROOF POPUP -->
+    <div id="social-proof" class="fixed bottom-6 left-6 glass border border-orange-500/30 p-4 rounded-xl z-50 max-w-xs shadow-2xl hidden transition-opacity duration-500">
+        <div class="flex items-center gap-3">
+            <div class="bg-orange-600 w-2.5 h-2.5 rounded-full animate-ping shrink-0"></div>
+            <p class="text-xs text-gray-300" id="social-proof-text"></p>
+        </div>
+    </div>
+
+    <script>
+        const images = {
+            pc: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80',
+            cpu: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+            gpu: 'https://images.unsplash.com/photo-1591489378430-ef2f4c626b35?auto=format&fit=crop&w=600&q=80',
+            ssd: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=600&q=80',
+            rgb: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=600&q=80',
+            fuentes: 'https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&w=600&q=80',
+            streaming: 'https://images.unsplash.com/photo-1598550476439-6847785fce6e?auto=format&fit=crop&w=600&q=80',
+            consolas: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80'
+        };
+
+        // STOCK EXPANDIDO CON NUEVOS PRODUCTOS GANADORES (Más de 55 referencias)
+        const catalogData = [
+            {
+                category: "🔥 AliExpress · WinToWin Direct",
+                id: "aliexpress",
+                badgeColor: "bg-red-600 text-white animate-pulse",
+                products: [
+                    { name: 'Mini Proyector LED HD', price: 49, desc: '-58% Hoy', img: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Tira RGB Inteligente 5M', price: 19, desc: '-67% Flash', img: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Mini Teclado Mecánico RGB', price: 29, desc: '-50% Top', img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Auriculares Wireless RGB', price: 39, desc: '-60% Liquidación', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Controlador Hub RGB ARGB', price: 22, desc: '-48% Limitado', img: 'https://images.unsplash.com/photo-1555617981-dac3880eac6e?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Dock USB-C aluminio 8 en 1', price: 49, desc: '-37% Promo', img: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Brazo Hidráulico Monitor', price: 42, desc: '-44% Venta', img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Mini Display USB Temperatura CPU', price: 34, desc: 'Pocas unidades', img: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Soporte Cascos Vertical RGB', price: 18, desc: '-55% Outlet', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Barra Luz LED Monitor Pro', price: 27, desc: '-39% Liquidación', img: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=400&q=80' }
+                ]
+            },
+            {
+                category: "📦 Amazon Essentials · Recomendados",
+                id: "amazon",
+                badgeColor: "bg-yellow-500 text-black font-bold",
+                products: [
+                    { name: 'Echo Dot 5ª Gen', price: 59, desc: 'Nº1 Más Vendido', img: 'https://images.unsplash.com/photo-1512446816042-444d64126727?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'AirPods Pro Gen 2', price: 249, desc: 'Envío Gratis', img: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Samsung T9 SSD 2TB Externa', price: 179, desc: 'Amazon Choice', img: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80' },
+                    { name: 'Razer DeathAdder V3 Pro', price: 69, desc: 'Recomendado', img: 'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=400&q=80' }
+                ]
+            },
+            {
+                category: "🖥️ PCs Gaming Ensamblados",
+                id: "pc",
+                badgeColor: "bg-orange-600 text-white",
+                products: [
+                    { name: 'Titan Beast X', price: 2499, desc: 'Ryzen 9 · RTX 5080 · 64GB', useGlobalImg: 'pc' },
+                    { name: 'Titan Strike Elite', price: 3199, desc: '7800X3D · RTX 5090 · Líquida', useGlobalImg: 'pc' },
+                    { name: 'Titan Creator Pro', price: 2799, desc: 'Intel Ultra · RTX 5080 · AI', useGlobalImg: 'pc' },
+                    { name: 'PC Stream Master v2', price: 2199, desc: 'RTX 5070 Ti · 32GB RAM', useGlobalImg: 'pc' }
+                ]
+            },
+            {
+                category: "🧠 Procesadores",
+                id: "cpu",
+                badgeColor: "bg-neutral-800 text-orange-500 border border-orange-500/30",
+                products: [
+                    { name: 'AMD Ryzen 7 7800X3D', price: 599, desc: 'Top Gaming Celere', useGlobalImg: 'cpu' },
+                    { name: 'AMD Ryzen 9 9950X3D', price: 999, desc: 'Buque Insignia', useGlobalImg: 'cpu' },
+                    { name: 'Intel Core Ultra 9 285K', price: 849, desc: 'Máxima Frecuencia', useGlobalImg: 'cpu' },
+                    { name: 'AMD Ryzen 7 9700X', price: 549, desc: 'Bajo Consumo Zen 5', useGlobalImg: 'cpu' },
+                    { name: 'AMD Ryzen 9 7950X', price: 799, desc: 'Multitarea Extrema', useGlobalImg: 'cpu' },
+                    { name: 'Intel Core i7-13700KF', price: 499, desc: 'Calidad/Precio', useGlobalImg: 'cpu' },
+                    { name: 'Intel Xeon W7-2495X', price: 1399, desc: 'Workstation', useGlobalImg: 'cpu' },
+                    { name: 'AMD EPYC 4124P Server', price: 1599, desc: 'Infraestructura', useGlobalImg: 'cpu' }
+                ]
+            },
+            {
+                category: "📼 Tarjetas Gráficas (Última Generación)",
+                id: "gpu",
+                badgeColor: "bg-orange-600 text-white",
+                products: [
+                    { name: 'RTX 5070 Ti 16GB', price: 999, desc: 'Lanzamiento 2026', useGlobalImg: 'gpu' },
+                    { name: 'RTX 5080 20GB', price: 1799, desc: 'Bestia 4K Real', useGlobalImg: 'gpu' },
+                    { name: 'RTX 5090 24GB Monster', price: 2499, desc: 'Stock Limitadísimo', useGlobalImg: 'gpu' },
+                    { name: 'RTX 3050 8GB Compact', price: 399, desc: 'Entrada Económica', useGlobalImg: 'gpu' },
+                    { name: 'RTX 3060 12GB OC', price: 529, desc: 'Más vendida Full HD', useGlobalImg: 'gpu' },
+                    { name: 'RTX 3080 Ti Premium', price: 1399, desc: 'Gran Oportunidad', useGlobalImg: 'gpu' },
+                    { name: 'RTX 3090 Creator 24GB', price: 1699, desc: 'Edición Profesional', useGlobalImg: 'gpu' },
+                    { name: 'RTX 3090 Ti Xtreme', price: 1899, desc: 'Coleccionista', useGlobalImg: 'gpu' },
+                    { name: 'AMD Radeon RX 7600', price: 429, desc: 'Fluidez Competitiva', useGlobalImg: 'gpu' },
+                    { name: 'AMD Radeon RX 7700 XT', price: 699, desc: '1440p Nativo', useGlobalImg: 'gpu' },
+                    { name: 'Intel Arc B580 Battlemage', price: 449, desc: 'Nueva Arquitectura', useGlobalImg: 'gpu' },
+                    { name: 'Intel Arc A770 16GB', price: 529, desc: 'Edición Especial', useGlobalImg: 'gpu' },
+                    { name: 'Sapphire RX 7600 XT Nitro', price: 589, desc: 'Excelente Disipación', useGlobalImg: 'gpu' },
+                    { name: 'PowerColor RX 7900 GRE', price: 999, desc: 'Rendimiento Extremo', useGlobalImg: 'gpu' },
+                    { name: 'ZOTAC RTX 3080 Trinity', price: 1299, desc: 'Triple ventilador', useGlobalImg: 'gpu' }
+                ]
+            },
+            {
+                category: "💾 Discos M.2 & SSD Alta Velocidad",
+                id: "ssd",
+                badgeColor: "bg-orange-600 text-white",
+                products: [
+                    { name: 'Samsung 990 Pro 4TB', price: 399, desc: 'El más rápido', useGlobalImg: 'ssd' },
+                    { name: 'WD Black SN850X 2TB', price: 299, desc: 'Licencia PS5', useGlobalImg: 'ssd' },
+                    { name: 'Corsair MP700 PCIe 5.0', price: 499, desc: 'Gen 5 Ultra Frecuencia', useGlobalImg: 'ssd' },
+                    { name: 'Kingston Fury Renegade 2TB', price: 269, desc: 'Estable e Inmune', useGlobalImg: 'ssd' },
+                    { name: 'Crucial T705 2TB Elite', price: 359, desc: '14500 MB/s', useGlobalImg: 'ssd' },
+                    { name: 'Seagate FireCuda 530 4TB', price: 449, desc: 'Máxima Durabilidad', useGlobalImg: 'ssd' },
+                    { name: 'Lexar NM790 4TB NVMe', price: 329, desc: 'Gran Calidad/Precio', useGlobalImg: 'ssd' },
+                    { name: 'ADATA Legend 960 Max 2TB', price: 239, desc: 'Disipador Aluminio', useGlobalImg: 'ssd' },
+                    { name: 'SK Hynix Platinum P41 2TB', price: 279, desc: 'Eficiencia Máxima', useGlobalImg: 'ssd' },
+                    { name: 'TeamGroup Cardea A440 Pro', price: 259, desc: 'Carga Instantánea', useGlobalImg: 'ssd' },
+                    { name: 'Sabrent Rocket 4 Plus 4TB', price: 399, desc: 'Estación de datos', useGlobalImg: 'ssd' },
+                    { name: 'MSI Spatium M580 FROZR 2TB', price: 389, desc: 'Refrigeración Activa', useGlobalImg: 'ssd' },
+                    { name: 'Gigabyte AORUS Gen4 7000s 2TB', price: 299, desc: 'Blindaje Térmico', useGlobalImg: 'ssd' }
+                ]
+            },
+            {
+                category: "🎙️ NUEVO: Streaming, Audio & Creadores",
+                id: "streaming",
+                badgeColor: "bg-purple-600 text-white",
+                products: [
+                    { name: 'Micrófono Shure SM7B Pro', price: 389, desc: 'Audio de Estudio', useGlobalImg: 'streaming' },
+                    { name: 'Capturadora Elgato 4K X', price: 229, desc: 'VRR Passthrough', useGlobalImg: 'streaming' },
+                    { name: 'Elgato Stream Deck MK.2', price: 149, desc: 'Control Absoluto', useGlobalImg: 'streaming' },
+                    { name: 'Cámara Razer Kiyo Pro Ultra', price: 299, desc: 'Sensor DSLR 4K', useGlobalImg: 'streaming' }
+                ]
+            },
+            {
+                category: "🎮 NUEVO: Consolas & Simulación Premium",
+                id: "consolas",
+                badgeColor: "bg-blue-600 text-white",
+                products: [
+                    { name: 'PlayStation 5 Pro 1TB', price: 799, desc: 'PSSR AI Upscaling', useGlobalImg: 'consolas' },
+                    { name: 'Volante Logitech G PRO Direct Drive', price: 1099, desc: 'Fuerza 11Nm Real', useGlobalImg: 'consolas' },
+                    { name: 'Gafas VR Meta Quest 3 512GB', price: 649, desc: 'Realidad Mixta', useGlobalImg: 'consolas' },
+                    { name: 'Asiento Cockpit SimRacing GT', price: 450, desc: 'Acero Reforzado', useGlobalImg: 'consolas' }
+                ]
+            },
+            {
+                category: "🌈 Ventiladores & Kits RGB Estéticos",
+                id: "rgb",
+                badgeColor: "bg-orange-600 text-white",
+                products: [
+                    { name: 'Lian Li UNI Fan TL RGB (x3)', price: 119, desc: 'Modular sin Cables', useGlobalImg: 'rgb' },
+                    { name: 'Corsair iCUE Link QX120 Pack', price: 149, desc: 'Ecosistema Inteligente', useGlobalImg: 'rgb' },
+                    { name: 'NZXT F120 RGB Duo Pack', price: 89, desc: 'Doble Anillo Iluminado', useGlobalImg: 'rgb' }
+                ]
+            },
+            {
+                category: "⚡ Fuentes de Alimentación Blindadas",
+                id: "fuentes",
+                badgeColor: "bg-orange-600 text-white",
+                products: [
+                    { name: 'Corsair RM1000x Shift', price: 299, desc: 'Conexión Lateral Gold', useGlobalImg: 'fuentes' },
+                    { name: 'ASUS ROG Thor 1200W Platinum', price: 449, desc: 'Pantalla OLED Integrada', useGlobalImg: 'fuentes' },
+                    { name: 'MSI MPG A1000G PCIE5', price: 279, desc: 'Soporte Nativo ATX 3.1', useGlobalImg: 'fuentes' },
+                    { name: 'NOX Urano VX 650W', price: 49, desc: 'Económica Certificada', useGlobalImg: 'fuentes' },
+                    { name: 'Tacens Anima APII 500W', price: 39, desc: 'Ofimática Básica', useGlobalImg: 'fuentes' },
+                    { name: 'Kolink Core 600W 80+', price: 54, desc: 'Presupuestos Ajustados', useGlobalImg: 'fuentes' },
+                    { name: 'Aerocool VX Plus 550W', price: 45, desc: 'Protección Sobretensión', useGlobalImg: 'fuentes' },
+                    { name: 'Mars Gaming MPB650 RGB', price: 59, desc: 'Silenciosa con Estética', useGlobalImg: 'fuentes' },
+                    { name: 'Tempest PSU 600W Basic', price: 42, desc: 'Montajes Estándar', useGlobalImg: 'fuentes' },
+                    { name: 'Sharkoon WPM Gold 550W', price: 69, desc: 'Eficiencia Eficiente', useGlobalImg: 'fuentes' },
+                    { name: 'DeepCool PF550 Eficiente', price: 52, desc: 'Componentes Japoneses', useGlobalImg: 'fuentes' },
+                    { name: 'GameMax GP-600 Watt', price: 48, desc: 'Certificación Eco', useGlobalImg: 'fuentes' },
+                    { name: 'Nfortec Scutum X 650W', price: 55, desc: 'Gaming de Entrada', useGlobalImg: 'fuentes' }
+                ]
+            }
+        ];
+
+        let cart = [];
+
+        function renderShop() {
+            const container = document.getElementById('shop-content');
+            container.innerHTML = catalogData.map(cat => `
+                <section id="${cat.id}">
+                    <div class="flex items-center gap-4 mb-6">
+                        <h3 class="text-xl font-black font-title uppercase tracking-tight">${cat.category}</h3>
+                        <div class="h-[1px] flex-1 bg-white/10"></div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+                        ${cat.products.map(p => {
+                            const imgSrc = p.img ? p.img : images[p.useGlobalImg];
+                            return `
+                                <div class="product-card rounded-2xl p-5 relative flex flex-col justify-between">
+                                    <div>
+                                        <span class="absolute top-3 left-3 ${cat.badgeColor} text-[9px] font-black px-2.5 py-0.5 rounded-full z-10 uppercase tracking-wider">${p.desc}</span>
+                                        <div class="h-40 overflow-hidden rounded-xl mb-3 bg-black/40">
+                                            <img src="${imgSrc}" alt="${p.name}" class="w-full h-full object-cover">
+                                        </div>
+                                        <h4 class="font-bold text-sm leading-tight mb-1 tracking-tight text-gray-100">${p.name}</h4>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                        <span class="text-orange-500 font-title font-black text-lg">${p.price}€</span>
+                                        <button onclick="addToCart('${p.name}', ${p.price})" class="bg-orange-600 hover:bg-orange-700 transition-all text-xs font-bold px-3 py-2 rounded-xl">
+                                            Añadir al Carrito
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </section>
+            `).join('');
+        }
+
+        function addToCart(name, price) {
+            const found = cart.find(item => item.name === name);
+            if (found) {
+                found.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            abrirCarrito();
+        }
+
+        function agregarPiezaCustom() {
+            const select = document.getElementById('pieza');
+            const [name, priceStr] = select.value.split(',');
+            addToCart(`[Custom] ${name}`, parseInt(priceStr));
+        }
+
+        function updateCartUI() {
+            const itemsContainer = document.getElementById('cart-items');
+            const total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+
+            document.getElementById('cart-count-mob').innerText = totalQty;
+            document.getElementById('cart-total-side').innerText = total.toFixed(2) + "€";
+            document.getElementById('cart-total-modal').innerText = total.toFixed(2) + "€";
+
+            // Lógica de barra de envío gratis (Estrategia 3)
+            const shippingPromo = document.getElementById('shipping-promo-bar');
+            const limit = 150;
+            if (total === 0) {
+                shippingPromo.innerHTML = `🎁 Añade <b>${limit}€</b> para obtener <b>Envío Express GRATIS</b>`;
+                shippingPromo.className = "bg-white/5 border border-white/10 rounded-xl p-3 mb-4 text-xs text-center text-gray-400";
+            } else if (total < limit) {
+                const diff = limit - total;
+                shippingPromo.innerHTML = `🔥 ¡Estás a solo <b>${diff.toFixed(2)}€</b> de tener <b>Envío Premium Gratis</b>!`;
+                shippingPromo.className = "bg-orange-500/10 border border-orange-500/40 rounded-xl p-3 mb-4 text-xs text-center text-orange-400 animate-pulse";
+            } else {
+                shippingPromo.innerHTML = `🎉 ¡Felicidades! Has desbloqueado el <b>ENVÍO EXPRESS GRATUITO</b>`;
+                shippingPromo.className = "bg-green-500/20 border border-green-500/50 rounded-xl p-3 mb-4 text-xs text-center text-green-400 font-bold";
+            }
+
+            itemsContainer.innerHTML = cart.map((item, idx) => `
+                <div class="bg-white/5 p-3 rounded-xl border border-white/5 flex justify-between items-center">
+                    <div>
+                        <h5 class="font-bold text-xs text-gray-200">${item.name}</h5>
+                        <p class="text-orange-500 text-xs font-bold mt-0.5">${item.qty} x ${item.price}€</p>
+                    </div>
+                    <button onclick="removeFromCart(${idx})" class="bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white px-2 py-1 rounded-md text-xs transition-colors font-bold">
+                        &times;
+                    </button>
+                </div>
+            `).join('');
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = `<div class="text-center text-gray-500 py-8 text-xs">Tu carrito está vacío, añade hardware para empezar.</div>`;
+            }
+        }
+
+        function removeFromCart(index) {
+            if (cart[index].qty > 1) {
+                cart[index].qty--;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function abrirCarrito() {
+            document.getElementById('cart-modal').classList.remove('hidden');
+        }
+
+        function cerrarCarrito() {
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+
+        function filtrar() {
+            const term = document.getElementById('buscador').value.toLowerCase();
+            document.querySelectorAll('.product-card').forEach(card => {
+                const targetText = card.innerText.toLowerCase();
+                card.style.display = targetText.includes(term) ? 'flex' : 'none';
+            });
+        }
+
+        // LÓGICA DE MARKETING: CUENTA ATRÁS REAL RECURRENTE (Estrategia 1)
+        function startCountdown() {
+            let duration = 599; // 9 minutos y 59 segundos
+            const display = document.getElementById('countdown');
+            setInterval(() => {
+                let minutes = parseInt(duration / 60, 10);
+                let seconds = parseInt(duration % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds;
+                if (--duration < 0) duration = 599; // Se reinicia para mantener la urgencia activa
+            }, 1000);
+        }
+
+        // LÓGICA DE MARKETING: POPUP DE PRUEBA SOCIAL SIMULADA (Estrategia 2)
+        function triggerSocialProof() {
+            const buyers = ["Un cliente de Madrid", "Un streamer de Barcelona", "Carlos M. de Sevilla", "David T. de Valencia", "Un usuario de Bilbao", "Alex_98 de Zaragoza"];
+            const productsBought = ["una Tarjeta Gráficas RTX 5090 Monster", "un Procesador Ryzen 7 7800X3D", "un PC Ensamblado Titan Beast X", "un Pack de Ventiladores Lian Li RGB", "una Consola PlayStation 5 Pro"];
+            
+            setInterval(() => {
+                const randomBuyer = buyers[Math.floor(Math.random() * buyers.length)];
+                const randomProduct = productsBought[Math.floor(Math.random() * productsBought.length)];
+                
+                const box = document.getElementById('social-proof');
+                document.getElementById('social-proof-text').innerHTML = `🔥 <b>${randomBuyer}</b> acaba de comprar <b>${randomProduct}</b> en este instante.`;
+                
+                box.classList.remove('hidden');
+                box.classList.add('animate-slideup');
+                
+                setTimeout(() => {
+                    box.classList.add('hidden');
+                }, 4000);
+            }, 18000); // Aparece un mensaje persuasivo cada 18 segundos
+        }
+
+        // INTEGRACIÓN BLINDADA DE PAYPAL
+        paypal.Buttons({
+            createOrder: (data, actions) => {
+                const total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+                if (total <= 0) {
+                    alert("Añade algún componente al carrito antes de proceder.");
+                    return;
+                }
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            currency_code: "EUR",
+                            value: total.toFixed(2)
+                        }
+                    }]
+                });
+            },
+            onApprove: (data, actions) => {
+                return actions.order.capture().then((details) => {
+                    alert(`⚡ ¡Transacción Completada! Gracias ${details.payer.name.given_name}. Tu hardware está preparándose en almacén.`);
+                    cart = [];
+                    updateCartUI();
+                    cerrarCarrito();
+                });
+            },
+            onError: (err) => {
+                console.error("Error pasarela:", err);
+                alert("No se pudo procesar con PayPal. Verifica tu saldo o cuenta.");
+            }
+        }).render('#paypal-button-container');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderShop();
+            updateCartUI();
+            startCountdown();
+            triggerSocialProof();
+        });
+    </script>
+</body>
+</html>
